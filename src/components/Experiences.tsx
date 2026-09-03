@@ -28,16 +28,16 @@ const SKILLS: Skill[] = [
 
 const Experiences: React.FC = () => {
   return (
-    <ParallaxSection id="experiences" image="/Journey.png" tint={0} className="py-20 relative">
-      {/* Left-side dim ONLY — keeps right side bright/natural */}
+    <ParallaxSection id="experiences" image="/Journey.png" tint={0} className="py-20 relative min-h-[900px] flex items-start">
+      {/* Left-side dim ONLY — 30% on far left → transparent by center, full height */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
-        style={{ background: 'linear-gradient(90deg, rgba(0,10,20,0.35) 0%, rgba(0,10,20,0.12) 45%, transparent 70%)' }}
+        style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.15) 40%, transparent 65%)' }}
       />
 
       {/* Content anchored to TOP, constrained to left ~60% so avatar stays visible on right */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-8">
-        <div className="max-w-[850px]">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-8 sm:px-16">
+        <div className="max-w-[820px]">
           {/* Header — Inter */}
           <span className="section-label">Journey</span>
           <h2 className="text-4xl sm:text-6xl font-bold mt-3 mb-4 text-white tracking-tight" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.3)' }}>
