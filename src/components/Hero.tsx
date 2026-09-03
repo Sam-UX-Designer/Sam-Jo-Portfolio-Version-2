@@ -58,12 +58,12 @@ const Hero: React.FC = () => {
           alt=""
           className="h-full w-full object-cover object-center"
         />
-        {/* soft dark overlay so text stays readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1428]/70 via-[#0a1428]/30 to-[#0a1428]/80" />
+        {/* very light vignette only — keep the image natural and bright */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1428]/25 via-transparent to-[#0a1428]/40" />
       </div>
 
-      {/* Hero content */}
-      <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 text-center">
+      {/* Hero content — anchored to TOP area */}
+      <main className="relative z-10 flex flex-col items-center text-center px-6 pt-[16vh]">
         {/* Eyebrow */}
         <p className="text-[13px] sm:text-sm font-semibold tracking-[0.25em] uppercase mb-6 animate-fade-rise">
           <span className="text-white/90">AI Generalist</span>
