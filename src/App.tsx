@@ -11,6 +11,15 @@ const App: React.FC = () => {
     <div className="relative w-full bg-background overflow-x-hidden">
       <Nav />
       <Hero />
+
+      {/* Smooth transition: dark night hero → bright day sections */}
+      <div
+        className="h-32 w-full"
+        style={{
+          background: 'linear-gradient(180deg, hsl(220 40% 6%) 0%, #24405f 55%, #6b93c4 100%)',
+        }}
+      />
+
       <Projects />
       <Experiences />
       <About />
