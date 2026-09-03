@@ -10,7 +10,7 @@ const About: React.FC = () => {
           The Story So Far
         </h2>
         <p className="text-white/85 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.4)' }}>
-          Your bio goes here — waiting for the exact wording (school name, title, focus) before this is written.
+          I focus on designing meaningful experiences and intelligent systems that simplify life, spark impact, and feel human at every touchpoint.
         </p>
       </div>
     </ParallaxSection>
