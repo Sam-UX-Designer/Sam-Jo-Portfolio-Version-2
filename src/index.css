@@ -18,89 +18,194 @@ body {
   overflow-x: hidden;
 }
 
-.bg-background { background-color: hsl(var(--background)); }
-.text-foreground { color: hsl(var(--foreground)); }
-.text-muted-foreground { color: hsl(var(--muted-foreground)); }
-.text-primary { color: hsl(var(--primary)); }
+.bg-background {
+  background-color: hsl(var(--background));
+}
+
+.text-foreground {
+  color: hsl(var(--foreground));
+}
+
+.text-muted-foreground {
+  color: hsl(var(--muted-foreground));
+}
+
+.text-primary {
+  color: hsl(var(--primary));
+}
+
+
+/* =========================================================
+   LIQUID GLASS
+   ========================================================= */
 
 .liquid-glass {
   background: rgba(255, 255, 255, 0.06);
   background-blend-mode: overlay;
+
   backdrop-filter: blur(100px);
   -webkit-backdrop-filter: blur(100px);
+
   border: none;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6),
-              inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
   position: relative;
 }
 
 .liquid-glass::before {
   content: '';
+
   position: absolute;
   inset: 0;
+
   border-radius: inherit;
   padding: 1.2px;
-  background: linear-gradient(180deg,
+
+  background: linear-gradient(
+    180deg,
     hsla(190, 100%, 70%, 0.4) 0%,
     hsla(190, 100%, 50%, 0.05) 30%,
-    rgba(255,255,255,0) 50%,
+    rgba(255, 255, 255, 0) 50%,
     hsla(190, 100%, 50%, 0.05) 70%,
-    hsla(190, 100%, 70%, 0.4) 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    hsla(190, 100%, 70%, 0.4) 100%
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+
   pointer-events: none;
 }
 
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
 @keyframes fade-rise {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.animate-fade-rise { animation: fade-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
-.animate-fade-rise-delay { animation: fade-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+.animate-fade-rise {
+  animation:
+    fade-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
 
-.display-font { font-family: var(--font-display); }
+.animate-fade-rise-delay {
+  animation:
+    fade-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
 
-/* Translucent frosted card â€” strong blur so the background landscape visibly
-   diffuses through the card. Used for What I Build + Experiences cards. */
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+.display-font {
+  font-family: var(--font-display);
+}
+
+
+/* =========================================================
+   FROSTED GLASS CARD
+   Used for What I Build + Experience cards
+   ========================================================= */
+
 .card-glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(100px) saturate(1.3);
-  -webkit-backdrop-filter: blur(100px) saturate(1.3);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.20);
+
+  -webkit-backdrop-filter: blur(100px) saturate(1.15);
+  backdrop-filter: blur(100px) saturate(1.15);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
   border-radius: 20px;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.18);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.20),
+    0 12px 40px rgba(0, 0, 0, 0.10);
 }
 
-/* Heavy frosted DARK glass panel Ã¢â‚¬â€ reads as a solid frosted surface, not transparent.
-   Per spec: background rgba(5,20,30,.30-.40), blur ~24px, subtle border, NO heavy shadow. */
+
+/* =========================================================
+   FROSTED PANEL
+   Used for larger Experience / content panels
+   ========================================================= */
+
 .frost-panel {
-  background: rgba(5, 20, 30, 0.35);
-  backdrop-filter: blur(100px) saturate(1.1);
+  background: rgba(255, 255, 255, 0.18);
+
   -webkit-backdrop-filter: blur(100px) saturate(1.1);
-  border: 1px solid rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(100px) saturate(1.1);
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+
+  border-radius: 20px;
 }
 
-/* Skill chip Ã¢â‚¬â€ flat, square-round (radius 10px), 8px blur, NO drop shadow, NO pill. */
+
+/* =========================================================
+   FROSTED SKILL CHIP
+   ========================================================= */
+
 .frost-chip {
-  background: rgba(255, 255, 255, 0.045);
-  backdrop-filter: blur(100px);
+  background: rgba(255, 255, 255, 0.10);
+
   -webkit-backdrop-filter: blur(100px);
+  backdrop-filter: blur(100px);
+
   border: 1px solid rgba(255, 255, 255, 0.16);
+
   border-radius: 10px;
 }
 
-.chat-scroll::-webkit-scrollbar { width: 3px; }
-.chat-scroll::-webkit-scrollbar-thumb { background: rgba(0, 255, 255, 0.1); border-radius: 10px; }
+
+/* =========================================================
+   CHAT SCROLLBAR
+   ========================================================= */
+
+.chat-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   SECTION LABEL
+   ========================================================= */
 
 .section-label {
   font-family: var(--font-body);
+
   font-size: 10px;
   font-weight: 700;
+
   letter-spacing: 0.4em;
+
   text-transform: uppercase;
+
   color: #ffffff;
+
   opacity: 0.9;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+
+  text-shadow:
+    0 1px 6px rgba(0, 0, 0, 0.5);
 }
