@@ -62,6 +62,24 @@ body {
 
 .display-font { font-family: var(--font-display); }
 
+/* Heavy frosted DARK glass panel â€” reads as a solid frosted surface, not transparent.
+   Per spec: background rgba(5,20,30,.30-.40), blur ~24px, subtle border, NO heavy shadow. */
+.frost-panel {
+  background: rgba(5, 20, 30, 0.35);
+  backdrop-filter: blur(24px) saturate(1.1);
+  -webkit-backdrop-filter: blur(24px) saturate(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+}
+
+/* Skill chip â€” flat, square-round (radius 10px), 8px blur, NO drop shadow, NO pill. */
+.frost-chip {
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+}
+
 .chat-scroll::-webkit-scrollbar { width: 3px; }
 .chat-scroll::-webkit-scrollbar-thumb { background: rgba(0, 255, 255, 0.1); border-radius: 10px; }
 
