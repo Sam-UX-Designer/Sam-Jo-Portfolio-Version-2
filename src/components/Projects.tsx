@@ -56,7 +56,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <ParallaxSection id="projects" image="/What%20I%20Build.png" tint={0.2} className="py-32">
+    <ParallaxSection id="projects" image="/WhatIBuild.png" tint={0.2} className="py-32">
       <div className="w-full max-w-7xl mx-auto px-8">
       {/* Heading */}
       <div className="text-center mb-12">
