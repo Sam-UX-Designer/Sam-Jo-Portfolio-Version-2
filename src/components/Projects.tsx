@@ -60,7 +60,7 @@ const Projects: React.FC = () => {
       <div className="w-full max-w-7xl mx-auto px-8">
       {/* Heading */}
       <div className="text-center mb-12">
-        <span className="section-label text-primary">What I Build</span>
+        <span className="section-label">What I Build</span>
         <h2 className="display-font text-5xl sm:text-7xl mt-4 text-foreground leading-[0.95]">
           Sam as a
         </h2>
@@ -95,7 +95,8 @@ const Projects: React.FC = () => {
       {/* Tagline — swaps with tab */}
       <p
         key={activeTab.id}
-        className="text-center text-muted-foreground text-sm sm:text-base opacity-60 max-w-md mx-auto mb-16 animate-fade-rise"
+        className="text-center text-white opacity-90 text-sm sm:text-base max-w-md mx-auto mb-16 animate-fade-rise"
+        style={{ textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
       >
         {activeTab.tagline}
       </p>
@@ -112,10 +113,10 @@ const Projects: React.FC = () => {
             >
               {/* Top row */}
               <div className="flex items-center justify-between w-full">
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-300/70">
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/80">
                   {card.tag}
                 </span>
-                <span className="display-font text-2xl text-muted-foreground opacity-30">
+                <span className="display-font text-2xl text-white opacity-40">
                   {card.index}
                 </span>
               </div>
