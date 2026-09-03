@@ -12,8 +12,8 @@ const Nav: React.FC = () => {
 
   return (
     <nav className="absolute top-0 left-0 z-20 mx-auto flex w-full max-w-7xl items-center px-8 py-10 left-1/2 -translate-x-1/2">
-      <div className="display-font text-4xl tracking-tighter text-white uppercase italic shrink-0">
-        SAM'S<span className="not-italic text-xs font-normal opacity-40 ml-1">®</span>
+      <div className="text-2xl font-bold tracking-tight text-white shrink-0">
+        SAM'S<span className="text-[#1683FF]">®</span>
       </div>
 
       <div className="hidden md:flex flex-1 justify-center gap-10 lg:gap-14">
