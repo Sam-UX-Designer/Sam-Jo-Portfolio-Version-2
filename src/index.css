@@ -24,10 +24,10 @@ body {
 .text-primary { color: hsl(var(--primary)); }
 
 .liquid-glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.06);
   background-blend-mode: overlay;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
   border: none;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6),
               inset 0 1px 1px rgba(255, 255, 255, 0.15);
@@ -71,5 +71,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  opacity: 0.4;
+  color: #ffffff;
+  opacity: 0.9;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
