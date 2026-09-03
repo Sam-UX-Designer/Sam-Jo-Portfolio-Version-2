@@ -96,12 +96,12 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <ParallaxSection id="projects" image="/WhatIBuild.png" tint={0.2} className="py-24">
+    <ParallaxSection id="projects" image="/WhatIBuild.png" tint={0.2} className="pt-20 pb-24 min-h-[900px]">
       <div className="w-full max-w-7xl mx-auto px-8">
         {/* Heading */}
         <div className="text-center mb-10">
           <span className="section-label">What I Build</span>
-          <h2 className="display-font text-5xl sm:text-7xl mt-4 text-foreground leading-[0.95]">Sam as a</h2>
+          <h2 className="text-5xl sm:text-7xl font-bold tracking-tight mt-4 text-foreground leading-[0.95]">Sam as a</h2>
         </div>
 
         {/* Toggle — smooth sliding indicator */}
@@ -121,7 +121,7 @@ const Projects: React.FC = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActive(tab.id)}
-                  className={`relative z-10 flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-500 flex-1 ${
+                  className={`relative z-10 flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-500 flex-1 whitespace-nowrap ${
                     isActive ? 'text-white' : 'text-white/50 hover:text-white/80'
                   }`}
                 >
@@ -136,7 +136,7 @@ const Projects: React.FC = () => {
         {/* Tagline */}
         <p
           key={activeTab.id}
-          className="text-center text-white opacity-90 text-sm sm:text-base max-w-md mx-auto mb-14 animate-fade-rise"
+          className="text-center text-white opacity-90 text-sm sm:text-base max-w-md mx-auto mb-24 animate-fade-rise"
           style={{ textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
         >
           {activeTab.tagline}
