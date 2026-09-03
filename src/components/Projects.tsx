@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Sparkles, Pencil, Lock } from 'lucide-react';
+import ParallaxSection from './ParallaxSection';
 
 type TabId = 'generalist' | 'designer';
 
@@ -55,7 +56,8 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="relative z-10 w-full max-w-7xl mx-auto px-8 py-32">
+    <ParallaxSection id="projects" image="/What%20I%20Build.png" tint={0.2} className="py-32">
+      <div className="w-full max-w-7xl mx-auto px-8">
       {/* Heading */}
       <div className="text-center mb-12">
         <span className="section-label text-primary">What I Build</span>
@@ -141,7 +143,8 @@ const Projects: React.FC = () => {
           );
         })}
       </div>
-    </section>
+      </div>
+    </ParallaxSection>
   );
 };
 
