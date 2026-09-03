@@ -104,24 +104,29 @@ const Projects: React.FC = () => {
           <h2 className="display-font text-5xl sm:text-7xl mt-4 text-foreground leading-[0.95]">Sam as a</h2>
         </div>
 
-        {/* Toggle */}
+        {/* Toggle — smooth sliding indicator */}
         <div className="flex justify-center mb-6">
           <div className="liquid-glass rounded-full p-1.5 flex items-center gap-1 relative">
+            {/* Sliding pill */}
+            <span
+              className="absolute top-1.5 bottom-1.5 rounded-full bg-white/5 shadow-[0_0_25px_rgba(34,211,238,0.25)] border border-cyan-400/30 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              style={{
+                left: active === 'generalist' ? '6px' : '50%',
+                right: active === 'generalist' ? '50%' : '6px',
+              }}
+            />
             {TABS.map((tab) => {
               const isActive = tab.id === active;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActive(tab.id)}
-                  className={`relative z-10 flex items-center gap-2.5 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-500 ${
+                  className={`relative z-10 flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-500 flex-1 ${
                     isActive ? 'text-white' : 'text-white/50 hover:text-white/80'
                   }`}
                 >
                   <span className={`transition-colors duration-500 ${isActive ? 'text-cyan-300' : ''}`}>{tab.icon}</span>
                   {tab.label}
-                  {isActive && (
-                    <span className="absolute inset-0 rounded-full bg-white/5 shadow-[0_0_25px_rgba(34,211,238,0.25)] border border-cyan-400/30 -z-10" />
-                  )}
                 </button>
               );
             })}
@@ -150,7 +155,7 @@ const Projects: React.FC = () => {
               <button
                 key={card.id}
                 onClick={() => handleCardClick(card.id)}
-                className="group liquid-glass rounded-[1.75rem] p-6 text-center flex flex-col items-center transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] cursor-pointer"
+                className="group card-glass p-6 text-center flex flex-col items-center transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] cursor-pointer"
               >
                 {/* Top row: index/tag + arrow */}
                 <div className="flex items-start justify-between w-full mb-4">
