@@ -62,7 +62,17 @@ body {
 
 .display-font { font-family: var(--font-display); }
 
-/* Heavy frosted DARK glass panel â€” reads as a solid frosted surface, not transparent.
+/* Translucent frosted card â€” strong blur so the background landscape visibly
+   diffuses through the card. Used for What I Build + Experiences cards. */
+.card-glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(50px) saturate(1.1);
+  -webkit-backdrop-filter: blur(50px) saturate(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+}
+
+/* Heavy frosted DARK glass panel Ã¢â‚¬â€ reads as a solid frosted surface, not transparent.
    Per spec: background rgba(5,20,30,.30-.40), blur ~24px, subtle border, NO heavy shadow. */
 .frost-panel {
   background: rgba(5, 20, 30, 0.35);
@@ -71,7 +81,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.20);
 }
 
-/* Skill chip â€” flat, square-round (radius 10px), 8px blur, NO drop shadow, NO pill. */
+/* Skill chip Ã¢â‚¬â€ flat, square-round (radius 10px), 8px blur, NO drop shadow, NO pill. */
 .frost-chip {
   background: rgba(255, 255, 255, 0.045);
   backdrop-filter: blur(8px);
