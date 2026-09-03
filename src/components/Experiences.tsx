@@ -6,7 +6,7 @@ const Experiences: React.FC = () => {
   return (
     <ParallaxSection id="experiences" image="/Journey.png" tint={0.2} className="py-32">
       <div className="w-full max-w-7xl mx-auto px-8">
-        <span className="section-label text-primary">Journey</span>
+        <span className="section-label">Journey</span>
         <h2 className="display-font text-4xl sm:text-6xl mt-4 mb-16 text-foreground">Experiences</h2>
 
         <div className="flex flex-col gap-4">
