@@ -1,0 +1,34 @@
+HOW TO PUT THESE FILES LIVE
+============================
+
+IMPORTANT: Keep the folders (src, public) intact. Do NOT drag files out of them.
+
+The correct structure must look like this in your repo:
+
+  index.html
+  package.json
+  package-lock.json
+  vite.config.ts
+  tsconfig.json
+  tsconfig.app.json
+  tsconfig.node.json
+  README.md
+  public/
+    favicon.svg
+  src/
+    App.tsx
+    main.tsx
+    index.css
+    components/
+      Hero.tsx
+      Nav.tsx
+      Projects.tsx
+      Experiences.tsx
+      About.tsx
+      Contact.tsx
+      Footer.tsx
+      icons/
+        LinkedinIcon.tsx
+
+Easiest method: use GitHub Desktop (desktop.github.com) to clone your repo,
+delete the old files, copy these in WITH their folders, then Commit + Push.
