@@ -26,8 +26,8 @@ body {
 .liquid-glass {
   background: rgba(255, 255, 255, 0.06);
   background-blend-mode: overlay;
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
   border: none;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6),
               inset 0 1px 1px rgba(255, 255, 255, 0.15);
@@ -62,31 +62,31 @@ body {
 
 .display-font { font-family: var(--font-display); }
 
-/* Translucent frosted card Ã¢â‚¬â€ strong blur so the background landscape visibly
+/* Translucent frosted card â€” strong blur so the background landscape visibly
    diffuses through the card. Used for What I Build + Experiences cards. */
 .card-glass {
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(64px) saturate(1.3);
-  -webkit-backdrop-filter: blur(64px) saturate(1.3);
+  backdrop-filter: blur(100px) saturate(1.3);
+  -webkit-backdrop-filter: blur(100px) saturate(1.3);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 20px;
   box-shadow: inset 0 1px 1px rgba(255,255,255,0.18);
 }
 
-/* Heavy frosted DARK glass panel ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â reads as a solid frosted surface, not transparent.
+/* Heavy frosted DARK glass panel Ã¢â‚¬â€ reads as a solid frosted surface, not transparent.
    Per spec: background rgba(5,20,30,.30-.40), blur ~24px, subtle border, NO heavy shadow. */
 .frost-panel {
   background: rgba(5, 20, 30, 0.35);
-  backdrop-filter: blur(24px) saturate(1.1);
-  -webkit-backdrop-filter: blur(24px) saturate(1.1);
+  backdrop-filter: blur(100px) saturate(1.1);
+  -webkit-backdrop-filter: blur(100px) saturate(1.1);
   border: 1px solid rgba(255, 255, 255, 0.20);
 }
 
-/* Skill chip ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â flat, square-round (radius 10px), 8px blur, NO drop shadow, NO pill. */
+/* Skill chip Ã¢â‚¬â€ flat, square-round (radius 10px), 8px blur, NO drop shadow, NO pill. */
 .frost-chip {
   background: rgba(255, 255, 255, 0.045);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 10px;
 }
