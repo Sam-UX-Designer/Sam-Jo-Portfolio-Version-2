@@ -102,7 +102,7 @@ const Projects: React.FC = () => {
     <ParallaxSection id="projects" image="/WhatIBuild.png" tint={0.2} className="pt-20 pb-24 min-h-[900px]">
       <div className="w-full max-w-7xl mx-auto px-8 flex flex-col min-h-[calc(900px-11rem)]">
         {/* Heading */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-6">
           <span className="section-label">What I Build</span>
           <h2 className="text-5xl sm:text-7xl font-bold tracking-tight mt-4 text-foreground leading-[0.95]">Sam as a</h2>
         </div>
@@ -139,7 +139,7 @@ const Projects: React.FC = () => {
         {/* Tagline */}
         <p
           key={activeTab.id}
-          className="text-center text-white opacity-90 text-sm sm:text-base max-w-md mx-auto mb-24"
+          className="text-center text-white opacity-90 text-sm sm:text-base max-w-md mx-auto mb-8"
           style={{ textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
         >
           {activeTab.tagline}
@@ -180,7 +180,7 @@ const Projects: React.FC = () => {
                 />
 
                 {/* Name */}
-                <h3 className="display-font text-2xl text-white mb-2">{card.name}</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">{card.name}</h3>
 
                 {/* Description OR coming soon */}
                 {showSoon ? (
@@ -196,7 +196,7 @@ const Projects: React.FC = () => {
                   {card.tags.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1.5 rounded-full text-[11px] font-semibold liquid-glass"
+                      className="px-3 py-1.5 rounded-full text-[11px] font-semibold border border-white/20"
                       style={{ color: card.tagColor }}
                     >
                       {t}

@@ -2,7 +2,7 @@ import ParallaxSection from './ParallaxSection';
 import {
   Calendar, Lightbulb, Search, Workflow, MousePointer, Frame,
   Layers, PenTool, Grid3x3, RefreshCw, Rocket, Sparkles,
-  LayoutDashboard, Bot, Zap, Users, CircleCheck,
+  LayoutDashboard, Bot, Zap, Users, CircleCheck, Wand2,
 } from 'lucide-react';
 
 /**
@@ -15,6 +15,9 @@ const COMPANY_LOGO = '/company-logo.svg';
 interface Skill { label: string; icon: React.ReactNode; }
 
 const SKILLS: Skill[] = [
+  { label: 'AI Agents', icon: <Bot size={14} /> },
+  { label: 'Create Custom AI Agents', icon: <Wand2 size={14} /> },
+  { label: 'AI Product Design', icon: <Sparkles size={14} /> },
   { label: 'Product Thinking', icon: <Lightbulb size={14} /> },
   { label: 'UX Research', icon: <Search size={14} /> },
   { label: 'User Flows', icon: <Workflow size={14} /> },
@@ -25,8 +28,6 @@ const SKILLS: Skill[] = [
   { label: 'Design Systems', icon: <Layers size={14} /> },
   { label: 'Usability & Iteration', icon: <RefreshCw size={14} /> },
   { label: 'End-to-End Design', icon: <Rocket size={14} /> },
-  { label: 'AI Agents', icon: <Bot size={14} /> },
-  { label: 'AI Product Design', icon: <Sparkles size={14} /> },
   { label: 'Dashboard Design', icon: <LayoutDashboard size={14} /> },
   { label: 'Rapid Experimentation', icon: <Zap size={14} /> },
   { label: 'Cross-functional Collaboration', icon: <Users size={14} /> },
@@ -69,7 +70,7 @@ const Experiences: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3 justify-end mt-2">
                   <span className="text-white/60 text-sm">Full-time</span>
-                  <span className="px-3 py-1 rounded-lg text-xs font-medium text-white/70 bg-white/10 border border-white/15">4 Years Exp</span>
+                  <span className="px-3 py-1 rounded-lg text-xs font-bold text-green-300 bg-green-400/15 border border-green-400/30">4 Years</span>
                 </div>
               </div>
             </div>
@@ -91,7 +92,7 @@ const Experiences: React.FC = () => {
                 <p className="text-white/60 text-xs mb-1.5">Present</p>
                 <div className="flex items-center gap-2 justify-end">
                   <span className="text-white font-semibold text-sm">Product Designer</span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.9)] shrink-0" />
+                  <span className="w-3 h-3 rounded-full bg-green-400 shadow-[0_0_12px_rgba(74,222,128,1),0_0_24px_rgba(74,222,128,0.5)] shrink-0" />
                 </div>
                 <p className="text-green-300/80 text-xs mt-1 mr-[18px]">Current Role</p>
               </div>

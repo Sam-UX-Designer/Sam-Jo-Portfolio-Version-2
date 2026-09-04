@@ -29,7 +29,7 @@ const Nav: React.FC = () => {
   };
 
   return (
-    <nav className="absolute top-0 left-0 z-20 w-full px-8 py-10">
+    <nav className="absolute top-0 left-0 z-20 w-full px-6 sm:px-10 py-10">
       <div className="w-full flex items-center">
         {/* Logo */}
         <div className="text-2xl font-bold tracking-normal text-white shrink-0">
