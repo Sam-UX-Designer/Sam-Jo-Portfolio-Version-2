@@ -99,7 +99,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <ParallaxSection id="projects" image="/WhatIBuild.svg" tint={0.2} className="pt-20 pb-24 min-h-[900px]">
+    <ParallaxSection id="projects" image="/WhatIBuild.png" tint={0.2} className="pt-20 pb-24 min-h-[900px]">
       <div className="w-full max-w-7xl mx-auto px-8 flex flex-col min-h-[calc(900px-11rem)]">
         {/* Heading */}
         <div className="text-center mb-10">
