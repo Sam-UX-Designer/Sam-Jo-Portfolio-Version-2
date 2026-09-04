@@ -145,7 +145,7 @@ const Projects: React.FC = () => {
         {/* Cards */}
         <div
           key={`${activeTab.id}-grid`}
-          className={`grid gap-6 max-w-5xl mx-auto animate-fade-rise ${
+          className={`grid gap-6 max-w-5xl mx-auto ${
             activeTab.cards.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'
           }`}
         >
@@ -155,7 +155,7 @@ const Projects: React.FC = () => {
               <button
                 key={card.id}
                 onClick={() => handleCardClick(card.id)}
-                className="group card-glass p-6 text-center flex flex-col items-center transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] cursor-pointer"
+                className="group card-glass animate-fade-rise p-6 text-center flex flex-col items-center transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] cursor-pointer"
               >
                 {/* Top row: index/tag + arrow */}
                 <div className="flex items-start justify-between w-full mb-4">
@@ -197,7 +197,7 @@ const Projects: React.FC = () => {
                   {card.tags.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1.5 rounded-full text-[11px] font-semibold liquid-glass"
+                      className="px-3 py-1.5 rounded-full text-[11px] font-semibold bg-white/[0.04] border border-white/[0.18]"
                       style={{ color: card.tagColor }}
                     >
                       {t}
