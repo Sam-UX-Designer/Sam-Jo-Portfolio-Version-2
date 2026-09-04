@@ -69,7 +69,7 @@ const Experiences: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3 justify-end mt-2">
                   <span className="text-white/60 text-sm">Full-time</span>
-                  <span className="px-3 py-1 rounded-lg text-xs font-medium text-white/70 bg-white/10 border border-white/15">4 Years</span>
+                  <span className="px-3 py-1 rounded-lg text-xs font-medium text-white/70 bg-white/10 border border-white/15">4 Years Exp</span>
                 </div>
               </div>
             </div>
