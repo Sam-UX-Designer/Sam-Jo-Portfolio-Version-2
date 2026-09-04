@@ -2,7 +2,7 @@ import ParallaxSection from './ParallaxSection';
 
 const About: React.FC = () => {
   return (
-    <ParallaxSection id="about" image="/About.png" tint={0.15} className="min-h-[650px] py-16">
+    <ParallaxSection id="about" image="/About.png" tint={0.15} className="min-h-[750px] py-16">
       {/* Content anchored to TOP, centered horizontally */}
       <div className="w-full max-w-4xl mx-auto px-8 text-center pt-[8vh]">
         <span className="section-label">About</span>
