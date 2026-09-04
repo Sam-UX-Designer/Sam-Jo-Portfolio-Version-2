@@ -92,7 +92,7 @@ const Experiences: React.FC = () => {
                 <p className="text-white/60 text-xs mb-1.5">Present</p>
                 <div className="flex items-center gap-2 justify-end">
                   <span className="text-white font-semibold text-sm">Product Designer</span>
-                  <span className="w-3 h-3 rounded-full bg-green-400 shadow-[0_0_12px_rgba(74,222,128,1),0_0_24px_rgba(74,222,128,0.5)] shrink-0" />
+                  <span className="w-3 h-3 rounded-full bg-green-400 shadow-[0_0_12px_rgba(74,222,128,1),0_0_24px_rgba(74,222,128,0.5)] shrink-0 animate-pulse" />
                 </div>
                 <p className="text-green-300/80 text-xs mt-1 mr-[18px]">Current Role</p>
               </div>
