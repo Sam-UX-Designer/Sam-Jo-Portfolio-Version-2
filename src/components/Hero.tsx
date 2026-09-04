@@ -162,7 +162,7 @@ const Hero: React.FC = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask Sam AI..."
-                  className="w-full bg-white/5 rounded-2xl py-3.5 px-5 pr-12 text-[12px] font-medium tracking-tight focus:outline-none focus:bg-white/10 border border-white/10 transition-all placeholder:opacity-20"
+                  className="w-full bg-white/5 rounded-2xl py-3.5 px-5 pr-12 text-[12px] font-medium tracking-normal focus:outline-none focus:bg-white/10 border border-white/10 transition-all placeholder:opacity-20"
                 />
                 <button type="submit" className="absolute right-3 top-2.5 p-1 text-cyan-400 hover:scale-110">
                   <Send size={18} />
@@ -172,7 +172,7 @@ const Hero: React.FC = () => {
           </div>
         )}
 
-        <div className="flex flex-col items-end text-[9px] uppercase tracking-[0.4em] font-bold pointer-events-none opacity-40">
+        <div className="flex flex-col items-end text-[9px] uppercase tracking-normal font-bold pointer-events-none opacity-40">
           <span className="text-cyan-400">AI Generalist</span>
           <span className="mt-1">Product Design</span>
         </div>
