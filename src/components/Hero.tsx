@@ -62,8 +62,8 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a1428]/25 via-transparent to-[#0a1428]/40" />
       </div>
 
-      {/* Hero content — anchored to TOP area */}
-      <main className="relative z-10 flex flex-col items-center text-center px-6 pt-[16vh]">
+      {/* Hero content — clustered in the UPPER area, clear of the character below */}
+      <main className="relative z-10 flex flex-col items-center text-center px-6 pt-[10vh]">
         {/* Eyebrow */}
         <p className="text-[13px] sm:text-sm font-semibold tracking-[0.25em] uppercase mb-6 animate-fade-rise">
           <span className="text-white/90">AI Generalist</span>

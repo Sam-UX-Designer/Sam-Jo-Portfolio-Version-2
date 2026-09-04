@@ -139,18 +139,16 @@ const Projects: React.FC = () => {
         {/* Tagline */}
         <p
           key={activeTab.id}
-          className="text-center text-white opacity-90 text-sm sm:text-base max-w-md mx-auto mb-24 animate-fade-rise"
+          className="text-center text-white opacity-90 text-sm sm:text-base max-w-md mx-auto mb-24"
           style={{ textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
         >
           {activeTab.tagline}
         </p>
 
-        {/* Cards — no transform on this wrapper: a transformed parent breaks
-            backdrop-filter on its children, which is why these cards were not
-            frosting like the Experience cards. Fade is opacity-only instead. */}
+        {/* Cards — no animation (matches the working Experience cards exactly) */}
         <div
           key={`${activeTab.id}-grid`}
-          className={`grid gap-6 max-w-5xl mx-auto animate-fade-only mt-auto ${
+          className={`grid gap-6 max-w-5xl mx-auto mt-auto ${
             activeTab.cards.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'
           }`}
         >
@@ -186,7 +184,7 @@ const Projects: React.FC = () => {
 
                 {/* Description OR coming soon */}
                 {showSoon ? (
-                  <span className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-cyan-300 animate-fade-rise my-3">
+                  <span className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-cyan-300 my-3">
                     <Lock size={12} /> Coming Soon
                   </span>
                 ) : (

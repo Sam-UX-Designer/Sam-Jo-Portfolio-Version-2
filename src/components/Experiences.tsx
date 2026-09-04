@@ -25,9 +25,9 @@ const SKILLS: Skill[] = [
   { label: 'Design Systems', icon: <Layers size={14} /> },
   { label: 'Usability & Iteration', icon: <RefreshCw size={14} /> },
   { label: 'End-to-End Design', icon: <Rocket size={14} /> },
+  { label: 'AI Agents', icon: <Bot size={14} /> },
   { label: 'AI Product Design', icon: <Sparkles size={14} /> },
   { label: 'Dashboard Design', icon: <LayoutDashboard size={14} /> },
-  { label: 'AI Agents', icon: <Bot size={14} /> },
   { label: 'Rapid Experimentation', icon: <Zap size={14} /> },
   { label: 'Cross-functional Collaboration', icon: <Users size={14} /> },
   { label: 'Product Decisions', icon: <CircleCheck size={14} /> },
@@ -35,12 +35,7 @@ const SKILLS: Skill[] = [
 
 const Experiences: React.FC = () => {
   return (
-    <ParallaxSection id="experiences" image="/Journey.png" tint={0} className="py-20 relative min-h-[900px] flex items-start">
-      {/* Left-side dim ONLY — 30% on far left → transparent by center, full height */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.15) 40%, transparent 65%)' }}
-      />
+    <ParallaxSection id="experiences" image="/Journey.png" tint={0} className="py-16 relative min-h-[760px] flex items-start">
 
       {/* Content anchored to TOP, constrained to left ~60% so avatar stays visible on right */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 sm:px-16">
@@ -74,15 +69,15 @@ const Experiences: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3 justify-end mt-2">
                   <span className="text-white/60 text-sm">Full-time</span>
-                  <span className="px-3 py-1 rounded-lg text-xs font-bold text-emerald-300 bg-emerald-400/15 border border-emerald-400/30">4 Years</span>
+                  <span className="px-3 py-1 rounded-lg text-xs font-medium text-white/70 bg-white/10 border border-white/15">4 Years</span>
                 </div>
               </div>
             </div>
 
             <div className="h-px w-full bg-white/12 my-5" />
 
-            <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
-              <div>
+            <div className="flex items-center gap-4">
+              <div className="shrink-0">
                 <p className="text-white/60 text-xs mb-1.5">Sep 19, 2022</p>
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-blue-400 shrink-0" />
@@ -90,14 +85,15 @@ const Experiences: React.FC = () => {
                 </div>
                 <p className="text-blue-300/80 text-xs mt-1 ml-[18px]">Joined the team</p>
               </div>
-              <div className="border-t border-dashed border-white/25 w-16 sm:w-28 hidden sm:block" />
-              <div className="text-right">
+              {/* Full-length connector */}
+              <div className="flex-1 border-t border-dashed border-white/25 mt-1" />
+              <div className="text-right shrink-0">
                 <p className="text-white/60 text-xs mb-1.5">Present</p>
                 <div className="flex items-center gap-2 justify-end">
                   <span className="text-white font-semibold text-sm">Product Designer</span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.8)] shrink-0" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.9)] shrink-0" />
                 </div>
-                <p className="text-blue-300/80 text-xs mt-1 mr-[18px]">Current Role</p>
+                <p className="text-green-300/80 text-xs mt-1 mr-[18px]">Current Role</p>
               </div>
             </div>
           </div>

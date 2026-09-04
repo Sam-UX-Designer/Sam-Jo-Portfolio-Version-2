@@ -16,7 +16,7 @@ const Nav: React.FC = () => {
         SAM'S<span className="text-[#1683FF]">®</span>
       </div>
 
-      <div className="hidden md:flex flex-1 justify-center gap-10 lg:gap-14">
+      <div className="hidden md:flex justify-end gap-10 lg:gap-14 ml-auto mr-4">
         {navItems.map((item) => (
           <a
             key={item.label}
