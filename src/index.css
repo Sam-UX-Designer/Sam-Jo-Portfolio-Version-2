@@ -121,32 +121,31 @@ body {
 
 
 /* =========================================================
-   DARK FROSTED GLASS CARD
-   Main Experience / Project cards
+   FROSTED GLASS CARD
+   Main Experience / What I Build cards
    ========================================================= */
 
 .card-glass {
-  -webkit-backdrop-filter: blur(100px)saturate(1.15);
-    backdrop-filter: blur(100px)saturate(1.15);
-    background: #69686824;
-    border: 1px solid #ffffff38;
-    border-radius: 20px;
-    box-shadow: inset 0 1px 1px #ffffff1f,0 12px 40px #0000001f
+  background: rgba(255, 255, 255, 0.20);
+  -webkit-backdrop-filter: blur(100px) saturate(1.15);
+  backdrop-filter: blur(100px) saturate(1.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.20),
+    0 12px 40px rgba(0, 0, 0, 0.10);
 }
 
 
 /* =========================================================
-   DARK FROSTED PANEL
+   FROSTED PANEL
    ========================================================= */
 
 .frost-panel {
-  background: rgba(5, 15, 25, 0.35);
-
+  background: rgba(255, 255, 255, 0.18);
   -webkit-backdrop-filter: blur(100px) saturate(1.1);
   backdrop-filter: blur(100px) saturate(1.1);
-
-  border: 1px solid rgba(255, 255, 255, 0.20);
-
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 20px;
 }
 
@@ -216,3 +215,57 @@ body {
   to { opacity: 1; }
 }
 .animate-fade-only { animation: fade-only 0.6s ease-out both; }
+
+/* =========================================================
+   EXPERIENCE ROLE STATES
+   Use these classes on the existing matching elements.
+   ========================================================= */
+
+/* Junior UI/UX Designer */
+.experience-previous-role {
+  color: #60a5fa;
+}
+
+.experience-previous-dot {
+  background: #60a5fa;
+  border-color: #60a5fa;
+}
+
+/* Current Product Designer role */
+.experience-current-role {
+  color: #4ade80;
+}
+
+.experience-current-dot {
+  background: #4ade80;
+  border-color: #4ade80;
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.28);
+}
+
+/*
+  Full connector between the two existing role blocks.
+  The line expands to fill all available space instead of
+  using a short fixed width.
+*/
+.experience-role-line {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 40px;
+  height: 1px;
+  margin: 0 20px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.28);
+}
+
+@media (min-width: 768px) {
+  .experience-role-line {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .experience-role-line {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
