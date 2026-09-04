@@ -43,7 +43,7 @@ const Nav: React.FC = () => {
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-[13px] font-bold uppercase tracking-normal text-muted-foreground transition-colors duration-500 hover:text-white whitespace-nowrap"
+              className="text-[11px] font-medium uppercase tracking-normal text-muted-foreground transition-colors duration-500 hover:text-white whitespace-nowrap"
             >
               {item.label}
             </a>
