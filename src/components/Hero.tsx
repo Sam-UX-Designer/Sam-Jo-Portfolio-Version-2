@@ -73,7 +73,8 @@ const Hero: React.FC = () => {
 
         {/* Headline — Inter, bold */}
         <h1 className="animate-fade-rise text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight text-white max-w-4xl">
-          Where purpose takes shape through{' '}
+          Where purpose<br />
+          takes shape through{' '}
           <span
             style={{
               background: 'linear-gradient(90deg, #1683FF, #2D9BFF)',
