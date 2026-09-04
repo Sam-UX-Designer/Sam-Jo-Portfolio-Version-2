@@ -1,6 +1,17 @@
 import { useState } from 'react';
-import { Sparkles, Pencil, Lock, ArrowUpRight, MessageCircle, BarChart3, CircleCheck } from 'lucide-react';
+import { Sparkles, Pencil, Lock, ArrowUpRight } from 'lucide-react';
 import ParallaxSection from './ParallaxSection';
+
+/**
+ * Project icon images.
+ * Upload your real icons into the project's `public` folder using these exact
+ * filenames and they will appear automatically — no layout changes needed.
+ */
+const PROJECT_ICON_1 = '/project-1.png';
+const PROJECT_ICON_2 = '/project-2.png';
+const PROJECT_ICON_3 = '/project-3.png';
+const PROJECT_ICON_4 = '/project-4.png';
+const PROJECT_ICON_5 = '/project-5.png';
 
 type TabId = 'generalist' | 'designer';
 
@@ -11,11 +22,8 @@ interface ProjectCard {
   desc: string;
   tag: string;
   tags: string[];
-  // Colored icon: gradient background + lucide glyph. Swap `image` in later from /public.
-  gradient: string;
-  glyph: React.ReactNode;
+  icon: string;      // image path from /public
   tagColor: string;
-  image?: string; // optional: real icon from public folder, e.g. "/icons/aichat.png"
 }
 
 interface TabData {
@@ -37,24 +45,21 @@ const TABS: TabData[] = [
         id: 'g1', index: '01', name: 'AI Chat', tag: 'AI APP',
         desc: 'Conversational AI assistant for smarter everyday productivity.',
         tags: ['AI Assistant', 'LLM'],
-        gradient: 'linear-gradient(135deg, #6366f1, #a855f7)',
-        glyph: <MessageCircle size={30} className="text-white" />,
+        icon: PROJECT_ICON_1,
         tagColor: '#a5b4fc',
       },
       {
         id: 'g2', index: '02', name: 'Insight Hub', tag: 'AI APP',
         desc: 'AI-powered analytics that turns data into clear insights.',
         tags: ['Analytics', 'Visual Intelligence'],
-        gradient: 'linear-gradient(135deg, #10b981, #34d399)',
-        glyph: <BarChart3 size={30} className="text-white" />,
+        icon: PROJECT_ICON_2,
         tagColor: '#6ee7b7',
       },
       {
         id: 'g3', index: '03', name: 'TaskPilot', tag: 'AI APP',
         desc: 'Intelligent task manager that plans, prioritizes and gets things done.',
         tags: ['Productivity', 'Automation'],
-        gradient: 'linear-gradient(135deg, #f97316, #ef4444)',
-        glyph: <CircleCheck size={30} className="text-white" />,
+        icon: PROJECT_ICON_3,
         tagColor: '#fdba74',
       },
     ],
@@ -69,16 +74,14 @@ const TABS: TabData[] = [
         id: 'd1', index: '01', name: 'Workfast AI', tag: 'PRODUCT',
         desc: 'Coming soon — case study in progress.',
         tags: ['SaaS', 'Product Design'],
-        gradient: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
-        glyph: <Sparkles size={28} className="text-white" />,
+        icon: PROJECT_ICON_4,
         tagColor: '#93c5fd',
       },
       {
         id: 'd2', index: '02', name: 'PEPUL', tag: 'PRODUCT',
         desc: 'Coming soon — case study in progress.',
         tags: ['Social', 'AI App'],
-        gradient: 'linear-gradient(135deg, #8b5cf6, #ec4899)',
-        glyph: <Sparkles size={28} className="text-white" />,
+        icon: PROJECT_ICON_5,
         tagColor: '#c4b5fd',
       },
     ],
@@ -97,7 +100,7 @@ const Projects: React.FC = () => {
 
   return (
     <ParallaxSection id="projects" image="/WhatIBuild.png" tint={0.2} className="pt-20 pb-24 min-h-[900px]">
-      <div className="w-full max-w-7xl mx-auto px-8">
+      <div className="w-full max-w-7xl mx-auto px-8 flex flex-col min-h-[calc(900px-11rem)]">
         {/* Heading */}
         <div className="text-center mb-10">
           <span className="section-label">What I Build</span>
@@ -142,10 +145,12 @@ const Projects: React.FC = () => {
           {activeTab.tagline}
         </p>
 
-        {/* Cards */}
+        {/* Cards — no transform on this wrapper: a transformed parent breaks
+            backdrop-filter on its children, which is why these cards were not
+            frosting like the Experience cards. Fade is opacity-only instead. */}
         <div
           key={`${activeTab.id}-grid`}
-          className={`grid gap-6 max-w-5xl mx-auto animate-fade-rise ${
+          className={`grid gap-6 max-w-5xl mx-auto animate-fade-only mt-auto ${
             activeTab.cards.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'
           }`}
         >
@@ -155,7 +160,7 @@ const Projects: React.FC = () => {
               <button
                 key={card.id}
                 onClick={() => handleCardClick(card.id)}
-                className="group card-glass p-6 text-center flex flex-col items-center transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] cursor-pointer"
+                className="group card-glass p-6 text-center flex flex-col items-center transition-all duration-500 hover:border-white/40 cursor-pointer"
               >
                 {/* Top row: index/tag + arrow */}
                 <div className="flex items-start justify-between w-full mb-4">
@@ -168,17 +173,13 @@ const Projects: React.FC = () => {
                   </span>
                 </div>
 
-                {/* Colored app icon (placeholder — swap card.image later) */}
-                <div
-                  className="w-20 h-20 rounded-[1.25rem] flex items-center justify-center mb-4 shadow-lg"
-                  style={
-                    card.image
-                      ? { backgroundImage: `url("${card.image}")`, backgroundSize: 'cover', backgroundPosition: 'center' }
-                      : { background: card.gradient }
-                  }
-                >
-                  {!card.image && card.glyph}
-                </div>
+                {/* App icon image slot — drop your real icon into /public using the
+                    filename in the PROJECT_ICON_* constants above. Size/radius fixed. */}
+                <img
+                  src={card.icon}
+                  alt={`${card.name} icon`}
+                  className="w-20 h-20 rounded-[1.25rem] object-cover mb-4"
+                />
 
                 {/* Name */}
                 <h3 className="display-font text-2xl text-white mb-2">{card.name}</h3>
