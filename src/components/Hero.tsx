@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
         </p>
 
         {/* Headline — Inter, bold */}
-        <h1 className="animate-fade-rise text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight text-white max-w-[1400px] mx-auto">
+        <h1 className="animate-fade-rise text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-normal text-white max-w-[1400px] mx-auto">
           Where purpose<br />
           takes shape through{' '}
           <span
