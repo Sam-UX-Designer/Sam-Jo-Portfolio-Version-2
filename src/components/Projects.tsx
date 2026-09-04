@@ -7,11 +7,11 @@ import ParallaxSection from './ParallaxSection';
  * Upload your real icons into the project's `public` folder using these exact
  * filenames and they will appear automatically — no layout changes needed.
  */
-const PROJECT_ICON_1 = '/project-1.png';
-const PROJECT_ICON_2 = '/project-2.png';
-const PROJECT_ICON_3 = '/project-3.png';
-const PROJECT_ICON_4 = '/project-4.png';
-const PROJECT_ICON_5 = '/project-5.png';
+const PROJECT_ICON_1 = '/project-1.svg';
+const PROJECT_ICON_2 = '/project-2.svg';
+const PROJECT_ICON_3 = '/project-3.svg';
+const PROJECT_ICON_4 = '/project-4.svg';
+const PROJECT_ICON_5 = '/project-5.svg';
 
 type TabId = 'generalist' | 'designer';
 
@@ -99,7 +99,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <ParallaxSection id="projects" image="/WhatIBuild.png" tint={0.2} className="pt-20 pb-24 min-h-[900px]">
+    <ParallaxSection id="projects" image="/WhatIBuild.svg" tint={0.2} className="pt-20 pb-24 min-h-[900px]">
       <div className="w-full max-w-7xl mx-auto px-8 flex flex-col min-h-[calc(900px-11rem)]">
         {/* Heading */}
         <div className="text-center mb-10">
