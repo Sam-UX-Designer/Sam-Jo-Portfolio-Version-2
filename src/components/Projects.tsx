@@ -197,7 +197,7 @@ const Projects: React.FC = () => {
                   {card.tags.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1.5 rounded-full text-[11px] font-semibold bg-white/[0.04] border border-white/[0.18]"
+                      className="px-3 py-1.5 rounded-full text-[11px] font-semibold liquid-glass"
                       style={{ color: card.tagColor }}
                     >
                       {t}
