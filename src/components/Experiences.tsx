@@ -5,6 +5,13 @@ import {
   LayoutDashboard, Bot, Zap, Users, CircleCheck,
 } from 'lucide-react';
 
+/**
+ * Company logo image.
+ * Upload your real logo to the project's `public` folder as `company-logo.png`
+ * and it will appear here automatically — no layout changes needed.
+ */
+const COMPANY_LOGO = '/company-logo.png';
+
 interface Skill { label: string; icon: React.ReactNode; }
 
 const SKILLS: Skill[] = [
@@ -51,9 +58,11 @@ const Experiences: React.FC = () => {
           <div className="card-glass p-7 mb-4">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(135deg, #3b82f6, #06b6d4)' }}>
-                  <span className="text-2xl font-bold text-white">P</span>
-                </div>
+                <img
+                  src={COMPANY_LOGO}
+                  alt="PEPUL (Workfast AI) logo"
+                  className="w-14 h-14 rounded-2xl object-cover shrink-0"
+                />
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">PEPUL (Workfast AI)</h3>
                   <p className="text-white/70 text-sm mt-0.5">AI-Powered Product Experience Platform</p>
