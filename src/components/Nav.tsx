@@ -32,7 +32,7 @@ const Nav: React.FC = () => {
     <nav className="absolute top-0 left-0 z-20 w-full px-8 py-10">
       <div className="w-full flex items-center">
         {/* Logo */}
-        <div className="text-2xl font-bold tracking-tight text-white shrink-0">
+        <div className="text-2xl font-bold tracking-normal text-white shrink-0">
           SAM'S<span className="text-[#1683FF]">®</span>
         </div>
 
