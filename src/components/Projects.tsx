@@ -42,7 +42,7 @@ const TABS: TabData[] = [
     tagline: 'Building useful intelligence into everyday experiences.',
     cards: [
       {
-        id: 'g1', index: '01', name: 'AI Agents Worlds', tag: 'AI APP',
+        id: 'g1', index: '01', name: 'AI Agents World', tag: 'AI APP',
         desc: 'Ask once.Watch a team of AI Agents works...',
         tags: ['AI Assistant', 'AI World'],
         icon: PROJECT_ICON_1,
