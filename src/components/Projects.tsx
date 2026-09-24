@@ -7,11 +7,11 @@ import ParallaxSection from './ParallaxSection';
  * Upload your real icons into the project's `public` folder using these exact
  * filenames and they will appear automatically — no layout changes needed.
  */
-const PROJECT_ICON_1 = '/project-1.svg';
-const PROJECT_ICON_2 = '/project-2.svg';
-const PROJECT_ICON_3 = '/project-3.svg';
-const PROJECT_ICON_4 = '/project-4.svg';
-const PROJECT_ICON_5 = '/project-5.svg';
+const PROJECT_ICON_1 = '/project-1.png';
+const PROJECT_ICON_2 = '/project-2.png';
+const PROJECT_ICON_3 = '/project-3.png';
+const PROJECT_ICON_4 = '/project-4.png';
+const PROJECT_ICON_5 = '/project-5.png';
 
 type TabId = 'generalist' | 'designer';
 

@@ -10,7 +10,7 @@ import {
  * Upload your real logo to the project's `public` folder as `company-logo.svg`
  * and it will appear here automatically — no layout changes needed.
  */
-const COMPANY_LOGO = '/company-logo.svg';
+const COMPANY_LOGO = '/company-logo.png';
 
 interface Skill { label: string; icon: React.ReactNode; }
 
