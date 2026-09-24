@@ -42,15 +42,15 @@ const TABS: TabData[] = [
     tagline: 'Building useful intelligence into everyday experiences.',
     cards: [
       {
-        id: 'g1', index: '01', name: 'AI Chat', tag: 'AI APP',
-        desc: 'Conversational AI assistant for smarter everyday productivity.',
-        tags: ['AI Assistant', 'LLM'],
+        id: 'g1', index: '01', name: 'AI Agents Worlds', tag: 'AI APP',
+        desc: 'Ask once.Watch a team of AI Agents works...',
+        tags: ['AI Assistant', 'AI World'],
         icon: PROJECT_ICON_1,
         tagColor: '#a5b4fc',
       },
       {
-        id: 'g2', index: '02', name: 'Insight Hub', tag: 'AI APP',
-        desc: 'AI-powered analytics that turns data into clear insights.',
+        id: 'g2', index: '02', name: 'Jumbo AI', tag: 'AI APP',
+        desc: 'AI companion for longevity.',
         tags: ['Analytics', 'Visual Intelligence'],
         icon: PROJECT_ICON_2,
         tagColor: '#6ee7b7',
