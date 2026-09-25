@@ -34,12 +34,14 @@ export const SHAPE_RATIO: Record<SlotShape, string> = {
 
 export const ASSETS = {
   hero: {
-    src: '/assets/jumbo-hero-ui.png',
+    // The finished hero visual. Replace the file; no code change needed.
+    src: '/assets/jumbo/jumbo-hero.webp',
     alt: 'JUMBO app: the Today screen in the centre with supporting screens around it',
     label: 'Hero product composition',
     shape: 'wide',
-    width: 3200,
-    height: 2000,
+    // Renders up to 1680 x 1050 (92% of the viewport, capped); 2x for retina.
+    width: 3360,
+    height: 2100,
   },
   scattered: {
     src: '/assets/jumbo-scattered-data.png',

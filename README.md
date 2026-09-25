@@ -47,7 +47,7 @@ without stretching, and a neutral placeholder shows until the file exists.
 
 | File | Shape | Export at (minimum) |
 |---|---|---|
-| `jumbo-hero-ui.png` | Wide 16:10, one central screen with 2-4 around it | 3200 × 2000 |
+| `jumbo/jumbo-hero.webp` (hero, in its own folder) | Wide 16:10 finished composition | 3360 × 2100 |
 | `jumbo-scattered-data.png` | 4:3 | 2400 × 1800 |
 | `jumbo-health-overview.png` | Wide 16:10 | 3200 × 2000 |
 | `jumbo-today-ui.png` | Phone screen | 1170 × 2532 |
