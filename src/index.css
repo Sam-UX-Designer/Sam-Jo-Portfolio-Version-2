@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+@source not "./jumbo";
 
 :root {
   --background: 220 40% 6%;
@@ -267,5 +268,17 @@ body {
   .experience-role-line {
     margin-left: 12px;
     margin-right: 12px;
+  }
+}
+
+/* =========================================================
+   PAGE TRANSITION
+   Crossfade into the JUMBO case study (/jumbo/) and back.
+   Chromium only; other browsers navigate normally.
+   ========================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
   }
 }

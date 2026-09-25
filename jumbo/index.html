@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>JUMBO AI | Sam Jo</title>
+    <meta
+      name="description"
+      content="JUMBO brings your health information together, helps you understand the patterns, and gives you a clearer way to decide what to focus on next."
+    />
+    <meta name="theme-color" content="#090d15" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="JUMBO AI | Sam Jo" />
+    <meta property="og:description" content="Your health data, finally working for you. A product case study by Sam Jo." />
+    <meta property="og:image" content="https://sam-jo-portfolio-version-2.vercel.app/og-image.png" />
+    <meta property="og:url" content="https://sam-jo-portfolio-version-2.vercel.app/jumbo/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/png" href="/project-2.png" />
+
+    <!-- Theme before first paint: saved choice, else the system setting, else dark. -->
+    <script>
+      (function () {
+        var t;
+        try {
+          t = localStorage.getItem('jumbo-theme');
+        } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.dataset.theme = t;
+        if (t === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f8f5');
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/jumbo/main.tsx"></script>
+  </body>
+</html>

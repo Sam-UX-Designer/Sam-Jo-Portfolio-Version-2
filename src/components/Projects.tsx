@@ -24,6 +24,7 @@ interface ProjectCard {
   tags: string[];
   icon: string;      // image path from /public
   tagColor: string;
+  href?: string;     // case study page; cards without one show "Coming Soon"
 }
 
 interface TabData {
@@ -54,6 +55,7 @@ const TABS: TabData[] = [
         tags: ['Analytics', 'Visual Intelligence'],
         icon: PROJECT_ICON_2,
         tagColor: '#6ee7b7',
+        href: '/jumbo/',
       },
       {
         id: 'g3', index: '03', name: 'TaskPilot', tag: 'AI APP',
@@ -154,12 +156,10 @@ const Projects: React.FC = () => {
         >
           {activeTab.cards.map((card) => {
             const showSoon = comingSoon === card.id;
-            return (
-              <button
-                key={card.id}
-                onClick={() => handleCardClick(card.id)}
-                className="group card-glass p-6 text-center flex flex-col items-center transition-all duration-500 hover:border-white/40 cursor-pointer"
-              >
+            const cardClass =
+              'group card-glass p-6 text-center flex flex-col items-center transition-all duration-500 hover:border-white/40 cursor-pointer';
+            const content = (
+              <>
                 {/* Top row: index/tag + arrow */}
                 <div className="flex items-start justify-between w-full mb-4">
                   <div className="text-left">
@@ -177,6 +177,8 @@ const Projects: React.FC = () => {
                   src={card.icon}
                   alt={`${card.name} icon`}
                   className="w-20 h-20 rounded-[1.25rem] object-cover mb-4"
+                  // Morphs into the icon on the case study page (Chromium view transitions).
+                  style={card.href === '/jumbo/' ? { viewTransitionName: 'jumbo-mark' } : undefined}
                 />
 
                 {/* Name */}
@@ -203,6 +205,16 @@ const Projects: React.FC = () => {
                     </span>
                   ))}
                 </div>
+              </>
+            );
+
+            return card.href ? (
+              <a key={card.id} href={card.href} className={cardClass}>
+                {content}
+              </a>
+            ) : (
+              <button key={card.id} onClick={() => handleCardClick(card.id)} className={cardClass}>
+                {content}
               </button>
             );
           })}
