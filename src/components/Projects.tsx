@@ -74,8 +74,7 @@ const TABS: TabData[] = [
     cards: [
       {
         id: 'd1', index: '01', name: 'Workfast AI', tag: 'PRODUCT',
-        desc: 'All-in-one team workspace 
-          where AI turns chats into tasks.',
+        desc: 'All-in-one team workspace\nwhere AI turns chats into tasks.',
         tags: ['SaaS', 'AI Productivity'],
         icon: PROJECT_ICON_4,
         tagColor: '#93c5fd',
@@ -83,8 +82,7 @@ const TABS: TabData[] = [
       },
       {
         id: 'd2', index: '02', name: 'PEPUL', tag: 'PRODUCT',
-        desc: 'India’s safe, interest-based social network 
-          for people and creators.',
+        desc: 'India’s safe, interest-based social network\nfor people and creators.',
         tags: ['Social Media', 'Creators'],
         icon: PROJECT_ICON_5,
         tagColor: '#c4b5fd',
@@ -194,7 +192,7 @@ const Projects: React.FC = () => {
                     <Lock size={12} /> Coming Soon
                   </span>
                 ) : (
-                  <p className="text-white/70 text-sm leading-relaxed mb-4 px-2">{card.desc}</p>
+                  <p className="text-white/70 text-sm leading-relaxed mb-4 px-2 whitespace-pre-line">{card.desc}</p>
                 )}
 
                 {/* Tag chips */}
