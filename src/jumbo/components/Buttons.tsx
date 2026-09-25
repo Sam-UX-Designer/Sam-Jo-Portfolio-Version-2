@@ -15,18 +15,14 @@ export const primaryClass = (size: keyof typeof SIZE = 'md') =>
 export const secondaryClass = (size: keyof typeof SIZE = 'md') =>
   `${BASE} ${SIZE[size]} border border-line-strong text-ink hover:bg-surface-2`;
 
-const href = LINKS.getJumbo || LINKS.getJumboFallback;
-const external = /^https?:/.test(href);
-
 /** The one primary action on the page. Its destination lives in config. */
 export const GetJumbo: React.FC<{ size?: keyof typeof SIZE; className?: string }> = ({
   size = 'md',
   className = '',
 }) => (
   <a
-    href={href}
+    href={LINKS.getJumbo}
     className={`${primaryClass(size)} group ${className}`}
-    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
   >
     Get JUMBO
     {size === 'md' && (

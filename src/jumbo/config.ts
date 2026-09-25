@@ -111,12 +111,8 @@ export const ASSETS = {
 export const BRAND_MARK = '/project-2.png';
 
 export const LINKS = {
-  /**
-   * Where "Get JUMBO" goes. Paste the live app URL here.
-   * While it is empty, the button opens an email to Sam instead.
-   */
-  getJumbo: '',
-  getJumboFallback: 'mailto:samueljothi1919@gmail.com?subject=JUMBO',
+  /** Where every "Get JUMBO" button goes: the live app, to create an account. */
+  getJumbo: 'https://jumbo-ai-app.vercel.app',
   /** Full privacy policy. Leave empty until it is published. */
   privacyPolicy: '',
   /** Back to the My Projects section of the portfolio. */

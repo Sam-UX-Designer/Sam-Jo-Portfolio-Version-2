@@ -61,8 +61,8 @@ without stretching, and a neutral placeholder shows until the file exists.
 
 All in `src/jumbo/config.ts`:
 
-- `LINKS.getJumbo`: the live JUMBO app URL for every "Get JUMBO" button.
-  While empty, the button opens an email to Sam.
+- `LINKS.getJumbo`: the live JUMBO app URL for every "Get JUMBO" button
+  (currently https://jumbo-ai-app.vercel.app).
 - `LINKS.privacyPolicy`: link to the full privacy policy once published.
 - `PRO_PLAN`: price, credits and Pro features. Mirrors `src/data/plans.ts`
   in the Jumbo-ai-App repo; update both together.
