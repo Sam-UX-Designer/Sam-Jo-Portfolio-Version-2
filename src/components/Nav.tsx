@@ -32,8 +32,18 @@ const Nav: React.FC = () => {
     <nav className="absolute top-0 left-0 z-20 w-full px-6 sm:px-10 py-10">
       <div className="w-full flex items-center">
         {/* Logo */}
-        <div className="text-2xl font-bold tracking-normal text-white shrink-0">
-          SAM'S<span className="text-[#1683FF]">®</span>
+        <div className="flex items-center gap-3 text-2xl font-bold tracking-normal text-white shrink-0">
+          {/* Same picture as the home screen app icon */}
+          <img
+            src="/apple-touch-icon.png"
+            alt=""
+            width={36}
+            height={36}
+            className="w-9 h-9 rounded-[10px] object-cover"
+          />
+          <span>
+            SAM'S<span className="text-[#1683FF]">®</span>
+          </span>
         </div>
 
         {/* Desktop Navigation */}
