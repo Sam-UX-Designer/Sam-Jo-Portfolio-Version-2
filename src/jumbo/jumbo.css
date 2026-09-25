@@ -3,7 +3,7 @@
 /* =========================================================
    JUMBO case study: design tokens
 
-   Dark is the default and continues the portfolio's navy-black ground.
+   Dark is the default and sits on true black (#000), like the product.
    Light is a designed theme, not an inversion: the JUMBO green stays a
    fill, and wherever green has to carry text it becomes a darker ink
    green (the bright green on white is only 1.5:1).
@@ -16,10 +16,10 @@
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --bg: #090d15;
-  --bg-raised: #0d131e;
-  --surface: #121926;
-  --surface-2: #19212f;
+  --bg: #000000;
+  --bg-raised: #000000;
+  --surface: #111112;
+  --surface-2: #1a1a1c;
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.16);
 
@@ -38,7 +38,7 @@
   --nutrition: #ff8a16;
   --recovery: #14aeff;
 
-  --material: rgba(18, 25, 38, 0.62);
+  --material: rgba(20, 20, 22, 0.62);
   --material-line: rgba(255, 255, 255, 0.14);
   --shadow-frame: 0 30px 80px -24px rgba(0, 0, 0, 0.7);
   --shadow-soft: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
@@ -187,11 +187,10 @@ p {
     var(--shadow-frame);
 }
 
-/* Neutral placeholder shown until a screenshot file exists. */
+/* Neutral placeholder shown until a screenshot file exists. Flat on
+   purpose: no gradient, no fake UI, nothing that could pass for product. */
 .jb-placeholder {
-  background:
-    radial-gradient(120% 80% at 50% 0%, var(--brand-soft), transparent 60%),
-    linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  background: var(--surface);
 }
 
 /* =========================================================

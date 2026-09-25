@@ -15,6 +15,8 @@ interface UiSlotProps {
   asset: UiAsset;
   /** Above-the-fold images load immediately; everything else is lazy. */
   priority?: boolean;
+  /** No frame, border or shadow: the image sits directly on the page. */
+  bare?: boolean;
   className?: string;
 }
 
@@ -26,7 +28,7 @@ interface UiSlotProps {
  * screenshot is never stretched or cropped. Until the file exists, a neutral
  * placeholder fills the frame instead of a broken image.
  */
-const UiSlot: React.FC<UiSlotProps> = ({ asset, priority = false, className = '' }) => {
+const UiSlot: React.FC<UiSlotProps> = ({ asset, priority = false, bare = false, className = '' }) => {
   const [status, setStatus] = useState<Status>('loading');
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -40,7 +42,7 @@ const UiSlot: React.FC<UiSlotProps> = ({ asset, priority = false, className = ''
 
   return (
     <div
-      className={`jb-frame relative overflow-hidden ${RADIUS[asset.shape]} ${className}`}
+      className={`relative overflow-hidden ${bare ? '' : 'jb-frame'} ${RADIUS[asset.shape]} ${className}`}
       style={{ aspectRatio: SHAPE_RATIO[asset.shape] }}
     >
       {status !== 'loaded' && (
