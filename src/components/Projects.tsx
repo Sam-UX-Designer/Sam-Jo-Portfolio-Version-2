@@ -24,7 +24,7 @@ interface ProjectCard {
   tags: string[];
   icon: string;      // image path from /public
   tagColor: string;
-  href?: string;     // case study page; cards without one show "Coming Soon"
+  href?: string;     // case study page or live site; cards without one show "Coming Soon"
 }
 
 interface TabData {
@@ -74,17 +74,19 @@ const TABS: TabData[] = [
     cards: [
       {
         id: 'd1', index: '01', name: 'Workfast AI', tag: 'PRODUCT',
-        desc: 'Coming soon — case study in progress.',
-        tags: ['SaaS', 'Product Design'],
+        desc: 'All-in-one team workspace where AI turns chats into tasks.',
+        tags: ['SaaS', 'AI Productivity'],
         icon: PROJECT_ICON_4,
         tagColor: '#93c5fd',
+        href: 'https://www.workfast.ai/',
       },
       {
         id: 'd2', index: '02', name: 'PEPUL', tag: 'PRODUCT',
-        desc: 'Coming soon — case study in progress.',
-        tags: ['Social', 'AI App'],
+        desc: 'India’s safe, interest-based social network for people and creators.',
+        tags: ['Social Media', 'Creators'],
         icon: PROJECT_ICON_5,
         tagColor: '#c4b5fd',
+        href: 'https://www.pepul.com/',
       },
     ],
   },
@@ -209,7 +211,13 @@ const Projects: React.FC = () => {
             );
 
             return card.href ? (
-              <a key={card.id} href={card.href} className={cardClass}>
+              <a
+                key={card.id}
+                href={card.href}
+                className={cardClass}
+                // Outside websites open in a new tab so the portfolio stays open.
+                {...(card.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
                 {content}
               </a>
             ) : (
