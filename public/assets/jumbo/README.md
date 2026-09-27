@@ -8,7 +8,8 @@ Each slot has a fixed shape. Images are fitted with `object-fit: contain`, so th
 are never cropped or stretched. Only the hero may extend past the normal page width.
 
 The current files are real screens from the Jumbo-ai-App repo, running on the app's
-built-in sample history (every screen shows the "Sample data" label).
+built-in sample history (every screen shows the "Sample data" label), plus Explore
+from the live app.
 
 | Section | File | Shows on desktop at | Shape | File size (px) | Status |
 |---|---|---:|---:|---:|---|
@@ -19,13 +20,11 @@ built-in sample history (every screen shows the "Sample data" label).
 | AI Future | `jumbo-ai-future-ui.webp` | 340×736 | phone | 1170×2532 | Real, "Sleep more consistently", 5 years |
 | Capture + How it works (Capture) | `jumbo-capture-ui.webp` | 320×693 | phone | 1170×2532 | Real |
 | Ask JUMBO | `jumbo-ask-ui.webp` | 340×736 | phone | 1170×2532 | Real |
-| Explore | `jumbo-explore-ui.webp` | 340×736 | phone | 1170×2532 | **Missing: add a screenshot from the live app** |
+| Explore | `jumbo-explore-ui.webp` | 340×736 | phone | 1170×2536 | Real: Sam's iPhone screenshot of the live app (status bar removed) |
 | Pro | `jumbo-pro-ui.webp` | 340×736 | phone | 1170×2532 | Real Plans screen, JUMBO Pro card |
 
 Notes
 
-- Explore needs the live YouTube connection to show real videos, so it was not
-  captured. Screenshot it on the live app (iPhone size) and upload it as
-  `jumbo-explore-ui.webp` (a .png renamed is not enough; export as WebP, or ask Claude
-  to convert it).
+- Explore comes from the live app (real YouTube videos), captured on an iPhone.
+  Only the iOS status bar was covered with the app's background colour.
 - Keep the hero under about 500 KB. A transparent background is fine (it sits on black).
