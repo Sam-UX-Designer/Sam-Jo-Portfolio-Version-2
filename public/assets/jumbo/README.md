@@ -18,7 +18,7 @@ from the live app.
 | Health Overview | `jumbo-health-overview.webp` | 1060×662 | 16:10 | 2400×1500 | Real desktop web Today |
 | Today | `jumbo-today-ui.webp` | 340×736 | phone | 1170×2532 | Real |
 | AI Future | `jumbo-ai-future-ui.webp` | 340×736 | phone | 1170×2532 | Real, "Sleep more consistently", 5 years |
-| How it works: Capture | `jumbo-capture-ui.webp` | 320×693 | phone | 1170×2532 | Real |
+| How it works: Capture | `jumbo-capture-ui.webp` | 283×612 | phone | 1170×2532 | Real, with Sam's meal photo in the "Snap your meal" slot |
 | How it works: Connect | `jumbo-connect-ui.webp` | 283×612 | phone | 1170×2532 | Real: Connected sources |
 | How it works: Understand | `jumbo-understand-ui.webp` | 283×612 | phone | 1170×2532 | Real: Sleep detail, last 21 days |
 | How it works: Improve | `jumbo-improve-ui.webp` | 283×612 | phone | 1170×2532 | Real: Training, "Take today off" |
