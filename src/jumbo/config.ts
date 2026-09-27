@@ -75,6 +75,14 @@ export const ASSETS = {
     width: 1170,
     height: 2532,
   },
+  quickadd: {
+    src: '/assets/jumbo/jumbo-quickadd-ui.webp',
+    alt: 'JUMBO with the + button pressed: Meal, Workout, Sleep, Measure, Note and Training floating over Today',
+    label: 'Quick add menu',
+    shape: 'phone',
+    width: 1170,
+    height: 2532,
+  },
   ask: {
     src: '/assets/jumbo/jumbo-ask-ui.webp',
     alt: 'Ask JUMBO conversation answering from the person’s own data',

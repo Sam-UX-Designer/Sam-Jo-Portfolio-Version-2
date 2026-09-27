@@ -19,6 +19,7 @@ from the live app.
 | Today + How it works (Improve) + phone hero | `jumbo-today-ui.webp` | 340×736 | phone | 1170×2532 | Real |
 | AI Future | `jumbo-ai-future-ui.webp` | 340×736 | phone | 1170×2532 | Real, "Sleep more consistently", 5 years |
 | Capture + How it works (Capture) | `jumbo-capture-ui.webp` | 320×693 | phone | 1170×2532 | Real |
+| Capture (front) | `jumbo-quickadd-ui.webp` | 240×520 | phone | 1170×2532 | Real: Today with the + menu open |
 | Ask JUMBO | `jumbo-ask-ui.webp` | 340×736 | phone | 1170×2532 | Real |
 | Explore | `jumbo-explore-ui.webp` | 340×736 | phone | 1170×2536 | Real: Sam's iPhone screenshot of the live app (status bar removed) |
 | Pro | `jumbo-pro-ui.webp` | 340×736 | phone | 1170×2532 | Real Plans screen, JUMBO Pro card |

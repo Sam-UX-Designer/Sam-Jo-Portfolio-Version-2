@@ -28,10 +28,8 @@ interface UiSlotProps {
  * screenshot is never stretched or cropped. Until the file exists, a neutral
  * placeholder fills the frame instead of a broken image.
  *
- * While the file loads the frame shimmers. The first time it is on screen the
- * screenshot wipes in from the top, and framed screens get one soft light
- * sweep (see .jb-shot and .jb-sheen in jumbo.css). The picture itself is
- * never altered.
+ * The first time it is on screen the screenshot wipes in from the top
+ * (.jb-shot in jumbo.css). The picture itself is never altered.
  */
 const UiSlot: React.FC<UiSlotProps> = ({ asset, priority = false, bare = false, className = '' }) => {
   const [status, setStatus] = useState<Status>('loading');
@@ -69,13 +67,13 @@ const UiSlot: React.FC<UiSlotProps> = ({ asset, priority = false, bare = false, 
     <div
       ref={frameRef}
       data-shown={shown || undefined}
-      className={`relative overflow-hidden ${bare ? '' : 'jb-frame jb-sheen'} ${RADIUS[asset.shape]} ${className}`}
+      className={`relative overflow-hidden ${bare ? '' : 'jb-frame'} ${RADIUS[asset.shape]} ${className}`}
       style={{ aspectRatio: SHAPE_RATIO[asset.shape] }}
     >
       {!shown && (
         <div
           className={`absolute inset-0 flex flex-col items-center justify-center gap-3 p-5 text-center ${
-            missing ? 'jb-placeholder' : bare ? '' : 'jb-placeholder jb-skeleton'
+            missing || !bare ? 'jb-placeholder' : ''
           }`}
           {...(missing ? { role: 'img', 'aria-label': asset.alt } : { 'aria-hidden': true })}
         >
