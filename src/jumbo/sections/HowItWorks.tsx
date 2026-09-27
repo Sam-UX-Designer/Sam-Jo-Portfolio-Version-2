@@ -2,13 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 import { m, useReducedMotion } from 'motion/react';
 import { ASSETS, type UiAsset } from '../config';
 import UiSlot from '../components/UiSlot';
-import { EASE, Reveal } from '../components/Motion';
+import ScatteredCards from '../components/ScatteredCards';
+import { EASE, Reveal, Words } from '../components/Motion';
 
 interface Phase {
   name: string;
   message: string;
   detail: string;
-  asset: UiAsset;
+  /** The screen for this phase. Connect uses the floating cards instead. */
+  asset?: UiAsset;
   /** How this phase's screen arrives, matching what the phase does. */
   from: { x?: number; y?: number; scale?: number };
 }
@@ -19,7 +21,6 @@ const PHASES: Phase[] = [
     message: 'Bring supported information together.',
     detail:
       'Link a wearable or your phone’s health app once. Sleep, movement and recovery arrive in one place on their own.',
-    asset: ASSETS.scattered,
     from: { scale: 1.1 }, // fragments draw in toward one view
   },
   {
@@ -80,7 +81,7 @@ const HowItWorks: React.FC = () => {
             id="how-title"
             className="mt-4 text-[clamp(2rem,4.6vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.03em]"
           >
-            From scattered numbers to a clear next step.
+            <Words text="From scattered numbers to a clear next step." />
           </h2>
         </Reveal>
 
@@ -115,10 +116,14 @@ const HowItWorks: React.FC = () => {
                 <p className="mt-4 max-w-md text-base leading-relaxed text-ink-2">{phase.detail}</p>
 
                 <div className="mt-10 lg:hidden">
-                  <UiSlot
-                    asset={phase.asset}
-                    className={phase.asset.shape === 'phone' ? 'mx-auto w-[64%] max-w-[280px]' : ''}
-                  />
+                  {phase.asset ? (
+                    <UiSlot
+                      asset={phase.asset}
+                      className={phase.asset.shape === 'phone' ? 'mx-auto w-[64%] max-w-[280px]' : ''}
+                    />
+                  ) : (
+                    <ScatteredCards />
+                  )}
                 </div>
               </li>
             ))}
@@ -126,7 +131,7 @@ const HowItWorks: React.FC = () => {
 
           <div className="hidden lg:col-span-6 lg:col-start-7 lg:block">
             <div className="sticky top-24 flex h-[calc(100vh-7rem)] flex-col justify-center">
-              <div className="relative aspect-square w-full">
+              <div className="jb-float jb-loop relative aspect-square w-full" style={{ animationDuration: '9s' }}>
                 {PHASES.map((phase, i) => {
                   const on = active === i;
                   const hidden = { opacity: 0, x: 0, y: 0, scale: 0.96, ...phase.from };
@@ -145,7 +150,9 @@ const HowItWorks: React.FC = () => {
                       }
                       transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}
                     >
-                      {phase.asset.shape === 'phone' ? (
+                      {!phase.asset ? (
+                        <ScatteredCards className="w-full" />
+                      ) : phase.asset.shape === 'phone' ? (
                         <UiSlot asset={phase.asset} className="h-full w-auto" />
                       ) : (
                         <UiSlot asset={phase.asset} className="w-full" />

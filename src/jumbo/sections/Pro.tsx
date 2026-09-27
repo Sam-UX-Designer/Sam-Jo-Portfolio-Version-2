@@ -1,7 +1,7 @@
 import { Check } from 'lucide-react';
 import { ASSETS, PRO_PLAN } from '../config';
 import UiSlot from '../components/UiSlot';
-import { Drift, Reveal } from '../components/Motion';
+import { CountUp, Drift, Float, Reveal, Words } from '../components/Motion';
 import { GetJumbo } from '../components/Buttons';
 
 const money = new Intl.NumberFormat(PRO_PLAN.locale, {
@@ -10,6 +10,8 @@ const money = new Intl.NumberFormat(PRO_PLAN.locale, {
   maximumFractionDigits: 0,
 });
 const count = new Intl.NumberFormat(PRO_PLAN.locale);
+const formatCount = (n: number) => count.format(n);
+const formatMoney = (n: number) => money.format(n);
 
 // Worked out from the two prices, so the claim can never drift from them.
 const saving = Math.round(((PRO_PLAN.monthly * 12 - PRO_PLAN.yearly) / (PRO_PLAN.monthly * 12)) * 100);
@@ -27,7 +29,7 @@ const Pro: React.FC = () => (
           id="pro-title"
           className="mt-4 text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.03em]"
         >
-          Go deeper when you want more from your data.
+          <Words text="Go deeper when you want more from your data." />
         </h2>
         <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink-2">
           For people who want their full history, deeper analysis and more room to ask.
@@ -44,14 +46,16 @@ const Pro: React.FC = () => (
 
       <div className="lg:col-span-5 lg:row-span-2 lg:row-start-1 lg:self-center">
         <Drift distance={60} className="mx-auto w-[68%] max-w-[340px] sm:w-[52%] lg:w-full">
-          <UiSlot asset={ASSETS.pro} />
+          <Float seconds={8}>
+            <UiSlot asset={ASSETS.pro} />
+          </Float>
         </Drift>
       </div>
 
       <Reveal className="lg:col-span-6 lg:col-start-7 lg:row-start-2">
         <div className="grid gap-10 border-t border-line pt-10 sm:grid-cols-2">
           <div>
-            <p className="text-5xl font-semibold tracking-tight tabular-nums">{count.format(PRO_PLAN.credits)}</p>
+            <p className="text-5xl font-semibold tracking-tight tabular-nums"><CountUp value={PRO_PLAN.credits} format={formatCount} /></p>
             <p className="mt-2 text-sm font-semibold text-ink">AI credits a month</p>
             <p className="mt-3 text-sm leading-relaxed text-ink-3">
               Credits are used when JUMBO analyses your data, meals, trends and questions.
@@ -59,7 +63,7 @@ const Pro: React.FC = () => (
           </div>
           <div>
             <p className="text-5xl font-semibold tracking-tight tabular-nums">
-              {money.format(PRO_PLAN.monthly)}
+              <CountUp value={PRO_PLAN.monthly} format={formatMoney} />
               <span className="text-lg font-medium text-ink-3"> / month</span>
             </p>
             <p className="mt-2 text-sm font-semibold text-ink">

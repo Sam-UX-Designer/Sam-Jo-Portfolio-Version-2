@@ -27,10 +27,17 @@ interface UiSlotProps {
  * a file is added or replaced. The image is fitted with object-contain, so a
  * screenshot is never stretched or cropped. Until the file exists, a neutral
  * placeholder fills the frame instead of a broken image.
+ *
+ * While the file loads the frame shimmers. The first time it is on screen the
+ * screenshot wipes in from the top, and framed screens get one soft light
+ * sweep (see .jb-shot and .jb-sheen in jumbo.css). The picture itself is
+ * never altered.
  */
 const UiSlot: React.FC<UiSlotProps> = ({ asset, priority = false, bare = false, className = '' }) => {
   const [status, setStatus] = useState<Status>('loading');
+  const [seen, setSeen] = useState(priority);
   const imgRef = useRef<HTMLImageElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
 
   // An image served from cache can finish before React attaches onLoad.
   useEffect(() => {
@@ -38,16 +45,38 @@ const UiSlot: React.FC<UiSlotProps> = ({ asset, priority = false, bare = false, 
     if (img?.complete) setStatus(img.naturalWidth > 0 ? 'loaded' : 'missing');
   }, []);
 
+  // Load in the first time the frame is on screen, not before.
+  useEffect(() => {
+    const node = frameRef.current;
+    if (seen || !node) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSeen(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: '0px 0px -12% 0px' },
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, [seen]);
+
   const missing = status === 'missing';
+  const shown = status === 'loaded' && seen;
 
   return (
     <div
-      className={`relative overflow-hidden ${bare ? '' : 'jb-frame'} ${RADIUS[asset.shape]} ${className}`}
+      ref={frameRef}
+      data-shown={shown || undefined}
+      className={`relative overflow-hidden ${bare ? '' : 'jb-frame jb-sheen'} ${RADIUS[asset.shape]} ${className}`}
       style={{ aspectRatio: SHAPE_RATIO[asset.shape] }}
     >
-      {status !== 'loaded' && (
+      {!shown && (
         <div
-          className="jb-placeholder absolute inset-0 flex flex-col items-center justify-center gap-3 p-5 text-center"
+          className={`absolute inset-0 flex flex-col items-center justify-center gap-3 p-5 text-center ${
+            missing ? 'jb-placeholder' : bare ? '' : 'jb-placeholder jb-skeleton'
+          }`}
           {...(missing ? { role: 'img', 'aria-label': asset.alt } : { 'aria-hidden': true })}
         >
           {missing && (
@@ -76,9 +105,7 @@ const UiSlot: React.FC<UiSlotProps> = ({ asset, priority = false, bare = false, 
           decoding="async"
           onLoad={() => setStatus('loaded')}
           onError={() => setStatus('missing')}
-          className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-500 ${
-            status === 'loaded' ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="jb-shot absolute inset-0 h-full w-full object-contain"
         />
       )}
     </div>

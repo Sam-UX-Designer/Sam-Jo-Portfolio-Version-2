@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { LazyMotion, MotionConfig, domAnimation } from 'motion/react';
 import { useTheme } from './lib/hooks';
 import JumboNav from './components/JumboNav';
@@ -21,6 +22,16 @@ import { FinalCta, Footer } from './sections/Closing';
  */
 const JumboPage: React.FC = () => {
   const { theme, toggle } = useTheme();
+
+  // Idle animations only run where someone can see them.
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.toggleAttribute('data-idle', !e.isIntersecting)),
+      { rootMargin: '200px 0px' },
+    );
+    document.querySelectorAll('main section').forEach((section) => io.observe(section));
+    return () => io.disconnect();
+  }, []);
 
   return (
     <LazyMotion features={domAnimation} strict>

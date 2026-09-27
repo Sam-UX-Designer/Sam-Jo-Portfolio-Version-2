@@ -10,7 +10,7 @@ const SIZE = {
 };
 
 export const primaryClass = (size: keyof typeof SIZE = 'md') =>
-  `${BASE} ${SIZE[size]} bg-brand text-brand-ink hover:bg-brand-press`;
+  `${BASE} ${SIZE[size]} jb-btn-sheen bg-brand text-brand-ink hover:bg-brand-press`;
 
 export const secondaryClass = (size: keyof typeof SIZE = 'md') =>
   `${BASE} ${SIZE[size]} border border-line-strong text-ink hover:bg-surface-2`;

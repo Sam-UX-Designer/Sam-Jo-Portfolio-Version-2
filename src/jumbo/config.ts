@@ -43,14 +43,6 @@ export const ASSETS = {
     width: 3360,
     height: 2100,
   },
-  scattered: {
-    src: '/assets/jumbo/jumbo-scattered-data.webp',
-    alt: 'Health information spread across sleep, movement, nutrition, recovery and habits',
-    label: 'Scattered health information',
-    shape: 'landscape',
-    width: 1600,
-    height: 1200,
-  },
   overview: {
     src: '/assets/jumbo/jumbo-health-overview.webp',
     alt: 'JUMBO bringing sleep, movement, nutrition and recovery into one view',
@@ -108,6 +100,32 @@ export const ASSETS = {
     height: 2532,
   },
 } satisfies Record<string, UiAsset>;
+
+export interface ScatterCard {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** Position and size as a percentage of the 4:3 frame. */
+  left: number;
+  top: number;
+  size: number;
+  /** Resting tilt in degrees. */
+  rotate: number;
+}
+
+/**
+ * The Problem section and the "Connect" step: five real cards from the app
+ * (Today tiles and the streak card), each its own file so each can float.
+ * Replace a file in public/assets/jumbo/cards/ to change a card.
+ */
+export const SCATTER_CARDS: ScatterCard[] = [
+  { src: '/assets/jumbo/cards/sleep.webp', alt: 'Sleep: 8h 51m asleep', width: 555, height: 396, left: 8, top: 11, size: 30, rotate: -6 },
+  { src: '/assets/jumbo/cards/movement.webp', alt: 'Movement: 6,130 steps', width: 555, height: 396, left: 61, top: 8, size: 30, rotate: 5 },
+  { src: '/assets/jumbo/cards/streak.webp', alt: 'Current streak: 7 days', width: 522, height: 279, left: 34, top: 41, size: 32, rotate: -2 },
+  { src: '/assets/jumbo/cards/nutrition.webp', alt: 'Nutrition: 347 kcal', width: 555, height: 396, left: 11, top: 65, size: 30, rotate: 4 },
+  { src: '/assets/jumbo/cards/recovery.webp', alt: 'Recovery: 100 out of 100', width: 555, height: 396, left: 59, top: 63, size: 30, rotate: -5 },
+];
 
 /** The JUMBO app icon. Same file as the JUMBO card in the portfolio. */
 export const BRAND_MARK = '/project-2.png';

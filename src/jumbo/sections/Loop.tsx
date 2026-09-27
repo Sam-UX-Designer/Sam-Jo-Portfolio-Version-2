@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { m, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react';
-import { Reveal } from '../components/Motion';
+import { Reveal, Words } from '../components/Motion';
 
 const STEPS = [
   {
@@ -53,7 +53,7 @@ const Loop: React.FC = () => {
             id="loop-title"
             className="max-w-3xl text-[clamp(2rem,4.6vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.03em]"
           >
-            JUMBO turns health data into understanding.
+            <Words text="JUMBO turns health data into understanding." />
           </h2>
         </Reveal>
 
@@ -83,6 +83,8 @@ const Loop: React.FC = () => {
                 <span
                   className={`size-2 rounded-full transition-colors duration-500 ${lit(i) ? 'bg-brand-ink' : 'bg-transparent'}`}
                 />
+                {/* One ring pulses out the moment the step lights up. */}
+                {lit(i) && !reduce && <span className="jb-ping absolute inset-0 rounded-full border-2 border-brand" />}
               </span>
               <h3
                 className={`text-2xl font-semibold tracking-tight transition-colors duration-500 ${

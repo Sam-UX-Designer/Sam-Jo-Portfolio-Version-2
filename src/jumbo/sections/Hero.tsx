@@ -4,13 +4,14 @@ import { ASSETS, BRAND_MARK } from '../config';
 import { useMediaQuery } from '../lib/hooks';
 import UiSlot from '../components/UiSlot';
 import { GetJumbo, HowItWorksLink } from '../components/Buttons';
+import { Words } from '../components/Motion';
 
 /**
  * Product first. The JUMBO screenshot leads, full width, and the name,
  * headline and actions follow underneath it.
  *
- * The screenshot never moves or changes. Only the ambient green light
- * behind it responds to scroll, fading as the visitor moves on.
+ * The screenshot never changes. It wipes in once as it loads, then stays
+ * still; only the ambient green light behind it breathes and fades on scroll.
  */
 const Hero: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
@@ -34,8 +35,11 @@ const Hero: React.FC = () => {
         className="pointer-events-none absolute inset-x-0 top-0 h-[110vh]"
         style={reduce ? undefined : { opacity: glowOpacity, scale: glowScale }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(45%_40%_at_50%_42%,rgba(146,232,42,0.10),transparent_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_30%,rgba(146,232,42,0.05),transparent_100%)]" />
+        <div className="jb-breathe jb-loop absolute inset-0 bg-[radial-gradient(45%_40%_at_50%_42%,rgba(146,232,42,0.10),transparent_100%)]" />
+        <div
+          className="jb-breathe jb-loop absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_30%,rgba(146,232,42,0.05),transparent_100%)]"
+          style={{ animationDelay: '-4.5s' }}
+        />
       </m.div>
 
       {/* 01: the product. Desktop and tablet get the full composition at
@@ -56,23 +60,22 @@ const Hero: React.FC = () => {
         </p>
         <h1
           id="hero-title"
-          className="jb-rise mt-6 text-[clamp(2.25rem,4.6vw,3.75rem)] font-semibold leading-[1.06] tracking-[-0.03em]"
-          style={{ animationDelay: '80ms' }}
+          className="mt-6 text-[clamp(2.25rem,4.6vw,3.75rem)] font-semibold leading-[1.06] tracking-[-0.03em]"
         >
-          Your health data,
+          <Words text="Your health data," delay={0.15} />
           <br />
-          finally working for&nbsp;you.
+          <Words text={'finally working for\u00a0you.'} delay={0.35} />
         </h1>
         <p
           className="jb-rise mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-2"
-          style={{ animationDelay: '160ms' }}
+          style={{ animationDelay: '650ms' }}
         >
           JUMBO brings your health information together, helps you understand the patterns, and
           gives you a clearer way to decide what to focus on next.
         </p>
         <div
           className="jb-rise mt-10 flex flex-wrap justify-center gap-3"
-          style={{ animationDelay: '240ms' }}
+          style={{ animationDelay: '800ms' }}
         >
           <GetJumbo />
           <HowItWorksLink />

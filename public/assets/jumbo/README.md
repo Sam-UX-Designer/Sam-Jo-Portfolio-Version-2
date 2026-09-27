@@ -14,7 +14,7 @@ from the live app.
 | Section | File | Shows on desktop at | Shape | File size (px) | Status |
 |---|---|---:|---:|---:|---|
 | Hero | `jumbo-hero.webp` | up to 1680×1050 | 16:10 | 3360×2100 | Real: Capture, Lifestyle, Today, Ask, Plans |
-| Problem + How it works (Connect) | `jumbo-scattered-data.webp` | 797×598 | 4:3 | 1600×1200 | Real Today tiles + streak card |
+| Problem + How it works (Connect) | `cards/sleep.webp`, `movement`, `nutrition`, `recovery`, `streak` | 5 cards in a 797×598 frame | card | 555×396 (streak 522×279) | Real Today tiles + streak card, each floats on its own |
 | Health Overview + How it works (Understand) | `jumbo-health-overview.webp` | 1060×662 | 16:10 | 2400×1500 | Real desktop web Today |
 | Today + How it works (Improve) + phone hero | `jumbo-today-ui.webp` | 340×736 | phone | 1170×2532 | Real |
 | AI Future | `jumbo-ai-future-ui.webp` | 340×736 | phone | 1170×2532 | Real, "Sleep more consistently", 5 years |
@@ -24,6 +24,9 @@ from the live app.
 | Pro | `jumbo-pro-ui.webp` | 340×736 | phone | 1170×2532 | Real Plans screen, JUMBO Pro card |
 
 Notes
+
+- The five cards in `cards/` are separate transparent images so each one can
+  float. Their positions and tilt are set in `SCATTER_CARDS` in `src/jumbo/config.ts`.
 
 - Explore comes from the live app (real YouTube videos), captured on an iPhone.
   Only the iOS status bar was covered with the app's background colour.

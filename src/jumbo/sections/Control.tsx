@@ -1,10 +1,12 @@
 import { Download, Link2, ShieldCheck, SlidersHorizontal, Trash2, type LucideIcon } from 'lucide-react';
 import { CONNECTIONS, LINKS } from '../config';
-import { Reveal } from '../components/Motion';
+import { Reveal, Words } from '../components/Motion';
 
 interface Topic {
   name: string;
   icon: LucideIcon;
+  /** Icon motion that matches what it stands for (jumbo.css). */
+  motion: string;
   body: React.ReactNode;
 }
 
@@ -27,6 +29,7 @@ const Names: React.FC<{ names: string[] }> = ({ names }) => (
 const TOPICS: Topic[] = [
   {
     name: 'Connections',
+    motion: 'jb-i-tilt',
     icon: Link2,
     body: (
       <>
@@ -42,6 +45,7 @@ const TOPICS: Topic[] = [
   },
   {
     name: 'Control',
+    motion: 'jb-i-nudge',
     icon: SlidersHorizontal,
     body: (
       <p>
@@ -52,6 +56,7 @@ const TOPICS: Topic[] = [
   },
   {
     name: 'Privacy',
+    motion: 'jb-i-beat',
     icon: ShieldCheck,
     body: (
       <>
@@ -75,11 +80,13 @@ const TOPICS: Topic[] = [
   },
   {
     name: 'Export',
+    motion: 'jb-i-dip',
     icon: Download,
     body: <p>Download everything you have logged as a single file, whenever you want it.</p>,
   },
   {
     name: 'Delete',
+    motion: 'jb-i-tilt',
     icon: Trash2,
     body: (
       <p>
@@ -99,7 +106,7 @@ const Control: React.FC = () => (
             id="control-title"
             className="text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.03em]"
           >
-            Your health information should stay under your control.
+            <Words text="Your health information should stay under your control." />
           </h2>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-2">
             Plain answers to what JUMBO connects to, what it keeps and what you can take back.
@@ -114,7 +121,7 @@ const Control: React.FC = () => (
             <li key={topic.name} className="py-8 first:pt-0 last:pb-0">
               <Reveal className="grid grid-cols-[2.5rem_1fr] gap-x-4">
                 <span className="grid size-10 place-items-center rounded-full bg-brand-soft text-accent">
-                  <Icon size={18} strokeWidth={1.75} aria-hidden="true" />
+                  <Icon size={18} strokeWidth={1.75} aria-hidden="true" className={topic.motion} />
                 </span>
                 <div>
                   <h3 className="pt-1.5 text-lg font-semibold">{topic.name}</h3>

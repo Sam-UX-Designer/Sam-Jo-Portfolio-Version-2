@@ -1,18 +1,22 @@
 import { ArrowLeft } from 'lucide-react';
 import { LINKS } from '../config';
-import { Reveal } from '../components/Motion';
+import { Reveal, Words } from '../components/Motion';
 import { GetJumbo, HowItWorksLink } from '../components/Buttons';
 
 /** Quiet and confident: no illustration, just the line and the action. */
 export const FinalCta: React.FC = () => (
-  <section id="get" aria-labelledby="get-title" className="border-t border-line py-28 md:py-40">
-    <Reveal className="mx-auto max-w-4xl px-5 text-center sm:px-8">
+  <section id="get" aria-labelledby="get-title" className="relative overflow-hidden border-t border-line py-28 md:py-40">
+    <div
+      aria-hidden="true"
+      className="jb-breathe jb-loop pointer-events-none absolute inset-0 bg-[radial-gradient(40%_55%_at_50%_55%,rgba(146,232,42,0.08),transparent_100%)]"
+    />
+    <Reveal className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
       <h2
         id="get-title"
         className="text-[clamp(2rem,4.6vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.03em]"
       >
-        Your health is already generating the data.{' '}
-        <span className="text-accent">JUMBO helps you understand it.</span>
+        <Words text="Your health is already generating the data." />{' '}
+        <Words text="JUMBO helps you understand it." className="text-accent" delay={0.35} />
       </h2>
       <div className="mt-10 flex flex-wrap justify-center gap-3">
         <GetJumbo />

@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { ASSETS } from '../config';
 import UiSlot from '../components/UiSlot';
-import { Drift, Reveal } from '../components/Motion';
+import { Drift, Float, Reveal, Words } from '../components/Motion';
 
 /*
  * The product, one experience at a time. Each section leads with the benefit
@@ -29,16 +29,22 @@ const H2 = 'text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.08] tracki
 const BODY = 'mt-6 max-w-lg text-lg leading-relaxed text-ink-2';
 
 /** The feature's name, shown after the benefit rather than above it. */
-const FeatureName: React.FC<{ icon: LucideIcon; children: React.ReactNode }> = ({ icon: Icon, children }) => (
+const FeatureName: React.FC<{ icon: LucideIcon; motion: string; children: React.ReactNode }> = ({
+  icon: Icon,
+  motion,
+  children,
+}) => (
   <p className="mt-8 flex items-center gap-2 text-sm font-semibold text-ink">
-    <Icon size={18} strokeWidth={1.75} aria-hidden="true" className="text-accent" />
+    <Icon size={18} strokeWidth={1.75} aria-hidden="true" className={`text-accent ${motion}`} />
     {children}
   </p>
 );
 
 const Phone: React.FC<{ asset: typeof ASSETS.today; className?: string }> = ({ asset, className = '' }) => (
   <Drift className={`mx-auto w-[68%] max-w-[340px] sm:w-[52%] lg:w-full ${className}`}>
-    <UiSlot asset={asset} />
+    <Float seconds={7.5}>
+      <UiSlot asset={asset} />
+    </Float>
   </Drift>
 );
 
@@ -49,13 +55,13 @@ export const Today: React.FC = () => (
     <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-12 lg:gap-10">
       <Reveal className="lg:col-span-6">
         <h2 id="today-title" className={H2}>
-          A clear picture of today, without digging through data.
+          <Words text="A clear picture of today, without digging through data." />
         </h2>
         <p className={BODY}>
           One health score, four rings for sleep, movement, nutrition and recovery, and the day’s
           state in a single sentence. Pick another day and everything follows it.
         </p>
-        <FeatureName icon={CalendarDays}>Today</FeatureName>
+        <FeatureName icon={CalendarDays} motion="jb-i-bob">Today</FeatureName>
       </Reveal>
       <div className="lg:col-span-4 lg:col-start-8">
         <Phone asset={ASSETS.today} />
@@ -80,7 +86,7 @@ export const Future: React.FC = () => (
       </div>
       <Reveal className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7">
         <h2 id="future-title" className={H2}>
-          Explore where your current routine could take you.
+          <Words text="Explore where your current routine could take you." />
         </h2>
         <p className={BODY}>
           See how your trajectory could shift over one, three or five years if a pattern continues.
@@ -94,7 +100,7 @@ export const Future: React.FC = () => (
             </div>
           ))}
         </dl>
-        <FeatureName icon={TrendingUp}>AI Future</FeatureName>
+        <FeatureName icon={TrendingUp} motion="jb-i-nudge">AI Future</FeatureName>
       </Reveal>
     </div>
   </section>
@@ -102,11 +108,11 @@ export const Future: React.FC = () => (
 
 /* ---------------------------------------------------------------- Capture */
 
-const MODES: { name: string; icon: LucideIcon; detail: string }[] = [
-  { name: 'Meal photo', icon: Camera, detail: 'JUMBO estimates the foods and nutrition, and shows its confidence.' },
-  { name: 'Workout', icon: Dumbbell, detail: 'Type, duration and how hard it felt.' },
-  { name: 'Measurements', icon: Ruler, detail: 'Weight, waist and the numbers you track.' },
-  { name: 'Notes and voice', icon: Mic, detail: 'A quick note, or dictation where your device supports it.' },
+const MODES: { name: string; icon: LucideIcon; motion: string; detail: string }[] = [
+  { name: 'Meal photo', icon: Camera, motion: 'jb-i-tilt', detail: 'JUMBO estimates the foods and nutrition, and shows its confidence.' },
+  { name: 'Workout', icon: Dumbbell, motion: 'jb-i-bob', detail: 'Type, duration and how hard it felt.' },
+  { name: 'Measurements', icon: Ruler, motion: 'jb-i-tilt', detail: 'Weight, waist and the numbers you track.' },
+  { name: 'Notes and voice', icon: Mic, motion: 'jb-i-beat', detail: 'A quick note, or dictation where your device supports it.' },
 ];
 
 const Mode: React.FC<{ mode: (typeof MODES)[number]; delay: number; end?: boolean }> = ({
@@ -121,7 +127,8 @@ const Mode: React.FC<{ mode: (typeof MODES)[number]; delay: number; end?: boolea
         size={22}
         strokeWidth={1.75}
         aria-hidden="true"
-        className={`text-accent ${end ? 'lg:ml-auto' : ''}`}
+        className={`text-accent ${mode.motion} ${end ? 'lg:ml-auto' : ''}`}
+        style={{ animationDelay: `${delay * 6}s` }}
       />
       <h3 className="mt-3 text-base font-semibold">{mode.name}</h3>
       <p className="mt-1.5 text-sm leading-relaxed text-ink-3">{mode.detail}</p>
@@ -134,7 +141,7 @@ export const Capture: React.FC = () => (
     <div className="mx-auto max-w-7xl px-5 sm:px-8">
       <Reveal className="mx-auto max-w-3xl text-center">
         <h2 id="capture-title" className={H2}>
-          Give JUMBO more context.
+          <Words text="Give JUMBO more context." />
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-2">
           Wearables miss what you eat and how a session felt. Capture fills those gaps, and you review
@@ -174,7 +181,7 @@ export const Ask: React.FC = () => (
     <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-12 lg:gap-10">
       <Reveal className="lg:col-span-6">
         <h2 id="ask-title" className={H2}>
-          Don’t just look at your data. Talk to it.
+          <Words text="Don’t just look at your data. Talk to it." />
         </h2>
         <p className={BODY}>
           Ask JUMBO answers from your own records, keeps the conversation in context, and tells you
@@ -194,14 +201,19 @@ export const Ask: React.FC = () => (
           <ul className="mt-4 space-y-2.5">
             {OPTIONS.map((option) => (
               <li key={option} className="flex items-start gap-2.5 text-[15px] text-ink">
-                <CornerDownRight size={16} aria-hidden="true" className="mt-1 shrink-0 text-accent" />
+                <CornerDownRight
+                  size={16}
+                  aria-hidden="true"
+                  className="jb-i-nudge mt-1 shrink-0 text-accent"
+                  style={{ animationDelay: `${OPTIONS.indexOf(option) * 0.4}s` }}
+                />
                 {option}
               </li>
             ))}
           </ul>
         </figure>
 
-        <FeatureName icon={Sparkles}>Ask JUMBO</FeatureName>
+        <FeatureName icon={Sparkles} motion="jb-i-twinkle">Ask JUMBO</FeatureName>
       </Reveal>
       <div className="lg:col-span-4 lg:col-start-8">
         <Phone asset={ASSETS.ask} />
@@ -220,7 +232,7 @@ export const Explore: React.FC = () => (
       </div>
       <Reveal className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7">
         <h2 id="explore-title" className={H2}>
-          Learn without the noise.
+          <Words text="Learn without the noise." />
         </h2>
         <p className={BODY}>
           Videos from real creators, chosen around your goals, that you can save and follow. They
@@ -229,7 +241,7 @@ export const Explore: React.FC = () => (
         <p className="mt-6 max-w-lg border-l-2 border-brand pl-4 text-base leading-relaxed text-ink">
           Your health data is never sent to YouTube or to any creator.
         </p>
-        <FeatureName icon={PlayCircle}>Explore</FeatureName>
+        <FeatureName icon={PlayCircle} motion="jb-i-beat">Explore</FeatureName>
       </Reveal>
     </div>
   </section>
