@@ -43,7 +43,7 @@ const Pro: React.FC = () => (
       </Reveal>
 
       <div className="lg:col-span-5 lg:row-span-2 lg:row-start-1 lg:self-center">
-        <Drift distance={60} className="mx-auto max-w-[460px]">
+        <Drift distance={60} className="mx-auto w-[68%] max-w-[340px] sm:w-[52%] lg:w-full">
           <UiSlot asset={ASSETS.pro} />
         </Drift>
       </div>

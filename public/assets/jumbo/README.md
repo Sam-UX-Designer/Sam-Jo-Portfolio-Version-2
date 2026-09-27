@@ -1,29 +1,31 @@
 # JUMBO page images
 
-Upload each finished image to the GitHub path below, using the exact filename.
-The page picks it up automatically after Vercel redeploys. No code change needed.
+Every image on the JUMBO page lives in this folder. To replace one, upload a new
+file with the **exact same name**. The page picks it up after Vercel redeploys.
+No code change needed. Paths and sizes are set in `src/jumbo/config.ts`.
 
-Every slot has a fixed shape. Images are fitted inside it with `object-fit: contain`,
-so they are never cropped or stretched. Only the hero may extend past the normal
-page width. "Recommended export" is 2x the largest desktop size, for sharp retina screens.
+Each slot has a fixed shape. Images are fitted with `object-fit: contain`, so they
+are never cropped or stretched. Only the hero may extend past the normal page width.
 
-| Section | Asset | Desktop size (1280 / 1440 / 1920) | Ratio | Tablet 820 | Phone 390 | Recommended export | GitHub path |
-|---|---|---:|---:|---:|---:|---:|---|
-| Hero | jumbo-hero | 1178×736 / 1325×828 / **1680×1050 (max)** | 16:10 | 754×471 | *uses Today screen* | **3360×2100** | `public/assets/jumbo/jumbo-hero.webp` |
-| Problem | jumbo-scattered-data | 797×598 (all widths) | 4:3 | 756×567 | 350×263 | 1600×1200 | `public/assets/jumbo-scattered-data.png` |
-| How it works, Connect | *same file as Problem* | 588×441 | 4:3 | 756×567 | 350×263 | *(same file)* | *(same)* |
-| Health Overview | jumbo-health-overview | 1060×662 | 16:10 | 696×435 | 322×201 | 2400×1500 | `public/assets/jumbo-health-overview.png` |
-| How it works, Understand | *same file as Health Overview* | 564×353 | 16:10 | 756×473 | 350×219 | *(same file)* | *(same)* |
-| Today | jumbo-today-ui | 340×736 | phone (1170:2532) | 340×736 | 238×515 | 1170×2532 | `public/assets/jumbo-today-ui.png` |
-| AI Future | jumbo-ai-future-ui | 340×736 | phone | 340×736 | 238×515 | 1170×2532 | `public/assets/jumbo-ai-future-ui.png` |
-| Capture | jumbo-capture-ui | 320×693 | phone | 340×736 | 238×515 | 1170×2532 | `public/assets/jumbo-capture-ui.png` |
-| Ask JUMBO | jumbo-ask-ui | 340×736 | phone | 340×736 | 238×515 | 1170×2532 | `public/assets/jumbo-ask-ui.png` |
-| Explore | jumbo-explore-ui | 340×736 | phone | 340×736 | 238×515 | 1170×2532 | `public/assets/jumbo-explore-ui.png` |
-| Pro | jumbo-pro-ui | 460×575 | 4:5 | 460×575 | 350×438 | 1000×1250 | `public/assets/jumbo-pro-ui.png` |
+The current files are real screens from the Jumbo-ai-App repo, running on the app's
+built-in sample history (every screen shows the "Sample data" label).
+
+| Section | File | Shows on desktop at | Shape | File size (px) | Status |
+|---|---|---:|---:|---:|---|
+| Hero | `jumbo-hero.webp` | up to 1680×1050 | 16:10 | 3360×2100 | Real: Capture, Lifestyle, Today, Ask, Plans |
+| Problem + How it works (Connect) | `jumbo-scattered-data.webp` | 797×598 | 4:3 | 1600×1200 | Real Today tiles + streak card |
+| Health Overview + How it works (Understand) | `jumbo-health-overview.webp` | 1060×662 | 16:10 | 2400×1500 | Real desktop web Today |
+| Today + How it works (Improve) + phone hero | `jumbo-today-ui.webp` | 340×736 | phone | 1170×2532 | Real |
+| AI Future | `jumbo-ai-future-ui.webp` | 340×736 | phone | 1170×2532 | Real, "Sleep more consistently", 5 years |
+| Capture + How it works (Capture) | `jumbo-capture-ui.webp` | 320×693 | phone | 1170×2532 | Real |
+| Ask JUMBO | `jumbo-ask-ui.webp` | 340×736 | phone | 1170×2532 | Real |
+| Explore | `jumbo-explore-ui.webp` | 340×736 | phone | 1170×2532 | **Missing: add a screenshot from the live app** |
+| Pro | `jumbo-pro-ui.webp` | 340×736 | phone | 1170×2532 | Real Plans screen, JUMBO Pro card |
 
 Notes
 
-- Hero: design at 16:10. A different shape will not stretch, but it will leave black
-  bars. On phones the hero currently shows the Today screen instead.
-- Keep the hero webp under about 500 KB. A transparent background is fine (it sits on black).
-- All paths and sizes are set in `src/jumbo/config.ts`.
+- Explore needs the live YouTube connection to show real videos, so it was not
+  captured. Screenshot it on the live app (iPhone size) and upload it as
+  `jumbo-explore-ui.webp` (a .png renamed is not enough; export as WebP, or ask Claude
+  to convert it).
+- Keep the hero under about 500 KB. A transparent background is fine (it sits on black).
