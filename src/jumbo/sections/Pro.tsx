@@ -4,20 +4,12 @@ import UiSlot from '../components/UiSlot';
 import { CountUp, Drift, Float, Reveal, Words } from '../components/Motion';
 import { GetJumbo } from '../components/Buttons';
 
-const money = new Intl.NumberFormat(PRO_PLAN.locale, {
-  style: 'currency',
-  currency: PRO_PLAN.currency,
-  maximumFractionDigits: 0,
-});
 const count = new Intl.NumberFormat(PRO_PLAN.locale);
 const formatCount = (n: number) => count.format(n);
-const formatMoney = (n: number) => money.format(n);
-
-// Worked out from the two prices, so the claim can never drift from them.
-const saving = Math.round(((PRO_PLAN.monthly * 12 - PRO_PLAN.yearly) / (PRO_PLAN.monthly * 12)) * 100);
 
 /**
- * Value first, then the product, then credits, then price, then the action.
+ * Value first, then the product, then credits, then how to start (free), then
+ * the action. No prices on the page: visitors start free.
  * DOM order is that story; on desktop the visual moves to the left column.
  */
 const Pro: React.FC = () => (
@@ -62,15 +54,11 @@ const Pro: React.FC = () => (
             </p>
           </div>
           <div>
-            <p className="text-5xl font-semibold tracking-tight tabular-nums">
-              <CountUp value={PRO_PLAN.monthly} format={formatMoney} />
-              <span className="text-lg font-medium text-ink-3"> / month</span>
-            </p>
-            <p className="mt-2 text-sm font-semibold text-ink">
-              or {money.format(PRO_PLAN.yearly)} a year, save {saving}%
-            </p>
+            <p className="text-5xl font-semibold tracking-tight">Free</p>
+            <p className="mt-2 text-sm font-semibold text-ink">to start, with {PRO_PLAN.freeCredits} AI credits a month</p>
             <p className="mt-3 text-sm leading-relaxed text-ink-3">
-              Not ready for Pro? JUMBO Free includes {PRO_PLAN.freeCredits} AI credits a month.
+              Daily rings, meal photo analysis and Ask JUMBO are all included. Move to Pro when you want
+              more.
             </p>
           </div>
         </div>

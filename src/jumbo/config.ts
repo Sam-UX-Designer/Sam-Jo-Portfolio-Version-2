@@ -125,7 +125,7 @@ export const ASSETS = {
   },
   pro: {
     src: '/assets/jumbo/jumbo-pro-ui.webp',
-    alt: 'JUMBO Plans screen with the JUMBO Pro plan, its price and what it includes',
+    alt: 'JUMBO Plans screen showing the JUMBO Free plan and what it includes',
     label: 'JUMBO Pro visual',
     shape: 'phone',
     width: 1170,
