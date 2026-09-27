@@ -156,19 +156,8 @@ export const Capture: React.FC = () => (
           ))}
         </div>
         <div className="md:col-span-2 lg:col-span-4 lg:col-start-5">
-          {/* Tap + and the options float up; the Capture screen sits behind it. */}
-          <div className="relative mx-auto w-[60%] max-w-[300px] sm:w-[44%] lg:w-[80%]">
-            <div className="absolute inset-0 translate-x-[40%] -translate-y-[5%] scale-[0.88] opacity-70">
-              <Float seconds={9} delay={-3}>
-                <UiSlot asset={ASSETS.capture} />
-              </Float>
-            </div>
-            <Drift className="relative">
-              <Float seconds={7.5}>
-                <UiSlot asset={ASSETS.quickadd} />
-              </Float>
-            </Drift>
-          </div>
+          {/* Tap + and the options float up. */}
+          <Phone asset={ASSETS.quickadd} className="lg:max-w-[320px]" />
         </div>
         <div className="grid gap-10 sm:grid-cols-2 md:col-span-2 md:grid-cols-2 lg:col-span-3 lg:col-start-10 lg:grid-cols-1">
           {MODES.slice(2).map((mode, i) => (

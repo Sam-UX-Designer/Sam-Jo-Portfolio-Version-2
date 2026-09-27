@@ -14,17 +14,22 @@ from the live app.
 | Section | File | Shows on desktop at | Shape | File size (px) | Status |
 |---|---|---:|---:|---:|---|
 | Hero | `jumbo-hero.webp` | up to 1680×1050 | 16:10 | 3360×2100 | Real: Capture, Lifestyle, Today, Ask, Plans |
-| Problem + How it works (Connect) | `cards/sleep.webp`, `movement`, `nutrition`, `recovery`, `streak` | 5 cards in a 797×598 frame | card | 555×396 (streak 522×279) | Real Today tiles + streak card, each floats on its own |
-| Health Overview + How it works (Understand) | `jumbo-health-overview.webp` | 1060×662 | 16:10 | 2400×1500 | Real desktop web Today |
-| Today + How it works (Improve) + phone hero | `jumbo-today-ui.webp` | 340×736 | phone | 1170×2532 | Real |
+| Problem | `cards/sleep.webp`, `movement`, `nutrition`, `recovery`, `streak` | 5 cards in a 797×598 frame | card | 555×396 (streak 522×279) | Real Today tiles + streak card, each floats on its own |
+| Health Overview | `jumbo-health-overview.webp` | 1060×662 | 16:10 | 2400×1500 | Real desktop web Today |
+| Today | `jumbo-today-ui.webp` | 340×736 | phone | 1170×2532 | Real |
 | AI Future | `jumbo-ai-future-ui.webp` | 340×736 | phone | 1170×2532 | Real, "Sleep more consistently", 5 years |
-| Capture + How it works (Capture) | `jumbo-capture-ui.webp` | 320×693 | phone | 1170×2532 | Real |
-| Capture (front) | `jumbo-quickadd-ui.webp` | 240×520 | phone | 1170×2532 | Real: Today with the + menu open |
+| How it works: Capture | `jumbo-capture-ui.webp` | 320×693 | phone | 1170×2532 | Real |
+| How it works: Connect | `jumbo-connect-ui.webp` | 283×612 | phone | 1170×2532 | Real: Connected sources |
+| How it works: Understand | `jumbo-understand-ui.webp` | 283×612 | phone | 1170×2532 | Real: Sleep detail, last 21 days |
+| How it works: Improve | `jumbo-improve-ui.webp` | 283×612 | phone | 1170×2532 | Real: Training, "Take today off" |
+| Capture section | `jumbo-quickadd-ui.webp` | 320×693 | phone | 1170×2532 | Real: Today with the + menu open |
 | Ask JUMBO | `jumbo-ask-ui.webp` | 340×736 | phone | 1170×2532 | Real |
 | Explore | `jumbo-explore-ui.webp` | 340×736 | phone | 1170×2536 | Real: Sam's iPhone screenshot of the live app (status bar removed) |
 | Pro | `jumbo-pro-ui.webp` | 340×736 | phone | 1170×2532 | Real Plans screen, JUMBO Pro card |
 
 Notes
+
+- Every section uses its own screen; no picture appears twice on the page.
 
 - The five cards in `cards/` are separate transparent images so each one can
   float. Their positions and tilt are set in `SCATTER_CARDS` in `src/jumbo/config.ts`.

@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { m, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { ASSETS, BRAND_MARK } from '../config';
-import { useMediaQuery } from '../lib/hooks';
 import UiSlot from '../components/UiSlot';
 import { GetJumbo, HowItWorksLink } from '../components/Buttons';
 import { Words } from '../components/Motion';
@@ -16,7 +15,6 @@ import { Words } from '../components/Motion';
 const Hero: React.FC = () => {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const wide = useMediaQuery('(min-width: 768px)');
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const glowOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.2]);
@@ -42,14 +40,9 @@ const Hero: React.FC = () => {
         />
       </m.div>
 
-      {/* 01: the product. Desktop and tablet get the full composition at
-          80-95% of the viewport; phones get one screen, not a shrunken collage. */}
+      {/* 01: the product, at 80-95% of the viewport on every screen size. */}
       <div className="relative">
-        {wide ? (
-          <UiSlot asset={ASSETS.hero} priority bare className="mx-auto w-[92vw] max-w-[1680px]" />
-        ) : (
-          <UiSlot asset={ASSETS.today} priority bare className="mx-auto w-[74%] max-w-[320px]" />
-        )}
+        <UiSlot asset={ASSETS.hero} priority bare className="mx-auto w-[92vw] max-w-[1680px]" />
       </div>
 
       {/* 02-05: name, headline, explanation, actions. */}

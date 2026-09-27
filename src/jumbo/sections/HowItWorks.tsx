@@ -2,15 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { m, useReducedMotion } from 'motion/react';
 import { ASSETS, type UiAsset } from '../config';
 import UiSlot from '../components/UiSlot';
-import ScatteredCards from '../components/ScatteredCards';
 import { EASE, Reveal, Words } from '../components/Motion';
 
 interface Phase {
   name: string;
   message: string;
   detail: string;
-  /** The screen for this phase. Connect uses the floating cards instead. */
-  asset?: UiAsset;
+  asset: UiAsset;
   /** How this phase's screen arrives, matching what the phase does. */
   from: { x?: number; y?: number; scale?: number };
 }
@@ -21,7 +19,8 @@ const PHASES: Phase[] = [
     message: 'Bring supported information together.',
     detail:
       'Link a wearable or your phone’s health app once. Sleep, movement and recovery arrive in one place on their own.',
-    from: { scale: 1.1 }, // fragments draw in toward one view
+    asset: ASSETS.connect,
+    from: { scale: 1.1 }, // sources draw in toward one view
   },
   {
     name: 'Capture',
@@ -36,14 +35,14 @@ const PHASES: Phase[] = [
     message: 'Organise and interpret available context.',
     detail:
       'JUMBO compares recent days with your own baseline, finds what changed, and says how confident it is.',
-    asset: ASSETS.overview,
+    asset: ASSETS.understand,
     from: { y: 40 }, // the layers align into one readable view
   },
   {
     name: 'Improve',
     message: 'Use insights and personal choices to guide the next step.',
     detail: 'You choose what to try. The days that follow show how it went.',
-    asset: ASSETS.today,
+    asset: ASSETS.improve,
     from: { scale: 1.04 }, // an insight appears and the interface settles
   },
 ];
@@ -116,14 +115,10 @@ const HowItWorks: React.FC = () => {
                 <p className="mt-4 max-w-md text-base leading-relaxed text-ink-2">{phase.detail}</p>
 
                 <div className="mt-10 lg:hidden">
-                  {phase.asset ? (
-                    <UiSlot
-                      asset={phase.asset}
-                      className={phase.asset.shape === 'phone' ? 'mx-auto w-[64%] max-w-[280px]' : ''}
-                    />
-                  ) : (
-                    <ScatteredCards />
-                  )}
+                  <UiSlot
+                    asset={phase.asset}
+                    className={phase.asset.shape === 'phone' ? 'mx-auto w-[64%] max-w-[280px]' : ''}
+                  />
                 </div>
               </li>
             ))}
@@ -150,9 +145,7 @@ const HowItWorks: React.FC = () => {
                       }
                       transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}
                     >
-                      {!phase.asset ? (
-                        <ScatteredCards className="w-full" />
-                      ) : phase.asset.shape === 'phone' ? (
+                      {phase.asset.shape === 'phone' ? (
                         <UiSlot asset={phase.asset} className="h-full w-auto" />
                       ) : (
                         <UiSlot asset={phase.asset} className="w-full" />
