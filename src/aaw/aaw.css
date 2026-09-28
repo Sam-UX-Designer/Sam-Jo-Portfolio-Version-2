@@ -225,91 +225,12 @@ p {
   overscroll-behavior-y: auto;
 }
 
-/* The hero runs under the site's bar, so the app's chrome starts below it
-   (--aw-top, set on the stage). The site's bar already carries the logo and
-   the name, so the app's own brand block is not shown twice; its navigation
-   moves up into that place. */
-.aw-ui.aw-stage .brand {
-  display: none;
-}
-.aw-ui.aw-stage .sidenav,
-.aw-ui.aw-stage .topright {
-  top: calc(var(--edge) + var(--aw-top));
-}
-.aw-ui.aw-stage .agents,
-.aw-ui.aw-stage .agent-dock {
-  top: calc(var(--edge) + 62px + var(--aw-top));
-}
-.aw-ui.aw-stage .agents {
-  max-height: calc(100cqh - 260px - var(--aw-top));
-}
-.aw-ui.aw-stage .agent-dock {
-  max-height: calc(100cqh - 200px - var(--aw-top));
-}
-
-@media (max-width: 900px) {
-  /* The app's phone layout: navigation is the bottom tab bar again. */
-  .aw-ui.aw-stage .sidenav {
-    top: auto;
+/* On the narrowest phones the app's brand keeps only its mark, so its
+   top-right controls fit beside it. */
+@media (max-width: 420px) {
+  .aw-ui.aw-stage .brand__text {
+    display: none;
   }
-  .aw-ui.aw-stage .agents,
-  .aw-ui.aw-stage .agent-dock {
-    top: calc(var(--edge) + 56px + var(--aw-top));
-    max-height: calc(100cqh - var(--nav-h) - var(--cmd-h) - 130px - var(--aw-top));
-  }
-}
-
-/* A station card the hero text would sit on waits out of sight until the
-   visitor starts, then comes in with the rest of the island. */
-.aw-ui.aw-stage .station[data-covered='true'] .marker {
-  opacity: 0;
-  pointer-events: none;
-}
-.aw-ui.aw-stage .marker {
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease,
-    opacity 400ms ease;
-}
-
-/* The hero text: centred between the app's navigation and its top-right
-   controls on a wide screen, full width under the controls on a phone. */
-.aw-hero-copy {
-  position: absolute;
-  z-index: 25;
-  left: 0;
-  right: 0;
-  margin-inline: auto;
-  top: calc(var(--aw-top) + var(--edge) - 4px);
-  width: min(62rem, calc(100% - 2 * (var(--edge) + 196px)));
-  transition: opacity 450ms ease, transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.aw-hero-copy[data-away='true'] {
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-}
-@media (max-width: 900px) {
-  .aw-hero-copy {
-    top: calc(var(--aw-top) + var(--edge) + 50px);
-    width: calc(100% - 2 * var(--edge));
-  }
-}
-
-/* Light behind the hero text so it reads over the island, fading out long
-   before the stations. Under the station cards, over the artwork. */
-.aw-hero-scrim {
-  position: absolute;
-  z-index: 15;
-  inset: 0 0 auto;
-  height: 52%;
-  pointer-events: none;
-  background: linear-gradient(to bottom, rgb(4 8 16 / 0.72) 0%, rgb(4 8 16 / 0.45) 45%, transparent 100%);
-  transition: opacity 450ms ease;
-}
-.aw-hero-scrim[data-away='true'] {
-  opacity: 0;
 }
 
 /* =========================================================

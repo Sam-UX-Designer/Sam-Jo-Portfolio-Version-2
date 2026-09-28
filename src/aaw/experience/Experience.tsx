@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode, type RefObject } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActiveAgents, CommandBar, TaskInProgress, World } from './World';
 import Chrome from './Chrome';
 import { AgentPanel, Answer, TaskDetail } from './Panels';
@@ -14,20 +14,7 @@ import { useWorld, world } from './store';
  * one you asked about on the right, and the answer and the command bar as one
  * column at the bottom.
  */
-export default function Experience({
-  className = '',
-  overlay,
-  clear,
-  topInset = 0,
-}: {
-  className?: string;
-  /** Page content laid over the island, under the app's own chrome. */
-  overlay?: ReactNode;
-  /** The part of the overlay the stations should stay below. */
-  clear?: RefObject<HTMLElement | null>;
-  /** Height of the site's bar over the top of the stage; the chrome sits under it. */
-  topInset?: number;
-}) {
+export default function Experience({ className = '' }: { className?: string }) {
   const stage = useRef<HTMLDivElement>(null);
   const [taskOpen, setTaskOpen] = useState(false);
   const [gate, setGate] = useState<GateReason | null>(null);
@@ -54,13 +41,8 @@ export default function Experience({
   const closeGate = useCallback(() => setGate(null), []);
 
   return (
-    <div
-      ref={stage}
-      className={`aw-ui aw-stage relative overflow-hidden bg-[#04070D] ${className}`}
-      style={{ ['--aw-top' as string]: `${topInset}px` }}
-    >
-      <World stage={stage} clear={clear} />
-      {overlay}
+    <div ref={stage} className={`aw-ui aw-stage relative overflow-hidden bg-[#04070D] ${className}`}>
+      <World stage={stage} />
       <Chrome />
 
       {selected ? (

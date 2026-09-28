@@ -1,4 +1,3 @@
-import { useSyncExternalStore } from 'react';
 import { FREE_TASK_KEY } from '../config';
 
 /**
@@ -40,27 +39,3 @@ export function markFreeTaskUsed() {
 let sessionUsed = false;
 export const freeTaskSpent = () => sessionUsed || freeTaskUsed();
 
-/**
- * Whether the visitor has started engaging with the command bar: it has
- * focus, or there is something typed in it. The hero text steps aside while
- * this is true, so nothing sits over the island once they begin.
- */
-let engaged = false;
-const engagedListeners = new Set<() => void>();
-
-export function setEngaged(next: boolean) {
-  if (next === engaged) return;
-  engaged = next;
-  engagedListeners.forEach((l) => l());
-}
-
-export function useEngaged(): boolean {
-  return useSyncExternalStore(
-    (l) => {
-      engagedListeners.add(l);
-      return () => engagedListeners.delete(l);
-    },
-    () => engaged,
-    () => engaged,
-  );
-}

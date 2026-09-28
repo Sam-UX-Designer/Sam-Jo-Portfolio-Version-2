@@ -1,84 +1,127 @@
-import { useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Lock, RotateCw } from 'lucide-react';
+import { ASSETS, LINKS } from '../config';
 import Experience from '../experience/Experience';
-import { tryGoal, useEngaged } from '../experience/bus';
-import { useWorld } from '../experience/store';
-
-/** The site's bar, which floats over the top of the hero. */
-const NAV_H = 64;
+import { tryGoal } from '../experience/bus';
+import { cancelPreview } from '../experience/engine';
+import { world } from '../experience/store';
 
 /**
- * The actual product is the hero: the live AI Agents World Home screen,
- * full width and full height, with the promise written over the island.
+ * The promise, then the product.
  *
- * The island sits below the text (see coverRect). When the visitor starts,
- * by clicking into the command bar, typing or running a goal, the text steps
- * aside so nothing covers the work, and comes back when the island is idle.
+ * A large centred headline and the two actions, and under them the live AI
+ * Agents World Home screen in a browser window: no device, just the browser
+ * and the app in it. The window is the real product, not a picture of it, so
+ * the first thing a visitor can do is give the workforce a goal.
  */
 export default function Hero() {
-  const copy = useRef<HTMLDivElement>(null);
-
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative h-[100dvh] min-h-[640px]">
-      <Experience
-        className="h-full w-full"
-        topInset={NAV_H}
-        clear={copy}
-        overlay={<HeroCopy ref={copy} />}
-      />
-    </section>
-  );
-}
+    <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36">
+      <div aria-hidden="true" className="aw-atmos pointer-events-none absolute inset-x-0 top-0 h-[1100px]" />
 
-function HeroCopy({ ref }: { ref: React.Ref<HTMLDivElement> }) {
-  const idle = useWorld((s) => s.goalId === null);
-  const engaged = useEngaged();
-  const away = !idle || engaged;
-
-  return (
-    <>
-      <div className="aw-hero-scrim" data-away={away} aria-hidden="true" />
-      <div ref={ref} className="aw-hero-copy text-center" data-away={away}>
-        <p className="aw-rise text-[12px] font-semibold tracking-[0.2em] text-[#7fc0ff] uppercase [text-shadow:0_1px_12px_rgb(4_8_16/0.8)]">
-          The AI Workforce
-        </p>
+      <div className="relative mx-auto max-w-7xl px-5 text-center sm:px-8">
+        <p className="aw-rise text-[12px] font-semibold tracking-[0.2em] text-accent-text uppercase">The AI Workforce</p>
         <h1
           id="hero-title"
-          className="aw-rise mt-2 text-[clamp(1.75rem,calc((100vw-480px)/22),3rem)] leading-[1.06] font-semibold tracking-[-0.035em] text-balance text-white [text-shadow:0_2px_24px_rgb(4_8_16/0.75)]"
+          className="aw-rise mt-5 text-[clamp(2.5rem,5.3vw,5.25rem)] leading-[1.04] font-semibold tracking-[-0.045em]"
           style={{ animationDelay: '80ms' }}
         >
-          Give AI a goal. Let a workforce do the work.
+          Give AI a goal.
+          <br />
+          Let a{' '}
+          <span className="inline-flex items-center gap-[0.2em] rounded-full bg-accent-soft py-[0.02em] pr-[0.34em] pl-[0.26em] align-[0.06em] leading-[1.1]">
+            <span aria-hidden="true" className="aw-pulse size-[0.26em] shrink-0 rounded-full bg-accent" />
+            workforce
+          </span>{' '}
+          do the work.
         </h1>
         <p
-          className="aw-rise mx-auto mt-2.5 max-w-[66ch] text-[14px] xl:max-w-none leading-relaxed text-white/85 [text-shadow:0_1px_14px_rgb(4_8_16/0.9)] sm:text-[15px]"
+          className="aw-rise mx-auto mt-7 max-w-[46ch] text-lg leading-relaxed text-ink-2 sm:text-xl"
           style={{ animationDelay: '160ms' }}
         >
           AI Agents World turns one high-level goal into coordinated work across specialized AI agents and the tools your
           team already uses.
         </p>
 
-        <div
-          className="aw-rise mt-3.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2"
-          style={{ animationDelay: '240ms' }}
-        >
+        <div className="aw-rise mt-9 flex flex-wrap justify-center gap-3" style={{ animationDelay: '240ms' }}>
           <button
             onClick={() => tryGoal()}
-            className="group inline-flex h-11 items-center gap-2 rounded-full bg-[#3e9bff] px-5 text-[15px] font-semibold text-white shadow-[0_8px_24px_rgb(20_90_190/0.45)] transition-[background-color,transform] duration-200 hover:bg-[#2f86e8] active:scale-[0.98]"
+            className="group inline-flex h-12 items-center gap-2 rounded-xl bg-accent px-6 text-[16px] font-semibold text-accent-ink transition-[background-color,transform] duration-200 hover:bg-accent-press active:scale-[0.98]"
           >
             Try it free
             <ArrowRight size={17} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5" />
           </button>
           <a
             href="#how-it-works"
-            className="inline-flex h-11 items-center rounded-full border border-white/30 bg-white/10 px-5 text-[15px] font-semibold text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/20"
+            className="inline-flex h-12 items-center rounded-xl bg-accent-soft px-6 text-[16px] font-semibold text-accent-text transition-colors duration-200 hover:bg-accent/20"
           >
             See how it works
           </a>
-          <p className="w-full text-[13px] text-white/70 [text-shadow:0_1px_10px_rgb(4_8_16/0.9)] md:w-auto md:pl-1">
-            Try your first task free. No signup required.
-          </p>
+        </div>
+        <p className="aw-rise mt-4 text-sm text-ink-3" style={{ animationDelay: '300ms' }}>
+          Try your first task free. No signup required.
+        </p>
+      </div>
+
+      {/* The product, in a window. The same Home screen as the app, live. */}
+      <div className="aw-rise relative mx-auto mt-14 w-full max-w-[1320px] px-3 sm:mt-16 sm:px-6" style={{ animationDelay: '360ms' }}>
+        <div
+          data-product-window
+          className="aw-frame overflow-hidden rounded-[14px] bg-surface-2 sm:rounded-[18px]"
+        >
+          <BrowserBar />
+          <Experience className="h-[clamp(540px,calc(100dvh-140px),820px)] w-full" />
         </div>
       </div>
-    </>
+    </section>
+  );
+}
+
+/**
+ * A browser's toolbar over the app, so the window reads as the web app it
+ * is. The address is the app's real one and opens it; reload clears the
+ * island, as reloading the app would. Back and forward have nowhere to go.
+ */
+function BrowserBar() {
+  const url = new URL(LINKS.app);
+  return (
+    <div className="flex h-12 items-center gap-2 border-b border-line bg-surface-2 px-3 sm:gap-3 sm:px-4">
+      <span aria-hidden="true" className="flex shrink-0 gap-2">
+        <span className="size-3 rounded-full bg-[#ff5f57]" />
+        <span className="size-3 rounded-full bg-[#febc2e]" />
+        <span className="size-3 rounded-full bg-[#28c840]" />
+      </span>
+
+      <span aria-hidden="true" className="ml-2 hidden shrink-0 items-center gap-1 text-ink-3 sm:flex">
+        <ChevronLeft size={18} />
+        <ChevronRight size={18} className="opacity-50" />
+      </span>
+
+      <a
+        href={LINKS.app}
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Open AI Agents World in a new tab"
+        className="mx-auto flex h-8 min-w-0 flex-1 items-center justify-center gap-2 rounded-lg border border-line bg-bg px-3 text-[13px] text-ink-2 transition-colors hover:text-ink sm:max-w-[520px]"
+      >
+        <Lock size={12} aria-hidden="true" className="shrink-0 text-ink-3" />
+        <img src={ASSETS.logo} alt="" aria-hidden="true" width={14} height={14} className="size-3.5 shrink-0" />
+        <span className="truncate">
+          {url.host}
+          <span className="text-ink-3">/world</span>
+        </span>
+      </a>
+
+      <button
+        onClick={() => {
+          cancelPreview();
+          world.reset();
+        }}
+        aria-label="Reload the island"
+        title="Reload"
+        className="grid size-8 shrink-0 place-items-center rounded-lg text-ink-3 transition-colors hover:bg-bg hover:text-ink"
+      >
+        <RotateCw size={15} aria-hidden="true" />
+      </button>
+    </div>
   );
 }
