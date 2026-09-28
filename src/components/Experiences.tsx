@@ -70,7 +70,7 @@ const Experiences: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3 justify-end mt-2">
                   <span className="text-white/60 text-sm">Full-time</span>
-                  <span className="px-3 py-1 rounded-lg text-xs font-semibold text-white bg-[#34C759] border border-white/30 backdrop-blur-md shadow-sm">4 Years Exp</span>
+                  <span className="px-3 py-1 rounded-lg text-xs font-semibold text-white bg-[#34C759] border border-white/30 backdrop-blur-md">4 Years Exp</span>
                 </div>
               </div>
             </div>
@@ -86,7 +86,7 @@ const Experiences: React.FC = () => {
                   <span className="w-2.5 h-2.5 rounded-full bg-blue-400 shrink-0" />
                   <span className="text-white font-semibold text-sm">Junior UI/UX Designer</span>
                 </div>
-                <p className="text-blue-300/80 text-xs mt-1 ml-[18px]">Joined the team</p>
+                <p className="text-white text-xs mt-1 ml-[18px]">Joined the team</p>
               </div>
               {/* Full-length connector */}
               <div className="ml-[4px] h-7 border-l border-dashed border-white/25 sm:ml-0 sm:mt-1 sm:h-auto sm:flex-1 sm:border-l-0 sm:border-t" />
@@ -96,7 +96,7 @@ const Experiences: React.FC = () => {
                   <span className="text-white font-semibold text-sm">Product Designer</span>
                   <span className="w-3 h-3 rounded-full bg-green-400 shadow-[0_0_12px_rgba(74,222,128,1),0_0_24px_rgba(74,222,128,0.5)] shrink-0 animate-pulse" />
                 </div>
-                <p className="text-green-300/80 text-xs mt-1 ml-[20px] sm:ml-0 sm:mr-[18px]">Current Role</p>
+                <p className="text-[#34C759] text-xs mt-1 ml-[20px] sm:ml-0 sm:mr-[18px]">Current Role</p>
               </div>
             </div>
           </div>
