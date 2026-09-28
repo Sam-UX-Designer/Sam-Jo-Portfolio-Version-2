@@ -31,6 +31,8 @@ export default function Preview() {
   }, [reduce]);
 
   const shot = ASSETS.screens[tab]; // home, tools or history; never the See the work shot
+  // Most shots are 2400 x 1500; one taken at another window size carries its own.
+  const size = 'width' in shot ? { width: shot.width, height: shot.height } : { width: 2400, height: 1500 };
 
   return (
     <section ref={section} id="preview" aria-labelledby="preview-title" className={`${SECTION} overflow-hidden`}>
@@ -81,14 +83,14 @@ export default function Preview() {
                 {new URL(LINKS.app).host}
               </span>
             </div>
-            <div className="relative aspect-[16/10]">
+            <div className="relative" style={{ aspectRatio: `${size.width} / ${size.height}` }}>
               <AnimatePresence initial={false}>
                 <m.img
                   key={tab}
                   src={shot.src}
                   alt={shot.alt}
-                  width={2400}
-                  height={1500}
+                  width={size.width}
+                  height={size.height}
                   loading="lazy"
                   initial={reduce ? false : { opacity: 0, scale: 1.01 }}
                   animate={{ opacity: 1, scale: 1 }}

@@ -45,7 +45,9 @@ export const ASSETS = {
     },
     tools: {
       src: `${A}/screens/tools.webp`,
-      alt: 'AI Agents World Tools: Gmail, Google Calendar and Slack connected, with Google Drive, Notion, Figma, GitHub, Linear, Meta and X marked Soon',
+      alt: 'AI Agents World Tools: each tool with its logo. Gmail, Google Calendar and Slack connected; Google Drive, Notion, Figma, GitHub, Linear, Meta, X, YouTube, HubSpot, Salesforce, Airtable and Zapier marked Soon',
+      width: 2000,
+      height: 1389,
     },
     history: {
       src: `${A}/screens/history.webp`,
