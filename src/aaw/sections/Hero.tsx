@@ -28,9 +28,23 @@ export default function Hero() {
           Give AI a goal.
           <br />
           Let a{' '}
-          <span className="inline-flex items-center gap-[0.2em] rounded-full bg-accent-soft py-[0.02em] pr-[0.34em] pl-[0.26em] align-[0.06em] leading-[1.1]">
-            <span aria-hidden="true" className="aw-pulse size-[0.26em] shrink-0 rounded-full bg-accent" />
+          <span className="relative inline-block whitespace-nowrap text-accent-text">
             workforce
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 300 16"
+              fill="none"
+              className="pointer-events-none absolute top-[88%] left-[-2%] w-[104%] overflow-visible"
+            >
+              <path
+                className="aw-draw"
+                pathLength={1}
+                d="M4 11 C 70 4, 170 3, 296 8"
+                stroke="var(--accent)"
+                strokeWidth="5"
+                strokeLinecap="round"
+              />
+            </svg>
           </span>{' '}
           do the work.
         </h1>

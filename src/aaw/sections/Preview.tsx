@@ -73,7 +73,7 @@ export default function Preview() {
             aria-labelledby={`${base}-${tab}`}
             className="aw-frame overflow-hidden rounded-[22px] bg-[#04070D] sm:rounded-[28px]"
           >
-            <div className="flex h-10 items-center gap-2 border-b border-white/10 bg-[#0b1322] px-4" aria-hidden="true">
+            <div className="flex h-10 items-center gap-2 border-b border-white/10 bg-[#141416] px-4" aria-hidden="true">
               <span className="size-2.5 rounded-full bg-white/20" />
               <span className="size-2.5 rounded-full bg-white/20" />
               <span className="size-2.5 rounded-full bg-white/20" />

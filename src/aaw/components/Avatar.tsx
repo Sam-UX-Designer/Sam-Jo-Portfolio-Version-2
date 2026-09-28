@@ -16,7 +16,7 @@ export default function Avatar({ agent, size = 40, className = '' }: { agent: Ag
           height: size,
           borderRadius: radius,
           fontSize: Math.round(size * 0.42),
-          background: `color-mix(in srgb, ${agent.accent} 70%, #0b1322)`,
+          background: `color-mix(in srgb, ${agent.accent} 70%, #111114)`,
         }}
       >
         {agent.name.charAt(0)}

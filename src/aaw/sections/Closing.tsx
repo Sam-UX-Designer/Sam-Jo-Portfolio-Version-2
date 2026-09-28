@@ -19,7 +19,7 @@ export function FinalCta() {
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#060b16]/55 via-[#060b16]/65 to-[#060b16]/90" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/65 to-black/90" />
 
         <Reveal className="relative mx-auto flex min-h-[560px] max-w-3xl flex-col items-center justify-center px-6 py-24 text-center text-white">
           <img src={ASSETS.logoLarge} alt="" aria-hidden="true" width={72} height={72} className="size-[72px]" loading="lazy" />

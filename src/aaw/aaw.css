@@ -3,10 +3,10 @@
 /* =========================================================
    AI Agents World website: design tokens
 
-   Dark: deep navy, near black. Light: a very light cool neutral.
-   Both are designed, not inverted. Blue is the one accent and the
-   product's own (#3E9BFF); cyan and a soft lavender appear only in
-   light, never as text or buttons.
+   Dark: pure black with neutral greys. Light: a very light cool
+   neutral. Both are designed, not inverted. Blue is the one accent and
+   the product's own (#3E9BFF); in light, cyan and a soft lavender tint
+   the background glow, never text or buttons. Dark has no glow: black.
 
    Shape rule: controls are pills, cards and frames are 24px, product
    frames keep the app's own 20px glass.
@@ -16,16 +16,16 @@
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --bg: #060b16;
-  --bg-2: #09111f;
-  --surface: #0d1628;
-  --surface-2: #121d33;
-  --line: rgba(160, 186, 230, 0.1);
-  --line-strong: rgba(160, 186, 230, 0.2);
+  --bg: #000000;
+  --bg-2: #000000;
+  --surface: #0e0e10;
+  --surface-2: #17171a;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.17);
 
-  --ink: #eef3fb;
-  --ink-2: #aab8cf;
-  --ink-3: #8697b2;
+  --ink: #f5f5f7;
+  --ink-2: #a8a8b0;
+  --ink-3: #8b8b94;
 
   --accent: #3e9bff;
   --accent-press: #2f86e8;
@@ -37,12 +37,12 @@
   --ok: #34d399;
   --warn: #ffb020;
 
-  --glass: rgba(14, 23, 41, 0.62);
-  --glass-line: rgba(180, 205, 245, 0.14);
-  --glass-top: rgba(255, 255, 255, 0.08);
-  --shadow-frame: 0 40px 90px -30px rgba(0, 0, 0, 0.75);
-  --shadow-soft: 0 12px 34px -14px rgba(0, 0, 0, 0.6);
-  --glow: rgba(62, 155, 255, 0.16);
+  --glass: rgba(0, 0, 0, 0.72);
+  --glass-line: rgba(255, 255, 255, 0.1);
+  --glass-top: rgba(255, 255, 255, 0.06);
+  --shadow-frame: 0 40px 90px -30px rgba(0, 0, 0, 0.9);
+  --shadow-soft: 0 12px 34px -14px rgba(0, 0, 0, 0.8);
+  --glow: transparent;
 }
 
 :root[data-theme='light'] {
@@ -198,6 +198,10 @@ p {
 
   /* Soft light behind the page, very low contrast. Cyan and lavender live
      here and nowhere else. */
+  :root[data-theme='dark'] .aw-atmos {
+    display: none;
+  }
+
   .aw-atmos {
     background:
       radial-gradient(60% 50% at 18% 0%, color-mix(in srgb, var(--cyan) 9%, transparent), transparent 70%),
@@ -250,6 +254,19 @@ p {
 
 .aw-rise {
   animation: aw-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* The hero's underline draws itself once, after the headline rises. */
+@keyframes aw-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+.aw-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: aw-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.7s both;
 }
 
 /* A light travelling along a connection, for diagrams that show work
@@ -347,6 +364,7 @@ section[data-idle] .aw-ping {
   }
 
   .aw-rise,
+  .aw-draw,
   .aw-trail,
   .aw-pulse,
   .aw-ping,

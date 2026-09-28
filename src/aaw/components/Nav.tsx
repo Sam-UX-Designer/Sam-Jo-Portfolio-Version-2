@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useMotionValueEvent, useScroll } from 'motion/react';
 import { ArrowLeft, ChevronDown, Menu, Monitor, Moon, Sun, X } from 'lucide-react';
 import { ASSETS, LINKS } from '../config';
 import { tryGoal } from '../experience/bus';
@@ -93,35 +94,49 @@ function Resources() {
 }
 
 /**
- * One line, 64px, above the product rather than over it: the hero is the
- * product, and nothing here covers any of it.
+ * One line, 64px, part of the page rather than a bar on top of it: brand on
+ * the left, the page's sections in the centre, actions on the right. At the
+ * top of the page it has no fill and no edge. Once the page scrolls under it,
+ * it takes the page's own colour and a hairline, so text never runs behind
+ * the links.
  */
 export default function Nav({ choice, onChoose }: { choice: ThemeChoice; onChoose: (c: ThemeChoice) => void }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 8));
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40">
-      <nav aria-label="AI Agents World website" className="aw-glass flex h-16 items-center gap-2 !rounded-none border-x-0 border-t-0 px-3 sm:px-5">
-        <a
-          href={LINKS.portfolio}
-          aria-label="Back to Sam’s projects"
-          className="-ml-1 grid size-9 shrink-0 place-items-center rounded-full text-ink-3 transition-colors hover:text-ink"
-        >
-          <ArrowLeft size={18} aria-hidden="true" />
-        </a>
-        <a href="#top" aria-label="AI Agents World, top of page" className="flex shrink-0 items-center gap-2.5 pr-1">
-          <img
-            src={ASSETS.logo}
-            alt=""
-            width={30}
-            height={30}
-            className="size-[30px]"
-            style={{ viewTransitionName: 'aaw-mark' }}
-          />
-          <span className="hidden text-[15px] font-semibold tracking-tight min-[400px]:inline">AI Agents World</span>
-        </a>
+    <header
+      data-scrolled={scrolled || undefined}
+      className="fixed inset-x-0 top-0 z-40 border-b border-transparent transition-[background-color,border-color] duration-300 data-[scrolled]:border-line data-[scrolled]:bg-bg/90 data-[scrolled]:backdrop-blur-xl"
+    >
+      <nav
+        aria-label="AI Agents World website"
+        className="mx-auto flex h-16 max-w-[1320px] items-center gap-2 px-3 sm:px-6 xl:grid xl:grid-cols-[1fr_auto_1fr]"
+      >
+        <div className="flex min-w-0 items-center gap-2">
+          <a
+            href={LINKS.portfolio}
+            aria-label="Back to Sam’s projects"
+            className="-ml-1 grid size-9 shrink-0 place-items-center rounded-full text-ink-3 transition-colors hover:text-ink"
+          >
+            <ArrowLeft size={18} aria-hidden="true" />
+          </a>
+          <a href="#top" aria-label="AI Agents World, top of page" className="flex shrink-0 items-center gap-2.5 pr-1">
+            <img
+              src={ASSETS.logo}
+              alt=""
+              width={30}
+              height={30}
+              className="size-[30px]"
+              style={{ viewTransitionName: 'aaw-mark' }}
+            />
+            <span className="hidden text-[15px] font-semibold tracking-tight min-[400px]:inline">AI Agents World</span>
+          </a>
+        </div>
 
-        <div className="ml-4 hidden items-center gap-0.5 xl:flex">
+        <div className="hidden items-center gap-0.5 xl:flex">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="rounded-full px-3 py-2 text-sm text-ink-2 transition-colors hover:text-ink">
               {l.label}
@@ -130,7 +145,7 @@ export default function Nav({ choice, onChoose }: { choice: ThemeChoice; onChoos
           <Resources />
         </div>
 
-        <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+        <div className="ml-auto flex items-center justify-end gap-1.5 sm:gap-2 xl:ml-0">
           <div className="hidden md:block">
             <ThemeSwitch choice={choice} onChoose={onChoose} />
           </div>
