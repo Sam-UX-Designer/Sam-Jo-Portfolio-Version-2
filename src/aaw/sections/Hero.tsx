@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight, Lock, RotateCw } from 'lucide-react';
 import { ASSETS, LINKS } from '../config';
 import Experience from '../experience/Experience';
@@ -28,24 +29,7 @@ export default function Hero() {
           Give AI a goal.
           <br />
           Let a{' '}
-          <span className="relative inline-block whitespace-nowrap text-accent-text">
-            workforce
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 300 16"
-              fill="none"
-              className="pointer-events-none absolute top-[88%] left-[-2%] w-[104%] overflow-visible"
-            >
-              <path
-                className="aw-draw"
-                pathLength={1}
-                d="M4 11 C 70 4, 170 3, 296 8"
-                stroke="var(--accent)"
-                strokeWidth="5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>{' '}
+          <TypedWord />{' '}
           do the work.
         </h1>
         <p
@@ -137,5 +121,55 @@ function BrowserBar() {
         <RotateCw size={15} aria-hidden="true" />
       </button>
     </div>
+  );
+}
+
+/** The team the goal goes to. "workforce" first and last in each loop. */
+const WORDS = ['workforce', 'research team', 'design team', 'sales team', 'ops team'];
+
+/**
+ * The emphasised word types itself, holds, deletes, and types the next one,
+ * with a blinking caret. Screen readers read "workforce" once; the typing is
+ * hidden from them. With reduced motion it stays "workforce".
+ */
+function TypedWord() {
+  const [text, setText] = useState(WORDS[0]);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let word = 0;
+    let len = WORDS[0].length;
+    let deleting = true;
+    let timer: number;
+    const tick = () => {
+      if (deleting) {
+        len -= 1;
+        if (len === 0) {
+          deleting = false;
+          word = (word + 1) % WORDS.length;
+        }
+      } else {
+        len += 1;
+      }
+      setText(WORDS[word].slice(0, len));
+      let delay = deleting ? 45 : 85;
+      if (!deleting && len === WORDS[word].length) {
+        deleting = true;
+        delay = 2200;
+      } else if (!deleting && len === 0) delay = 300;
+      timer = window.setTimeout(tick, delay);
+    };
+    timer = window.setTimeout(tick, 2600);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  return (
+    <span className="whitespace-nowrap text-accent-text">
+      <span className="sr-only">workforce</span>
+      <span aria-hidden="true">
+        {text}
+        <span className="aw-caret ml-[0.04em] inline-block h-[0.82em] w-[0.06em] translate-y-[0.08em] rounded-full bg-accent" />
+      </span>
+    </span>
   );
 }

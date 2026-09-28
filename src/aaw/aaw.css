@@ -256,17 +256,20 @@ p {
   animation: aw-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* The hero's underline draws itself once, after the headline rises. */
-@keyframes aw-draw {
-  from {
-    stroke-dashoffset: 1;
+/* The typing caret in the hero headline. */
+@keyframes aw-caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
   }
 }
 
-.aw-draw {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 0;
-  animation: aw-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.7s both;
+.aw-caret {
+  animation: aw-caret 1s step-end infinite;
 }
 
 /* A light travelling along a connection, for diagrams that show work
@@ -364,7 +367,7 @@ section[data-idle] .aw-ping {
   }
 
   .aw-rise,
-  .aw-draw,
+  .aw-caret,
   .aw-trail,
   .aw-pulse,
   .aw-ping,
