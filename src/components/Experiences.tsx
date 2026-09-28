@@ -77,7 +77,9 @@ const Experiences: React.FC = () => {
 
             <div className="h-px w-full bg-white/12 my-5" />
 
-            <div className="flex items-center gap-4">
+            {/* Phones: the two roles stack, joined by a line going down.
+                Tablet and up: side by side, joined by a line across. */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
               <div className="shrink-0">
                 <p className="text-white/60 text-xs mb-1.5">Sep 19, 2022</p>
                 <div className="flex items-center gap-2">
@@ -87,14 +89,14 @@ const Experiences: React.FC = () => {
                 <p className="text-blue-300/80 text-xs mt-1 ml-[18px]">Joined the team</p>
               </div>
               {/* Full-length connector */}
-              <div className="flex-1 border-t border-dashed border-white/25 mt-1" />
-              <div className="text-right shrink-0">
+              <div className="ml-[4px] h-7 border-l border-dashed border-white/25 sm:ml-0 sm:mt-1 sm:h-auto sm:flex-1 sm:border-l-0 sm:border-t" />
+              <div className="shrink-0 sm:text-right">
                 <p className="text-white/60 text-xs mb-1.5">Present</p>
-                <div className="flex items-center gap-2 justify-end">
+                <div className="flex flex-row-reverse items-center justify-end gap-2 sm:flex-row">
                   <span className="text-white font-semibold text-sm">Product Designer</span>
                   <span className="w-3 h-3 rounded-full bg-green-400 shadow-[0_0_12px_rgba(74,222,128,1),0_0_24px_rgba(74,222,128,0.5)] shrink-0 animate-pulse" />
                 </div>
-                <p className="text-green-300/80 text-xs mt-1 mr-[18px]">Current Role</p>
+                <p className="text-green-300/80 text-xs mt-1 ml-[20px] sm:ml-0 sm:mr-[18px]">Current Role</p>
               </div>
             </div>
           </div>
