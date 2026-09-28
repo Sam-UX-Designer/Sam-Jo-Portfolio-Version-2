@@ -96,7 +96,7 @@ const Experiences: React.FC = () => {
                   <span className="text-white font-semibold text-sm">Product Designer</span>
                   <span className="w-3 h-3 rounded-full bg-green-400 shadow-[0_0_12px_rgba(74,222,128,1),0_0_24px_rgba(74,222,128,0.5)] shrink-0 animate-pulse" />
                 </div>
-                <p className="text-[#34C759] text-xs mt-1 ml-[20px] sm:ml-0 sm:mr-[18px]">Current Role</p>
+                <p className="text-white text-xs mt-1 ml-[20px] sm:ml-0 sm:mr-[18px]">Current Role</p>
               </div>
             </div>
           </div>
