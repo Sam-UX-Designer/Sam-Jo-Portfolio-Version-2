@@ -15,6 +15,12 @@ const PROJECT_ICON_5 = '/project-5.png';
 
 type TabId = 'generalist' | 'designer';
 
+/** Cards whose icon morphs into the logo on their own page. */
+const VIEW_TRANSITION: Record<string, string> = {
+  '/jumbo/': 'jumbo-mark',
+  '/ai-agents-world/': 'aaw-mark',
+};
+
 interface ProjectCard {
   id: string;
   index: string;
@@ -48,6 +54,7 @@ const TABS: TabData[] = [
         tags: ['AI Assistant', 'AI World'],
         icon: PROJECT_ICON_1,
         tagColor: '#a5b4fc',
+        href: '/ai-agents-world/',
       },
       {
         id: 'g2', index: '02', name: 'Jumbo AI', tag: 'AI APP',
@@ -179,8 +186,8 @@ const Projects: React.FC = () => {
                   src={card.icon}
                   alt={`${card.name} icon`}
                   className="w-20 h-20 rounded-[1.25rem] object-cover mb-4"
-                  // Morphs into the icon on the case study page (Chromium view transitions).
-                  style={card.href === '/jumbo/' ? { viewTransitionName: 'jumbo-mark' } : undefined}
+                  // Morphs into the icon on the project's page (Chromium view transitions).
+                  style={card.href && VIEW_TRANSITION[card.href] ? { viewTransitionName: VIEW_TRANSITION[card.href] } : undefined}
                 />
 
                 {/* Name */}

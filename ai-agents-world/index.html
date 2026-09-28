@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>AI Agents World | Give AI a goal</title>
+    <meta
+      name="description"
+      content="AI Agents World turns one high-level goal into coordinated work across specialized AI agents and the tools your team already uses."
+    />
+    <meta name="theme-color" content="#060B16" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AI Agents World | Give AI a goal. Let a workforce do the work." />
+    <meta
+      property="og:description"
+      content="One goal, an Orchestrator, the right agents and your tools. Try your first task free, no signup required."
+    />
+    <meta property="og:image" content="https://sam-jo-portfolio-version-2.vercel.app/assets/ai-agents-world/screens/home.webp" />
+    <meta property="og:url" content="https://sam-jo-portfolio-version-2.vercel.app/ai-agents-world/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/png" href="/assets/ai-agents-world/icon.png" />
+    <link rel="apple-touch-icon" href="/assets/ai-agents-world/apple-icon.png" />
+    <link rel="preload" as="image" href="/assets/ai-agents-world/island-hero.webp" fetchpriority="high" />
+
+    <!-- Theme before first paint: the saved choice (dark, light or system), else the system setting. -->
+    <script>
+      (function () {
+        var choice;
+        try {
+          choice = localStorage.getItem('aaw-theme');
+        } catch (e) {}
+        if (choice !== 'light' && choice !== 'dark') choice = 'system';
+        var t =
+          choice === 'system'
+            ? window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark'
+            : choice;
+        document.documentElement.dataset.theme = t;
+        if (t === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F6F7F9');
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/aaw/main.tsx"></script>
+  </body>
+</html>
