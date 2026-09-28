@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { agentByKey, ORCHESTRATOR } from '../data/agents';
 import { integrationById } from '../data/integrations';
 import { route } from '../data/scenarios';
-import Avatar, { Lettermark } from '../components/Avatar';
+import Avatar, { ToolLogo } from '../components/Avatar';
 import { EASE, Reveal } from '../components/Motion';
 import { tryGoal } from '../experience/bus';
 import { BODY, H2, SECTION, WRAP } from '../components/type';
@@ -148,7 +148,7 @@ function Flow({ goal }: { goal: string }) {
               <ul className="flex flex-wrap gap-2">
                 {tools.map((t) => (
                   <li key={t.id} className="flex items-center gap-2 rounded-full border border-line py-1 pr-3 pl-1 text-sm">
-                    <Lettermark name={t.name} size={24} />
+                    <ToolLogo id={t.id} name={t.name} size={24} />
                     {t.name}
                     {t.status === 'planned' && <span className="text-[12px] text-ink-3">Soon</span>}
                   </li>

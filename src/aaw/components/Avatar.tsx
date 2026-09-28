@@ -37,15 +37,41 @@ export default function Avatar({ agent, size = 40, className = '' }: { agent: Ag
   );
 }
 
-/** The app's lettermark tile for a tool, until real logos are supplied. */
-export function Lettermark({ name, size = 40, className = '' }: { name: string; size?: number; className?: string }) {
+/** Where a tool's logo is: a transparent 256px PNG named after its id. */
+export const toolLogoSrc = (id: string) => `/assets/ai-agents-world/tools/${id}.png`;
+
+/**
+ * A tool's real logo on a white tile, so dark marks (GitHub, X, Notion) read
+ * in both themes. The tile is the UI's; the logo file has no background.
+ */
+export function ToolLogo({
+  id,
+  name,
+  size = 40,
+  announce = false,
+  className = '',
+}: {
+  id: string;
+  name: string;
+  size?: number;
+  /** Give the logo its name for screen readers, where no visible name sits beside it. */
+  announce?: boolean;
+  className?: string;
+}) {
   return (
     <span
-      aria-hidden="true"
-      className={`grid shrink-0 place-items-center border border-line-strong bg-surface-2 font-semibold text-ink ${className}`}
-      style={{ width: size, height: size, borderRadius: Math.round(size * 0.26), fontSize: Math.round(size * 0.42) }}
+      className={`grid shrink-0 place-items-center border border-black/5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.12)] ${className}`}
+      style={{ width: size, height: size, borderRadius: Math.round(size * 0.26) }}
     >
-      {name.charAt(0)}
+      <img
+        src={toolLogoSrc(id)}
+        alt={announce ? name : ''}
+        width={Math.round(size * 0.66)}
+        height={Math.round(size * 0.66)}
+        loading="lazy"
+        className="object-contain"
+        style={{ width: Math.round(size * 0.66), height: Math.round(size * 0.66) }}
+      />
     </span>
   );
 }

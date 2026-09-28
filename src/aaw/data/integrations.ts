@@ -6,8 +6,8 @@
  * `planned` means it is listed in the app but cannot be connected yet. The
  * site says exactly that and nothing more. Update both together.
  *
- * The repository has no brand logos for these yet (apps/web/public/tools is
- * empty), so this site shows the same lettermark tiles the app shows.
+ * Logos: public/assets/ai-agents-world/tools/<id>.png, each company's own
+ * mark (see the README in that folder for where they come from).
  */
 
 export type IntegrationStatus = 'available' | 'planned';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AGENTS, isAutonomous, TOOLS } from '../data/agents';
 import { INTEGRATIONS, type Integration } from '../data/integrations';
-import Avatar, { Lettermark } from '../components/Avatar';
+import Avatar, { ToolLogo } from '../components/Avatar';
 import { Reveal } from '../components/Motion';
 import { BODY, H2, SECTION, WRAP } from '../components/type';
 
@@ -41,7 +41,7 @@ export default function Tools() {
                       on ? 'border-accent bg-accent-soft' : 'border-line bg-surface hover:border-line-strong'
                     }`}
                   >
-                    <Lettermark name={tool.name} size={40} />
+                    <ToolLogo id={tool.id} name={tool.name} size={44} />
                     <span className="text-[13px] leading-tight font-medium">{tool.name}</span>
                     <span className={`text-[11px] font-semibold ${tool.status === 'available' ? 'text-ok' : 'text-ink-3'}`}>
                       {tool.status === 'available' ? 'Available' : 'Soon'}
@@ -52,7 +52,7 @@ export default function Tools() {
             </div>
             <p className="mt-4 text-sm leading-relaxed text-ink-3">
               {available} of {INTEGRATIONS.length} connect today. The rest are listed in the app and marked Soon until their
-              sign-in is built. Logos arrive with them.
+              sign-in is built.
             </p>
           </div>
 
@@ -72,7 +72,7 @@ function ToolDetail({ tool }: { tool: Integration }) {
   return (
     <article aria-live="polite" className="aw-card rounded-[28px] p-6 sm:p-7 lg:sticky lg:top-24">
       <div className="flex items-center gap-3.5">
-        <Lettermark name={tool.name} size={48} />
+        <ToolLogo id={tool.id} name={tool.name} size={52} />
         <div>
           <h3 className="text-xl font-semibold tracking-tight">{tool.name}</h3>
           <p className="text-sm text-ink-3">

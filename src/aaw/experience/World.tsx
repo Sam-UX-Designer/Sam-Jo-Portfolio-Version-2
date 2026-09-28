@@ -2,10 +2,10 @@ import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 import { ASSETS } from '../config';
 import { AGENTS, ISLAND_ART, MASCOT_KEYS, mascotSrc, type Agent } from '../data/agents';
 import { SUGGESTIONS } from '../data/scenarios';
-import { pointOn, useCoverRect, type CoverRect } from './coverRect';
+import { CARD_ABOVE, pointOn, useCoverRect, type CoverRect } from './coverRect';
 import { ACTIVE_STATES, useWorld, world } from './store';
 import { runPreview } from './engine';
-import { freeTaskSpent, markFreeTaskUsed } from './bus';
+import { freeTaskSpent, markFreeTaskUsed, setEngaged, useEngaged } from './bus';
 import VoiceInput from './VoiceInput';
 
 /**
@@ -22,8 +22,21 @@ const ISLAND_ASPECT = ISLAND_ART.width / ISLAND_ART.height;
 const HUB_STATION: [number, number] = [0.502, 0.332];
 const ROUTE_MS = 1400;
 
-export function World({ stage }: { stage: RefObject<HTMLElement | null> }) {
-  const rect = useCoverRect(stage, ISLAND_ASPECT);
+/** The band of the artwork the stations occupy, top and bottom. */
+const BAND = {
+  top: Math.min(...AGENTS.map((a) => a.station[1])),
+  bottom: Math.max(...AGENTS.map((a) => a.station[1])),
+};
+
+export function World({
+  stage,
+  clear,
+}: {
+  stage: RefObject<HTMLElement | null>;
+  /** The hero text over the island, which the stations should sit below. */
+  clear?: RefObject<HTMLElement | null>;
+}) {
+  const rect = useCoverRect(stage, ISLAND_ASPECT, BAND, clear);
   const { scroller, scroll, pannable, onScroll } = useIslandPan(rect);
 
   const goalId = useWorld((s) => s.goalId);
@@ -59,13 +72,6 @@ export function World({ stage }: { stage: RefObject<HTMLElement | null> }) {
 }
 
 /**
- * Where the island rests vertically when the stage is shorter than it: a
- * little above centre, so the stations at the top stay in view and the crop
- * falls on the beach under the command bar.
- */
-const REST_Y = 0.35;
-
-/**
  * Pan the island with the browser's own scrolling, as the app does, but only
  * sideways. The app fills the window; here it sits in a page, and a vertical
  * swipe or wheel over it has to scroll the page (see .aw-stage in aaw.css).
@@ -78,12 +84,14 @@ function useIslandPan(rect: CoverRect) {
   useEffect(() => {
     const el = scroller.current;
     if (!el || rect.width === 0) return;
-    const left = Math.max(0, (rect.width - el.clientWidth) / 2);
-    const top = Math.max(0, (rect.height - el.clientHeight) * REST_Y);
+    // Rest where the cover maths placed it: centred sideways, and vertically
+    // wherever keeps the stations clear of the hero text.
+    const left = Math.max(0, -rect.left);
+    const top = Math.max(0, -rect.top);
     el.scrollLeft = left;
     el.scrollTop = top;
     setScroll({ left, top });
-  }, [rect.width, rect.height]);
+  }, [rect.width, rect.height, rect.left, rect.top]);
 
   const onScroll = useCallback(() => {
     const el = scroller.current;
@@ -226,7 +234,11 @@ function Routes({ rect }: { rect: CoverRect }) {
 function Markers({ rect }: { rect: CoverRect }) {
   const agentStates = useWorld((s) => s.agents);
   const selected = useWorld((s) => s.selectedAgent);
+  const idle = useWorld((s) => s.goalId === null);
+  const engaged = useEngaged();
   if (rect.width === 0) return null;
+  // While the hero text is showing, a card it would cover steps back.
+  const textShown = rect.clearTop > 0 && idle && !engaged;
 
   return (
     <div className="markers">
@@ -239,7 +251,14 @@ function Markers({ rect }: { rect: CoverRect }) {
         const side = fx > 0.84 ? 'left' : fx < 0.14 ? 'right' : 'center';
 
         return (
-          <div key={agent.key} className="station" data-agent={agent.key} data-side={side} style={{ left, top }}>
+          <div
+            key={agent.key}
+            className="station"
+            data-agent={agent.key}
+            data-side={side}
+            data-covered={textShown && top - CARD_ABOVE < rect.clearTop ? 'true' : undefined}
+            style={{ left, top }}
+          >
             <span className="station__glow" data-state={state} aria-hidden="true" />
             {busy && (
               <>
@@ -443,9 +462,16 @@ export function CommandBar({ onGate }: { onGate: () => void }) {
   const [call, setCall] = useState(false);
   const input = useRef<HTMLTextAreaElement>(null);
   const bar = useRef<HTMLDivElement>(null);
+  const [focused, setFocused] = useState(false);
   const goalId = useWorld((s) => s.goalId);
   const goalState = useWorld((s) => s.goalState);
   const busy = goalId !== null && goalState !== 'completed' && goalState !== 'failed';
+
+  // Focus or typing means the visitor has started: the hero text steps aside.
+  useEffect(() => {
+    setEngaged(focused || prompt.trim().length > 0);
+  }, [focused, prompt]);
+  useEffect(() => () => setEngaged(false), []);
 
   // "Try it free" and "Try this goal" from anywhere on the page land here.
   useEffect(() => {
@@ -494,6 +520,8 @@ export function CommandBar({ onGate }: { onGate: () => void }) {
           className="command__input"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
               e.preventDefault();

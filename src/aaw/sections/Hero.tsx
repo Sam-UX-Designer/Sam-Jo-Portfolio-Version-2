@@ -1,61 +1,84 @@
+import { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import Experience from '../experience/Experience';
-import { tryGoal } from '../experience/bus';
+import { tryGoal, useEngaged } from '../experience/bus';
+import { useWorld } from '../experience/store';
+
+/** The site's bar, which floats over the top of the hero. */
+const NAV_H = 64;
 
 /**
- * The actual product is the hero.
+ * The actual product is the hero: the live AI Agents World Home screen,
+ * full width and full height, with the promise written over the island.
  *
- * One short band says what it is; everything under it is the live AI Agents
- * World Home screen, filling the rest of the first screen. The first thing a
- * visitor can do on this site is give the workforce a goal.
+ * The island sits below the text (see coverRect). When the visitor starts,
+ * by clicking into the command bar, typing or running a goal, the text steps
+ * aside so nothing covers the work, and comes back when the island is idle.
  */
 export default function Hero() {
+  const copy = useRef<HTMLDivElement>(null);
+
   return (
-    <section
-      id="top"
-      aria-labelledby="hero-title"
-      className="flex min-h-[720px] flex-col pt-16 md:h-[100dvh] md:min-h-[680px]"
-    >
-      <div className="mx-auto w-full max-w-[1600px] px-4 pt-6 pb-4 sm:px-6 md:pt-7 lg:px-8">
-        <p className="aw-rise text-[12px] font-semibold tracking-[0.2em] text-accent-text uppercase">The AI Workforce</p>
+    <section id="top" aria-labelledby="hero-title" className="relative h-[100dvh] min-h-[640px]">
+      <Experience
+        className="h-full w-full"
+        topInset={NAV_H}
+        clear={copy}
+        overlay={<HeroCopy ref={copy} />}
+      />
+    </section>
+  );
+}
+
+function HeroCopy({ ref }: { ref: React.Ref<HTMLDivElement> }) {
+  const idle = useWorld((s) => s.goalId === null);
+  const engaged = useEngaged();
+  const away = !idle || engaged;
+
+  return (
+    <>
+      <div className="aw-hero-scrim" data-away={away} aria-hidden="true" />
+      <div ref={ref} className="aw-hero-copy text-center" data-away={away}>
+        <p className="aw-rise text-[12px] font-semibold tracking-[0.2em] text-[#7fc0ff] uppercase [text-shadow:0_1px_12px_rgb(4_8_16/0.8)]">
+          The AI Workforce
+        </p>
         <h1
           id="hero-title"
-          className="aw-rise mt-2.5 text-[clamp(1.9rem,3.1vw,3.1rem)] leading-[1.05] font-semibold tracking-[-0.035em]"
+          className="aw-rise mt-2 text-[clamp(1.75rem,calc((100vw-480px)/22),3rem)] leading-[1.06] font-semibold tracking-[-0.035em] text-balance text-white [text-shadow:0_2px_24px_rgb(4_8_16/0.75)]"
           style={{ animationDelay: '80ms' }}
         >
           Give AI a goal. Let a workforce do the work.
         </h1>
+        <p
+          className="aw-rise mx-auto mt-2.5 max-w-[66ch] text-[14px] xl:max-w-none leading-relaxed text-white/85 [text-shadow:0_1px_14px_rgb(4_8_16/0.9)] sm:text-[15px]"
+          style={{ animationDelay: '160ms' }}
+        >
+          AI Agents World turns one high-level goal into coordinated work across specialized AI agents and the tools your
+          team already uses.
+        </p>
 
-        <div className="mt-3.5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-          <div className="aw-rise" style={{ animationDelay: '160ms' }}>
-            <p className="max-w-[62ch] text-[15px] leading-relaxed text-ink-2 sm:text-base xl:max-w-none">
-              AI Agents World turns one high-level goal into coordinated work across specialized AI agents and the tools
-              your team already uses.
-            </p>
-            <p className="mt-1.5 text-[13px] text-ink-3">Try your first task free. No signup required.</p>
-          </div>
-
-          <div className="aw-rise flex shrink-0 flex-wrap gap-2.5" style={{ animationDelay: '240ms' }}>
-            <button
-              onClick={() => tryGoal()}
-              className="group inline-flex h-12 items-center gap-2 rounded-full bg-accent px-6 text-[15px] font-semibold text-accent-ink transition-[background-color,transform] duration-200 hover:bg-accent-press active:scale-[0.98]"
-            >
-              Try it free
-              <ArrowRight size={17} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5" />
-            </button>
-            <a
-              href="#how-it-works"
-              className="inline-flex h-12 items-center rounded-full border border-line-strong px-6 text-[15px] font-semibold text-ink transition-colors duration-200 hover:bg-accent-soft"
-            >
-              See how it works
-            </a>
-          </div>
+        <div
+          className="aw-rise mt-3.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2"
+          style={{ animationDelay: '240ms' }}
+        >
+          <button
+            onClick={() => tryGoal()}
+            className="group inline-flex h-11 items-center gap-2 rounded-full bg-[#3e9bff] px-5 text-[15px] font-semibold text-white shadow-[0_8px_24px_rgb(20_90_190/0.45)] transition-[background-color,transform] duration-200 hover:bg-[#2f86e8] active:scale-[0.98]"
+          >
+            Try it free
+            <ArrowRight size={17} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5" />
+          </button>
+          <a
+            href="#how-it-works"
+            className="inline-flex h-11 items-center rounded-full border border-white/30 bg-white/10 px-5 text-[15px] font-semibold text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/20"
+          >
+            See how it works
+          </a>
+          <p className="w-full text-[13px] text-white/70 [text-shadow:0_1px_10px_rgb(4_8_16/0.9)] md:w-auto md:pl-1">
+            Try your first task free. No signup required.
+          </p>
         </div>
       </div>
-
-      <div className="flex min-h-0 flex-1 px-2 pb-2 sm:px-3 sm:pb-3">
-        <Experience className="aw-frame h-[max(540px,calc(100dvh-120px))] w-full flex-1 rounded-[18px] sm:rounded-[26px] md:h-auto md:min-h-[480px]" />
-      </div>
-    </section>
+    </>
   );
 }

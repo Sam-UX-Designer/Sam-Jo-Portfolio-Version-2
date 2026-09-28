@@ -1,7 +1,8 @@
 # AI Agents World website: images
 
-Every image here comes from the app itself (Sam-UX-Designer/ai-agents-world).
-Nothing was generated, redrawn or replaced.
+Every image here comes from the app itself (Sam-UX-Designer/ai-agents-world),
+except the tool logos, which are each company's own mark. Nothing was
+generated, redrawn or replaced. The logos are trademarks of their owners.
 
 | File | Where it comes from | Used on |
 |---|---|---|
@@ -15,6 +16,7 @@ Nothing was generated, redrawn or replaced.
 | `screens/home-agent.webp` | The running app, Home, with the Marketing Agent's panel open | Product preview: Home |
 | `screens/tools.webp` | The running app, Tools | Product preview: Tools |
 | `screens/history.webp` | The running app, History, with Organize my schedule open | Product preview: History |
+| `tools/<id>.png` | Each company's own logo, 256 x 256, transparent. From the open "logos" icon set (Gil Barbara, CC0, via Iconify); HubSpot's mark from Simple Icons (CC0) in HubSpot's orange. Named after the tool's id in the app's catalogue | Tools, Use cases, Problem |
 
 The screenshots were taken from the app's own demo workspace at 1440 x 900
 (2x), resized to 2400 x 1500. The demo account's name was shown as "Sam".
