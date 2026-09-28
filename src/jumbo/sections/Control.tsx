@@ -38,7 +38,7 @@ const TOPICS: Topic[] = [
           disconnect at any time.
         </p>
         <Names names={CONNECTIONS.direct} />
-        <p className="mt-5">Apple Health and Health Connect connect through the JUMBO app on your phone.</p>
+        <p className="mt-5">Apple Health connects through the JUMBO app on your iPhone.</p>
         <Names names={CONNECTIONS.viaApp} />
       </>
     ),

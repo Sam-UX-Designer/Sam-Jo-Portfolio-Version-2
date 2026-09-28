@@ -77,7 +77,7 @@ export const ASSETS = {
   },
   connect: {
     src: '/assets/jumbo/jumbo-connect-ui.webp',
-    alt: 'JUMBO Connected sources: Apple Health, Health Connect, WHOOP and Oura, each with what it shares',
+    alt: 'JUMBO Health and fitness apps: Apple Health, WHOOP, Oura and Fitbit, each with its logo and what it shares',
     label: 'Connected sources',
     shape: 'phone',
     width: 1170,
@@ -194,6 +194,6 @@ export const PRO_PLAN = {
 
 /** Sources the app can really connect to (Jumbo-ai-App, server/lib/providers.js). */
 export const CONNECTIONS = {
-  direct: ['WHOOP', 'Oura', 'Fitbit', 'Withings', 'Garmin'],
-  viaApp: ['Apple Health', 'Health Connect'],
+  direct: ['WHOOP', 'Oura', 'Fitbit', 'Garmin'],
+  viaApp: ['Apple Health'],
 };
