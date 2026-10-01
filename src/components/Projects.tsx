@@ -65,9 +65,9 @@ const TABS: TabData[] = [
         href: '/jumbo/',
       },
       {
-        id: 'g3', index: '03', name: 'TaskPilot', tag: 'AI APP',
-        desc: 'Intelligent task manager that plans, prioritizes and gets things done.',
-        tags: ['Productivity', 'Automation'],
+        id: 'g3', index: '03', name: 'Finance Buddy', tag: 'AI APP',
+        desc: 'Super Intelligent for your Finance Management.',
+        tags: ['Fiance', 'Accountability'],
         icon: PROJECT_ICON_3,
         tagColor: '#fdba74',
       },
