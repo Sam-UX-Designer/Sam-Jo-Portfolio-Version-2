@@ -5,13 +5,13 @@ import { LINKS } from '../config';
 
 export function FinalCta() {
   return (
-    <section id="try" aria-labelledby="try-title" className="py-24 text-center md:py-36">
+    <section id="try" aria-labelledby="try-title" className="py-32 text-center md:py-48">
       <Reveal className="mx-auto flex max-w-3xl flex-col items-center px-5 sm:px-8">
         <div className="relative grid place-items-center">
           <span aria-hidden="true" className="fb-halo absolute -inset-8 rounded-full" />
-          <Mascot size={112} delay={0.8} className="relative" />
+          <Mascot size={140} delay={0.8} className="relative" />
         </div>
-        <h2 id="try-title" className="mt-10 text-[clamp(2.25rem,5vw,4rem)] leading-[1.04] font-bold tracking-[-0.035em]">
+        <h2 id="try-title" className="mt-10 text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.98] font-bold tracking-[-0.05em]">
           Try Finance Buddy
         </h2>
         <p className="mt-5 max-w-[42ch] text-lg leading-relaxed text-ink-2 sm:text-xl">

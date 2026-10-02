@@ -7,7 +7,8 @@ import Problem from './sections/Problem';
 import HowItWorks from './sections/HowItWorks';
 import Aha from './sections/Aha';
 import Features from './sections/Features';
-import Design from './sections/Design';
+import Intelligence from './sections/Intelligence';
+import Desktop from './sections/Desktop';
 import Privacy from './sections/Privacy';
 import { FinalCta, Footer } from './sections/Closing';
 
@@ -15,9 +16,10 @@ import { FinalCta, Footer } from './sections/Closing';
  * Finance Buddy project page.
  * Portfolio → What I Built → Finance Buddy → this page.
  *
- * Story, in the brief's order: the promise, the problem, how it works, the
- * moment it clicks, what it does, how it's designed, privacy, then the
- * way in. Every screen is a real capture of the app.
+ * Told as scroll scenes, like a product page: the promise, the problem, how
+ * it works, the moment it clicks, what it does, Super Intelligence, the big
+ * screen, privacy, then the way in. Each scene pins while the visitor
+ * scrolls through it. Every screen is a real capture of the app.
  */
 export default function FinanceBuddyPage() {
   const { theme, toggle } = useTheme();
@@ -50,7 +52,8 @@ export default function FinanceBuddyPage() {
           <HowItWorks />
           <Aha />
           <Features />
-          <Design />
+          <Intelligence />
+          <Desktop />
           <Privacy />
           <FinalCta />
         </main>

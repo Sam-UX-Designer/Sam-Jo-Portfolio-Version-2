@@ -3,27 +3,41 @@ import Mascot from '../components/Mascot';
 import Phone from '../components/Phone';
 import { TryDemo } from '../components/Buttons';
 import { EASE } from '../components/Motion';
+import { useScene, useScrub } from '../lib/scene';
 
 /**
- * The promise on the left, the product on the right: Home in light and in
- * dark, side by side, the way the app ships. The mascot greets the visitor
- * the same way it greets someone signing in.
+ * Scene 1. The promise, set huge, with the app waiting just below it. As the
+ * visitor scrolls, the words step back and the two phones (light and dark)
+ * rise into the middle of the screen.
  */
 export default function Hero() {
+  const { ref, progress } = useScene<HTMLElement>();
   const reduce = useReducedMotion();
-  const rise = (delay: number) =>
-    reduce
-      ? {}
-      : { initial: { opacity: 0, y: 28 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, delay, ease: EASE } };
+
+  const textOpacity = useScrub(progress, [0, 0.42], [1, 0], 1);
+  const textY = useScrub(progress, [0, 0.5], [0, -140], 0);
+  const textScale = useScrub(progress, [0, 0.5], [1, 0.94], 1);
+  const phonesY = useScrub(progress, [0, 0.75], ['0vh', '-58vh'], '0vh');
+  const phonesScale = useScrub(progress, [0, 0.75], [0.9, 1], 1);
+  const leftX = useScrub(progress, [0, 0.75], ['10%', '0%'], '0%');
+  const rightX = useScrub(progress, [0, 0.75], ['-10%', '0%'], '0%');
+  const leftRotate = useScrub(progress, [0, 0.75], [-5, 0], 0);
+  const rightRotate = useScrub(progress, [0, 0.75], [5, 0], 0);
+
+  const enter = (delay: number) =>
+    reduce ? {} : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay, ease: EASE } };
 
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden pt-28 pb-20 sm:pt-32 lg:pt-36 lg:pb-28">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-6">
-          <m.div {...rise(0)} className="flex items-center gap-3">
+    <section ref={ref} id="top" aria-labelledby="hero-title" className="relative h-[210vh]">
+      <div className="sticky top-0 h-[100dvh] overflow-hidden">
+        <m.div
+          style={{ opacity: textOpacity, y: textY, scale: textScale }}
+          className="absolute inset-x-0 top-[max(6.5rem,13vh)] flex flex-col items-center px-5 text-center"
+        >
+          <m.div {...enter(0)} className="flex items-center gap-3">
             <span className="relative grid place-items-center">
-              <span aria-hidden="true" className="fb-halo absolute -inset-5 rounded-full" />
-              <Mascot size={60} label="Finance Buddy mascot" className="relative" />
+              <span aria-hidden="true" className="fb-halo absolute -inset-6 rounded-full" />
+              <Mascot size={56} label="Finance Buddy mascot" className="relative" />
             </span>
             <span translate="no" className="text-xl font-semibold tracking-tight">
               Finance Buddy
@@ -31,33 +45,40 @@ export default function Hero() {
           </m.div>
 
           <m.h1
-            {...rise(0.06)}
+            {...enter(0.08)}
             id="hero-title"
-            className="mt-8 text-[clamp(2.5rem,5vw,4.25rem)] leading-[1.03] font-bold tracking-[-0.035em]"
+            className="mt-7 text-[clamp(2.75rem,7.4vw,7rem)] leading-[0.98] font-bold tracking-[-0.045em]"
           >
-            Your money, all in one place. <span className="block text-ink-2">Explained.</span>
+            Your money.
+            <br />
+            All in one place.
+            <br />
+            <span className="fb-ink-gradient">Explained.</span>
           </m.h1>
 
-          <m.p {...rise(0.12)} className="mt-6 max-w-[44ch] text-lg leading-relaxed text-ink-2 sm:text-xl">
-            A personal finance app that brings it all together. Connect your bank accounts safely, see everything at a
-            glance, and ask Super Intelligence anything about your money.
+          <m.p {...enter(0.16)} className="mt-7 max-w-[34ch] text-lg leading-snug text-ink-2 sm:text-[22px]">
+            Every account in one view, and a Super Intelligence that tells you what it means.
           </m.p>
 
-          <m.div {...rise(0.18)} className="mt-9 flex flex-wrap gap-3">
+          <m.div {...enter(0.24)} className="mt-8">
             <TryDemo />
           </m.div>
-        </div>
+        </m.div>
 
-        <div className="lg:col-span-6">
-          <div className="flex items-start justify-center gap-4 sm:gap-7">
-            <m.div {...rise(0.2)} className="w-[46%] max-w-[272px]">
+        <m.div
+          {...enter(0.3)}
+          className="absolute inset-x-0 top-[88vh] flex justify-center px-5"
+          style={{ y: phonesY, scale: phonesScale }}
+        >
+          <div className="flex items-start justify-center gap-[3vw]">
+            <m.div style={{ x: leftX, rotate: leftRotate }} className="w-[min(44vw,300px)]">
               <Phone screen="home" theme="light" eager />
             </m.div>
-            <m.div {...rise(0.32)} className="mt-14 w-[46%] max-w-[272px] sm:mt-20">
+            <m.div style={{ x: rightX, rotate: rightRotate }} className="mt-[6vh] w-[min(44vw,300px)]">
               <Phone screen="home" theme="dark" eager />
             </m.div>
           </div>
-        </div>
+        </m.div>
       </div>
     </section>
   );
