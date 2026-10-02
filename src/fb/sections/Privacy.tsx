@@ -11,7 +11,7 @@ const POINTS = [
 /** Scene 8. Trust, said plainly. */
 export default function Privacy() {
   return (
-    <section id="privacy" aria-labelledby="privacy-title" className="py-28 md:py-44">
+    <section id="privacy" aria-labelledby="privacy-title" className="py-16 md:py-44">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <h2 id="privacy-title" className="text-[clamp(2.5rem,6.4vw,6rem)] leading-[0.98] font-bold tracking-[-0.05em]">

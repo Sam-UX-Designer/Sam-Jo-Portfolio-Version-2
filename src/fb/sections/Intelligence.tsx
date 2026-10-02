@@ -1,6 +1,7 @@
 import { m, type MotionValue } from 'motion/react';
 import Mascot from '../components/Mascot';
-import { useScene, useScrub } from '../lib/scene';
+import { useMedia, useScene, useScrub } from '../lib/scene';
+import { Reveal } from '../components/Motion';
 
 /* The real answer from the app's sample data (the "Why did I spend more"
    screen captured for this page), set in type so it can unfold. */
@@ -12,9 +13,9 @@ const LINES = [
   'BigBasket: ₹5,943 vs a usual ₹3,735.',
 ];
 
-function Line({ text, at, progress, lead = false }: { text: string; at: number; progress: MotionValue<number>; lead?: boolean }) {
-  const opacity = useScrub(progress, [at, at + 0.06], [0, 1], 1);
-  const y = useScrub(progress, [at, at + 0.06], [14, 0], 0);
+function Line({ text, at, progress, lead = false, still }: { text: string; at: number; progress: MotionValue<number>; lead?: boolean; still: boolean }) {
+  const opacity = useScrub(progress, [at, at + 0.06], [0, 1], 1, still);
+  const y = useScrub(progress, [at, at + 0.06], [14, 0], 0, still);
   return (
     <m.li style={{ opacity, y }} className={lead ? 'text-[19px] font-semibold text-ink' : 'flex gap-3 text-[17px] text-ink-2'}>
       {!lead && <span aria-hidden="true" className="mt-[0.6em] size-1.5 shrink-0 rounded-full bg-ink-2" />}
@@ -26,17 +27,19 @@ function Line({ text, at, progress, lead = false }: { text: string; at: number; 
 /**
  * Scene 6. Super Intelligence. A real question and the app's real answer
  * unfold line by line as the visitor scrolls, next to the mascot that
- * answers it.
+ * answers it. On phones the content is taller than the screen, so there it
+ * is a plain section: the answer shows whole and rises in once.
  */
 export default function Intelligence() {
   const { ref, progress } = useScene<HTMLElement>();
-  const ask = useScrub(progress, [0.08, 0.16], [0, 1], 1);
-  const askY = useScrub(progress, [0.08, 0.16], [20, 0], 0);
-  const foot = useScrub(progress, [0.72, 0.8], [0, 1], 1);
+  const still = !useMedia('(min-width: 1024px)');
+  const ask = useScrub(progress, [0.08, 0.16], [0, 1], 1, still);
+  const askY = useScrub(progress, [0.08, 0.16], [20, 0], 0, still);
+  const foot = useScrub(progress, [0.72, 0.8], [0, 1], 1, still);
 
   return (
-    <section ref={ref} id="intelligence" aria-labelledby="si-title" className="relative h-[260vh]">
-      <div className="sticky top-0 flex h-[100dvh] items-center overflow-hidden pt-14 lg:pt-0">
+    <section ref={ref} id="intelligence" aria-labelledby="si-title" className="relative py-24 lg:h-[260vh] lg:py-0">
+      <div className="lg:sticky lg:top-0 lg:flex lg:h-[100dvh] lg:items-center lg:overflow-hidden">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
           <div>
             <div className="relative inline-grid place-items-center">
@@ -53,7 +56,7 @@ export default function Intelligence() {
             </p>
           </div>
 
-          <div className="rounded-[28px] bg-card p-7 sm:p-9">
+          <Reveal className="rounded-[28px] bg-card p-7 sm:p-9">
             <m.p
               style={{ opacity: ask, y: askY }}
               className="ml-auto w-fit max-w-[85%] rounded-[22px] rounded-br-md bg-btn px-5 py-3 text-[17px] font-medium text-btn-ink"
@@ -61,15 +64,15 @@ export default function Intelligence() {
               Why did I spend more this month?
             </m.p>
             <ul className="mt-7 grid gap-3.5">
-              <Line text={LEAD} at={0.2} progress={progress} lead />
+              <Line text={LEAD} at={0.2} progress={progress} lead still={still} />
               {LINES.map((t, i) => (
-                <Line key={t} text={t} at={0.3 + i * 0.1} progress={progress} />
+                <Line key={t} text={t} at={0.3 + i * 0.1} progress={progress} still={still} />
               ))}
             </ul>
             <m.p style={{ opacity: foot }} className="mt-6 text-[13px] text-ink-2">
               Calculated from your connected accounts. Sample data.
             </m.p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

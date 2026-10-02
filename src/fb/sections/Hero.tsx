@@ -59,7 +59,7 @@ export default function Hero({ stage = 'done' }: { stage?: 'intro' | 'reveal' | 
         };
 
   return (
-    <section ref={ref} id="top" aria-labelledby="hero-title" className="relative h-[210vh]">
+    <section ref={ref} id="top" aria-labelledby="hero-title" className="relative h-[165vh] lg:h-[210vh]">
       <div className="sticky top-0 h-[100dvh] overflow-hidden">
         <m.div
           ref={copy}

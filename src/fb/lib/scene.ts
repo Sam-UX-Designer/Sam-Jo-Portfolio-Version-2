@@ -22,6 +22,8 @@ export function useScrub<O extends number | string>(
   input: number[],
   output: O[],
   rest: O,
+  /** Hold at rest, e.g. where the scene does not pin (phones). */
+  still = false,
 ): MotionValue<O> | O {
   const reduce = useReducedMotion();
   // A function mapping, not ranges: this keeps every value on the same clock.
@@ -29,7 +31,7 @@ export function useScrub<O extends number | string>(
   // which measures the scene differently from the transforms.)
   const map = transform(input, output);
   const value = useTransform(progress, (v) => map(v));
-  return reduce ? rest : value;
+  return reduce || still ? rest : value;
 }
 
 /** True while the media query matches. */

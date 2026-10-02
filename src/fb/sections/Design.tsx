@@ -44,10 +44,10 @@ export default function Design() {
   };
 
   return (
-    <section ref={ref} id="design" aria-labelledby="design-title" className="relative py-28 md:py-40">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-12 lg:gap-10">
+    <section ref={ref} id="design" aria-labelledby="design-title" className="relative py-16 md:py-40">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-12 lg:gap-10">
         <div className="flex flex-col items-center lg:col-span-5">
-          <div className="relative grid place-items-center pt-24">
+          <div className="relative grid place-items-center pt-20 lg:pt-24">
             <span aria-hidden="true" className="fb-halo absolute -inset-10 top-14 rounded-full" />
 
             {/* The thought bubble: "Hello!" over its head, with the two small

@@ -6,7 +6,7 @@ const TEXT =
 
 function Word({ word, i, total, progress }: { word: string; i: number; total: number; progress: MotionValue<number> }) {
   const start = 0.1 + (i / total) * 0.7;
-  const opacity = useScrub(progress, [start, start + 0.7 / total], [0.16, 1], 1);
+  const opacity = useScrub(progress, [start, start + 0.7 / total], [0.22, 1], 1);
   return <m.span style={{ opacity }}>{word} </m.span>;
 }
 
@@ -18,7 +18,7 @@ export default function Problem() {
   const { ref, progress } = useScene<HTMLElement>();
   const words = TEXT.split(' ');
   return (
-    <section ref={ref} aria-labelledby="problem-title" className="relative h-[190vh]">
+    <section ref={ref} aria-labelledby="problem-title" className="relative h-[150vh] lg:h-[190vh]">
       <h2 id="problem-title" className="sr-only">
         The problem
       </h2>

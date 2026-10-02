@@ -1,11 +1,12 @@
 import { useId, useState } from 'react';
 import { m } from 'motion/react';
 import { DESKTOP, desktopSrc, type DesktopId } from '../config';
-import { useScene, useScrub } from '../lib/scene';
+import { useMedia, useScene, useScrub } from '../lib/scene';
 
 /**
  * Scene 7. The web app grows from a small window to fill the screen as the
- * visitor scrolls, with a tab for each of its five screens.
+ * visitor scrolls, with a tab for each of its five screens. On phones it is a
+ * plain section: the window is small there, so pinning it only left space.
  */
 export default function Desktop() {
   const { ref, progress } = useScene<HTMLElement>();
@@ -13,13 +14,14 @@ export default function Desktop() {
   const base = useId();
   const ids = Object.keys(DESKTOP) as DesktopId[];
 
-  const scale = useScrub(progress, [0, 0.6], [0.62, 1], 1);
-  const radius = useScrub(progress, [0, 0.6], [36, 18], 18);
-  const titleOpacity = useScrub(progress, [0.35, 0.6], [1, 0.0], 1);
+  const still = !useMedia('(min-width: 1024px)');
+  const scale = useScrub(progress, [0, 0.6], [0.62, 1], 1, still);
+  const radius = useScrub(progress, [0, 0.6], [36, 18], 12, still);
+  const titleOpacity = useScrub(progress, [0.35, 0.6], [1, 0.0], 1, still);
 
   return (
-    <section ref={ref} id="desktop" aria-labelledby="desktop-title" className="relative h-[220vh]">
-      <div className="sticky top-0 flex h-[100dvh] flex-col items-center justify-center overflow-hidden px-5 pt-20 sm:px-8">
+    <section ref={ref} id="desktop" aria-labelledby="desktop-title" className="relative py-20 lg:h-[220vh] lg:py-0">
+      <div className="flex flex-col items-center px-5 sm:px-8 lg:sticky lg:top-0 lg:h-[100dvh] lg:justify-center lg:overflow-hidden lg:pt-20">
         <m.div style={{ opacity: titleOpacity }} className="text-center">
           <h2 id="desktop-title" className="text-[clamp(2.25rem,4.6vw,4.25rem)] leading-[1] font-bold tracking-[-0.045em]">
             Big screen, too.
@@ -32,7 +34,7 @@ export default function Desktop() {
           role="tabpanel"
           aria-labelledby={`${base}-${shot}`}
           style={{ scale, borderRadius: radius }}
-          className="relative mt-8 aspect-[16/10] w-[min(100%,calc((100dvh-19rem)*1.6),1100px)] origin-center overflow-hidden bg-muted shadow-[var(--shadow-phone)] ring-1 ring-line"
+          className="relative mt-8 aspect-[16/10] w-full lg:w-[min(100%,calc((100dvh-19rem)*1.6),1100px)] origin-center overflow-hidden bg-muted shadow-[var(--shadow-phone)] ring-1 ring-line"
         >
           {(['light', 'dark'] as const).map((t) => (
             <img

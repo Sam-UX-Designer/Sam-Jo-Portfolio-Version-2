@@ -18,19 +18,19 @@ export default function Aha() {
     if (!reduce && number.current) number.current.textContent = inr(v);
   });
 
-  const phoneY = useScrub(progress, [0.1, 0.6], ['30vh', '0vh'], '0vh');
-  const phoneOpacity = useScrub(progress, [0.1, 0.4], [0, 1], 1);
+  const phoneY = useScrub(progress, [0.04, 0.5], ['20vh', '0vh'], '0vh');
+  const phoneOpacity = useScrub(progress, [0.04, 0.3], [0, 1], 1);
   const noteOpacity = useScrub(progress, [0.5, 0.62], [0, 1], 1);
 
   return (
-    <section ref={ref} id="aha" aria-labelledby="aha-title" className="relative h-[230vh]">
+    <section ref={ref} id="aha" aria-labelledby="aha-title" className="relative h-[180vh] lg:h-[230vh]">
       <div className="sticky top-0 flex h-[100dvh] items-center overflow-hidden">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-6 px-5 pt-14 sm:gap-10 lg:pt-0 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
           <div>
             <h2 id="aha-title" className="text-[15px] font-semibold text-ink-2">
               The moment it clicks
             </h2>
-            <p className="mt-6 text-[15px] font-medium text-ink-2">Your net worth today</p>
+            <p className="mt-3 text-[15px] font-medium text-ink-2 sm:mt-6">Your net worth today</p>
             <p className="mt-1 text-[clamp(3.25rem,9vw,8rem)] leading-none font-bold tracking-[-0.05em] tabular-nums">
               <span ref={number} aria-hidden="true">
                 {inr(reduce ? SAMPLE_NET_WORTH : 0)}
@@ -38,15 +38,15 @@ export default function Aha() {
               <span className="sr-only">{inr(SAMPLE_NET_WORTH)}</span>
             </p>
             <m.div style={{ opacity: noteOpacity }}>
-              <p className="mt-4 text-[17px] font-semibold text-pos-text">Up ₹2,50,123 since 1 Jan</p>
-              <p className="mt-6 max-w-[40ch] text-lg leading-snug text-ink-2 sm:text-xl">
+              <p className="mt-2 text-[17px] font-semibold text-pos-text sm:mt-4">Up ₹2,50,123 since 1 Jan</p>
+              <p className="mt-3 max-w-[40ch] text-base leading-snug text-ink-2 sm:mt-6 sm:text-xl">
                 Right after you connect, your net worth counts up and Super Intelligence shows three things it has already
                 found.
               </p>
             </m.div>
           </div>
-          <m.div style={{ y: phoneY, opacity: phoneOpacity }} className="hidden justify-center sm:flex">
-            <Phone screen="aha" className="w-[min(40vw,52vh,320px)]" />
+          <m.div style={{ y: phoneY, opacity: phoneOpacity }} className="flex justify-center">
+            <Phone screen="aha" className="w-[min(46vw,27vh)] sm:w-[min(40vw,52vh,320px)]" />
           </m.div>
         </div>
       </div>
