@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { m, useMotionValueEvent, type MotionValue } from 'motion/react';
+import { m, useMotionValueEvent, useTransform, type MotionValue } from 'motion/react';
 import Phone from '../components/Phone';
+import CardStrip from '../components/CardStrip';
 import type { ScreenId } from '../config';
 import { useScene, useScrub } from '../lib/scene';
 
@@ -32,9 +33,12 @@ function Layer({ i, progress }: { i: number; progress: MotionValue<number> }) {
   const output = i === 0 ? [1, 1, 0] : i === N - 1 ? [0, 1, 1] : [0, 1, 1, 0];
   const opacity = useScrub(progress, input, output, i === 0 ? 1 : 0);
   const scale = useScrub(progress, input, output.map((o) => 0.97 + o * 0.03), 1);
+  // On the "see everything" step the bank cards swipe through, all
+  // accounts first and then one card per bank, as the visitor scrolls.
+  const cardIndex = useTransform(progress, (v) => Math.max(0, Math.min(4, ((v - (a + 0.03)) / (b - a - 0.1)) * 4)));
   return (
     <m.div style={{ opacity, scale }} className={i === 0 ? 'relative' : 'absolute inset-0'}>
-      <Phone screen={STEPS[i]!.screen} />
+      <Phone screen={STEPS[i]!.screen}>{STEPS[i]!.screen === 'card' && <CardStrip index={cardIndex} />}</Phone>
     </m.div>
   );
 }
