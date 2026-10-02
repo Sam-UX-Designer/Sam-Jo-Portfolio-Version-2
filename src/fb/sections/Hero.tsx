@@ -54,11 +54,13 @@ export default function Hero({ stage = 'done' }: { stage?: 'intro' | 'reveal' | 
           <m.h1
             {...enter(0.08)}
             id="hero-title"
-            className="mt-7 text-[clamp(2.75rem,7.4vw,7rem)] leading-[0.98] font-bold tracking-[-0.045em]"
+            className="mt-7 text-[clamp(2.5rem,5.7vw,6rem)] leading-[1.02] font-bold tracking-[-0.045em]"
           >
-            Your money.
-            <br />
-            All in one place.
+            {/* Two lines from tablet up. A phone is too narrow for the first
+                line, so it breaks cleanly after "Your money." there. */}
+            <span className="sm:whitespace-nowrap">
+              <span className="inline-block">Your money.</span> <span className="inline-block">All in one place.</span>
+            </span>
             <br />
             <span className="fb-ink-gradient">Explained.</span>
           </m.h1>

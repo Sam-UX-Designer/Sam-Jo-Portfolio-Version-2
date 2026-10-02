@@ -63,7 +63,7 @@ export const SCREENS: Record<ScreenId, string> = {
 export type DesktopId = 'home' | 'si';
 
 export const DESKTOP: Record<DesktopId, { label: string; alt: string }> = {
-  home: { label: 'Home', alt: 'Finance Buddy on desktop: a sidebar, bank cards, spending, Super Intelligence and upcoming payments' },
+  home: { label: 'Home', alt: 'Finance Buddy on desktop: a sidebar, the total balance, every bank card, a Super Intelligence chat and recent transactions' },
   si: { label: 'Super Intelligence', alt: 'Super Intelligence on desktop, answering about subscriptions' },
 };
 
