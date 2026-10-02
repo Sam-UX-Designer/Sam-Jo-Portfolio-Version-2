@@ -5,7 +5,7 @@ import { useScene, useScrub } from '../lib/scene';
 
 /**
  * Scene 7. The web app grows from a small window to fill the screen as the
- * visitor scrolls, with a switch between two of its screens.
+ * visitor scrolls, with a tab for each of its five screens.
  */
 export default function Desktop() {
   const { ref, progress } = useScene<HTMLElement>();
@@ -48,21 +48,33 @@ export default function Desktop() {
           ))}
         </m.div>
 
-        <div role="tablist" aria-label="Desktop screens" className="relative z-10 mt-5 flex rounded-full bg-muted p-1">
+        <div
+          role="tablist"
+          aria-label="Desktop screens"
+          className="relative z-10 mt-5 flex max-w-full overflow-x-auto rounded-full bg-muted p-1 [scrollbar-width:none]"
+        >
           {ids.map((id) => (
             <button
               key={id}
               type="button"
               role="tab"
+              aria-label={DESKTOP[id].label}
               id={`${base}-${id}`}
               aria-selected={shot === id}
               aria-controls={`${base}-panel`}
               onClick={() => setShot(id)}
-              className={`h-10 rounded-full px-4 text-sm font-semibold transition-colors duration-200 ${
+              className={`h-10 shrink-0 rounded-full px-3.5 text-sm sm:px-4 font-semibold whitespace-nowrap transition-colors duration-200 ${
                 shot === id ? 'bg-card text-ink shadow-sm' : 'text-ink-2 hover:text-ink'
               }`}
             >
-              {DESKTOP[id].label}
+              {DESKTOP[id].short ? (
+                <>
+                  <span className="sm:hidden">{DESKTOP[id].short}</span>
+                  <span className="max-sm:hidden">{DESKTOP[id].label}</span>
+                </>
+              ) : (
+                DESKTOP[id].label
+              )}
             </button>
           ))}
         </div>

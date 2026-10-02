@@ -60,11 +60,15 @@ export const SCREENS: Record<ScreenId, string> = {
   forecast: 'Cash forecast until the next salary, with a safety buffer and how it was worked out',
 };
 
-export type DesktopId = 'home' | 'si';
+export type DesktopId = 'home' | 'activity' | 'si' | 'wealth' | 'plan';
 
-export const DESKTOP: Record<DesktopId, { label: string; alt: string }> = {
-  home: { label: 'Home', alt: 'Finance Buddy on desktop: a sidebar, the total balance, every bank card, a Super Intelligence chat and recent transactions' },
-  si: { label: 'Super Intelligence', alt: 'Super Intelligence on desktop, answering about subscriptions' },
+/** The web app's five tabs, in the order of its sidebar. */
+export const DESKTOP: Record<DesktopId, { label: string; short?: string; alt: string }> = {
+  home: { label: 'Home', alt: 'Finance Buddy on desktop: total balance, every bank card, this month, spending, a Super Intelligence chat and upcoming payments' },
+  activity: { label: 'Activity', alt: 'Transactions on desktop, with filters and the details of the selected payment beside the list' },
+  si: { label: 'Super Intelligence', short: 'SI', alt: 'Super Intelligence on desktop: past chats beside the weekly brief and suggested questions' },
+  wealth: { label: 'Wealth', alt: 'Wealth on desktop: net worth growth, assets, asset allocation and mutual funds' },
+  plan: { label: 'Plan', alt: 'Plan on desktop: goals, the cash forecast and monthly budgets side by side' },
 };
 
 export const screenSrc = (id: ScreenId, theme: 'light' | 'dark') => `${A}/screens/${id}-${theme}.webp`;

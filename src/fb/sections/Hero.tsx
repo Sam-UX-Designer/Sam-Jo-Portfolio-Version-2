@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef, useState } from 'react';
 import { m, useReducedMotion } from 'motion/react';
 import Mascot from '../components/Mascot';
 import Phone from '../components/Phone';
@@ -6,9 +7,9 @@ import { EASE } from '../components/Motion';
 import { useScene, useScrub } from '../lib/scene';
 
 /**
- * Scene 1. The promise, set huge, with the app waiting just below it. As the
- * visitor scrolls, the words step back and the two phones (light and dark)
- * rise into the middle of the screen.
+ * Scene 1. The promise, set huge, with three of the app's screens peeking up
+ * just under it, so there is plainly more below. As the visitor scrolls, the
+ * words step back and the phones rise into the middle of the screen.
  */
 export default function Hero({ stage = 'done' }: { stage?: 'intro' | 'reveal' | 'done' }) {
   const { ref, progress } = useScene<HTMLElement>();
@@ -17,12 +18,32 @@ export default function Hero({ stage = 'done' }: { stage?: 'intro' | 'reveal' | 
   const textOpacity = useScrub(progress, [0, 0.42], [1, 0], 1);
   const textY = useScrub(progress, [0, 0.5], [0, -140], 0);
   const textScale = useScrub(progress, [0, 0.5], [1, 0.94], 1);
-  const phonesY = useScrub(progress, [0, 0.75], ['0vh', '-58vh'], '0vh');
-  const phonesScale = useScrub(progress, [0, 0.75], [0.9, 1], 1);
-  const leftX = useScrub(progress, [0, 0.75], ['10%', '0%'], '0%');
-  const rightX = useScrub(progress, [0, 0.75], ['-10%', '0%'], '0%');
-  const leftRotate = useScrub(progress, [0, 0.75], [-5, 0], 0);
-  const rightRotate = useScrub(progress, [0, 0.75], [5, 0], 0);
+  // The phones sit just under the button, measured, so the top of the app
+  // always shows on the first screen whatever its height.
+  const copy = useRef<HTMLDivElement>(null);
+  const [layout, setLayout] = useState({ top: 0, vh: 0 });
+  useLayoutEffect(() => {
+    const el = copy.current;
+    if (!el) return;
+    const measure = () => setLayout({ top: el.offsetTop + el.offsetHeight + 48, vh: window.innerHeight });
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
+
+  // Up from under the button to near the top of the screen.
+  const rise = Math.max(0, layout.top - layout.vh * 0.1);
+  const phonesY = useScrub(progress, [0, 0.75], [0, -rise], 0);
+  const phonesScale = useScrub(progress, [0, 0.75], [0.94, 1], 1);
+  const leftX = useScrub(progress, [0, 0.75], ['-6%', '0%'], '0%');
+  const rightX = useScrub(progress, [0, 0.75], ['6%', '0%'], '0%');
+  const leftRotate = useScrub(progress, [0, 0.75], [-6, 0], 0);
+  const rightRotate = useScrub(progress, [0, 0.75], [6, 0], 0);
 
   const enter = (delay: number) =>
     reduce
@@ -37,6 +58,7 @@ export default function Hero({ stage = 'done' }: { stage?: 'intro' | 'reveal' | 
     <section ref={ref} id="top" aria-labelledby="hero-title" className="relative h-[210vh]">
       <div className="sticky top-0 h-[100dvh] overflow-hidden">
         <m.div
+          ref={copy}
           style={{ opacity: textOpacity, y: textY, scale: textScale }}
           className="absolute inset-x-0 top-[max(6.5rem,13vh)] flex flex-col items-center px-5 text-center"
         >
@@ -75,17 +97,21 @@ export default function Hero({ stage = 'done' }: { stage?: 'intro' | 'reveal' | 
           </m.div>
         </m.div>
 
+        {/* Three different screens: Super Intelligence, Home and Wealth. */}
         <m.div
           {...enter(0.3)}
-          className="absolute inset-x-0 top-[88vh] flex justify-center px-5"
-          style={{ y: phonesY, scale: phonesScale }}
+          className="absolute inset-x-0 flex justify-center"
+          style={{ top: layout.top || '70vh', y: phonesY, scale: phonesScale }}
         >
-          <div className="flex items-start justify-center gap-[3vw]">
-            <m.div style={{ x: leftX, rotate: leftRotate }} className="w-[min(44vw,300px)]">
-              <Phone screen="home" theme="light" eager />
+          <div className="flex items-start justify-center">
+            <m.div style={{ x: leftX, rotate: leftRotate }} className="mt-[7vh] w-[min(40vw,300px)] shrink-0">
+              <Phone screen="si" />
             </m.div>
-            <m.div style={{ x: rightX, rotate: rightRotate }} className="mt-[6vh] w-[min(44vw,300px)]">
-              <Phone screen="home" theme="dark" eager />
+            <div className="relative z-10 -mx-[2vw] w-[min(50vw,350px)] shrink-0">
+              <Phone screen="home" eager />
+            </div>
+            <m.div style={{ x: rightX, rotate: rightRotate }} className="mt-[7vh] w-[min(40vw,300px)] shrink-0">
+              <Phone screen="wealth" />
             </m.div>
           </div>
         </m.div>
