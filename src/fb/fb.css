@@ -391,6 +391,36 @@ p {
   }
 }
 
+/* A band of light streaming across the mascot's colours, clipped to its
+   shape by the body artwork. */
+.fb-mascot__shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.7) 48%, rgba(255, 255, 255, 0.15) 56%, transparent 70%);
+  background-size: 260% 100%;
+  background-position: 130% 0;
+  mix-blend-mode: soft-light;
+  -webkit-mask: var(--fb-body) center / contain no-repeat;
+  mask: var(--fb-body) center / contain no-repeat;
+}
+
+@keyframes fb-shine {
+  0% {
+    background-position: 130% 0;
+  }
+  55%,
+  100% {
+    background-position: -30% 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fb-mascot__shine {
+    animation: fb-shine 3.2s ease-in-out infinite;
+  }
+}
+
 /* Idle loops pause when their section is off screen. */
 section[data-idle] .fb-mascot * {
   animation-play-state: paused !important;

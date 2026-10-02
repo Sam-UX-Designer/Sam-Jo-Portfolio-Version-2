@@ -11,6 +11,10 @@ interface MascotProps {
   delay?: number;
   className?: string;
   label?: string;
+  /** A band of light that streams across the mascot's colours. */
+  shimmer?: boolean;
+  /** Called on every tap, so the page can make the mascot say hello. */
+  onHello?: () => void;
 }
 
 /**
@@ -19,11 +23,12 @@ interface MascotProps {
  * smile. Under Reduce Motion the CSS
  * keeps it still.
  */
-export default function Mascot({ size, animated = true, interactive = false, delay = 0, className = '', label }: MascotProps) {
+export default function Mascot({ size, animated = true, interactive = false, delay = 0, className = '', label, shimmer = false, onHello }: MascotProps) {
   const [happy, setHappy] = useState(false);
   const timer = useRef<number | undefined>(undefined);
 
   const cheer = () => {
+    onHello?.();
     window.clearTimeout(timer.current);
     setHappy(false);
     // Next frame, so a second tap restarts the shake.
@@ -42,6 +47,7 @@ export default function Mascot({ size, animated = true, interactive = false, del
       <span className="fb-mascot__bob">
         <span className="fb-mascot__wiggle">
           <img src={ART.mascotBody} alt="" width={size} height={size} className="fb-mascot__body" draggable={false} />
+          {shimmer && <span className="fb-mascot__shine" style={{ ['--fb-body' as string]: `url(${ART.mascotBody})` }} />}
           <span className="fb-mascot__eye fb-mascot__eye--l" />
           <span className="fb-mascot__eye fb-mascot__eye--r" />
           <svg className="fb-mascot__smile" viewBox="371 662 403 153" aria-hidden="true">
@@ -58,7 +64,6 @@ export default function Mascot({ size, animated = true, interactive = false, del
     <button
       type="button"
       onClick={cheer}
-      onPointerEnter={(e) => e.pointerType === 'mouse' && cheer()}
       aria-label={label ?? 'Say hello to the Finance Buddy mascot'}
       className="rounded-full transition-transform duration-200 active:scale-[0.97]"
     >
