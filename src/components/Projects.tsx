@@ -9,9 +9,9 @@ import ParallaxSection from './ParallaxSection';
  */
 const PROJECT_ICON_1 = '/project-1.png';
 const PROJECT_ICON_2 = '/project-2.png';
+const PROJECT_ICON_3 = '/project-3.png';
 const PROJECT_ICON_4 = '/project-4.png';
 const PROJECT_ICON_5 = '/project-5.png';
-const FINANCE_BUDDY_ICON = '/assets/finance-buddy/app-icon-256.webp';
 
 type TabId = 'generalist' | 'designer';
 
@@ -69,7 +69,7 @@ const TABS: TabData[] = [
         id: 'g3', index: '03', name: 'Finance Buddy', tag: 'AI APP',
         desc: 'A personal finance app for India with a Super Intelligence that explains your money.',
         tags: ['Personal Finance', 'Super Intelligence'],
-        icon: FINANCE_BUDDY_ICON,
+        icon: PROJECT_ICON_3,
         tagColor: '#f0abfc',
         href: '/finance-buddy/',
       },
