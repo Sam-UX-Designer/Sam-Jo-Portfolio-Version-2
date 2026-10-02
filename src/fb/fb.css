@@ -226,6 +226,28 @@ p {
   background-image: linear-gradient(100deg, #3772ff 0%, #5f6aff 45%, #ae4bec 100%);
 }
 
+/* The typing cursor at the end of the headline, in the gradient's last colour. */
+.fb-caret {
+  display: inline-block;
+  width: 0.07em;
+  height: 0.82em;
+  margin-left: 0.05em;
+  border-radius: 0.04em;
+  vertical-align: -0.06em;
+  background: #a845e6;
+  animation: fb-caret 1.05s steps(1) infinite;
+}
+
+:root[data-theme='dark'] .fb-caret {
+  background: #ae4bec;
+}
+
+@keyframes fb-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
 /* =========================================================
    The mascot (port of the app's SIOrb: float, blink, happy shake)
    ========================================================= */

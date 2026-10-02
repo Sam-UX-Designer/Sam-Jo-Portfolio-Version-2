@@ -2,9 +2,13 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { m, useReducedMotion } from 'motion/react';
 import Mascot from '../components/Mascot';
 import Phone from '../components/Phone';
+import Typewriter from '../components/Typewriter';
 import { TryDemo } from '../components/Buttons';
 import { EASE } from '../components/Motion';
 import { useScene, useScrub } from '../lib/scene';
+
+/** What the headline types after "In One Place.", each backed by the app. */
+const PHRASES = ['Explained Well.', 'Made Simple.', 'Finally Clear.', 'Planned Ahead.', 'Kept Private.'];
 
 /**
  * Scene 1. The promise, set huge, with three of the app's screens peeking up
@@ -81,10 +85,10 @@ export default function Hero({ stage = 'done' }: { stage?: 'intro' | 'reveal' | 
             All Your Money,
             <br />
             {/* Two lines from tablet up. A phone is too narrow for the second
-                line, so there it breaks cleanly before "Explained Well." */}
+                line, so there it breaks cleanly before the typed phrase. */}
             <span className="sm:whitespace-nowrap">
               <span className="inline-block">In One Place.</span>{' '}
-              <span className="fb-ink-gradient inline-block">Explained Well.</span>
+              <Typewriter phrases={PHRASES} start={stage === 'done'} className="fb-ink-gradient" />
             </span>
           </m.h1>
 
