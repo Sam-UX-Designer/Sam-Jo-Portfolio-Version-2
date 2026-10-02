@@ -71,7 +71,7 @@ export const screenSrc = (id: ScreenId, theme: 'light' | 'dark') => `${A}/screen
 export const desktopSrc = (id: DesktopId, theme: 'light' | 'dark') => `${A}/screens/desktop-${id}-${theme}.webp`;
 
 /** The net worth on the "aha" screen, from the sample data in the captures. */
-export const SAMPLE_NET_WORTH = 809443;
+export const SAMPLE_NET_WORTH = 793760;
 
-/** Money as the sample data shows it in the app: ₹8,09,443. */
+/** Money as the sample data shows it in the app: ₹7,93,760. */
 export const inr = (n: number) => `₹${Math.round(n).toLocaleString('en-IN')}`;

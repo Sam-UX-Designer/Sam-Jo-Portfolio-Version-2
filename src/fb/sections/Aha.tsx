@@ -27,7 +27,7 @@ export default function Aha() {
             value={SAMPLE_NET_WORTH}
             className="mt-2 block text-[clamp(3.25rem,10vw,7.5rem)] leading-none font-bold tracking-[-0.045em] tabular-nums"
           />
-          <p className="mt-4 text-[15px] font-medium text-pos-text">Up ₹2,48,010 since 1 Jan</p>
+          <p className="mt-4 text-[15px] font-medium text-pos-text">Up ₹2,50,123 since 1 Jan</p>
         </Reveal>
 
         <Reveal className="mt-14" delay={0.1}>
