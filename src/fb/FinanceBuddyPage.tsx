@@ -9,6 +9,7 @@ import Aha from './sections/Aha';
 import Features from './sections/Features';
 import Intelligence from './sections/Intelligence';
 import Desktop from './sections/Desktop';
+import Design from './sections/Design';
 import Privacy from './sections/Privacy';
 import { FinalCta, Footer } from './sections/Closing';
 
@@ -18,7 +19,7 @@ import { FinalCta, Footer } from './sections/Closing';
  *
  * Told as scroll scenes, like a product page: the promise, the problem, how
  * it works, the moment it clicks, what it does, Super Intelligence, the big
- * screen, privacy, then the way in. Each scene pins while the visitor
+ * screen, design details (say hello to the mascot), privacy, then the way in. Each scene pins while the visitor
  * scrolls through it. Every screen is a real capture of the app.
  */
 export default function FinanceBuddyPage() {
@@ -54,6 +55,7 @@ export default function FinanceBuddyPage() {
           <Features />
           <Intelligence />
           <Desktop />
+          <Design />
           <Privacy />
           <FinalCta />
         </main>
