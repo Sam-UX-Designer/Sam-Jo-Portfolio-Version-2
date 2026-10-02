@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @source not "./jumbo";
 @source not "./aaw";
+@source not "./fb";
 
 :root {
   --background: 220 40% 6%;

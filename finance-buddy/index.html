@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Finance Buddy — Personal finance app with Super Intelligence</title>
+    <meta
+      name="description"
+      content="A personal finance app for India. Connect your bank accounts safely, see everything at a glance, and ask Super Intelligence anything about your money."
+    />
+    <meta name="theme-color" content="#F2F2F7" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Finance Buddy | Sam Jo" />
+    <meta property="og:description" content="Your money, all in one place. Explained. A personal finance app for India, designed by Sam Jo." />
+    <meta property="og:image" content="https://sam-jo-portfolio-version-2.vercel.app/assets/finance-buddy/og.jpg" />
+    <meta property="og:url" content="https://sam-jo-portfolio-version-2.vercel.app/finance-buddy/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/png" href="/assets/finance-buddy/favicon.png" />
+    <link rel="preload" as="image" href="/assets/finance-buddy/screens/home-light.webp" fetchpriority="high" />
+
+    <!-- Theme before first paint: saved choice, else the system setting, else light. -->
+    <script>
+      (function () {
+        var t;
+        try {
+          t = localStorage.getItem('fb-theme');
+        } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+        if (t === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000000');
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/fb/main.tsx"></script>
+  </body>
+</html>

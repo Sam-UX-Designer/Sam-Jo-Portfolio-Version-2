@@ -1,0 +1,404 @@
+@import "tailwindcss" source(".");
+
+/* =========================================================
+   Finance Buddy project page: design tokens
+
+   The app's own palette (apps/mobile/src/theme/tokens.ts): plain, minimal,
+   Apple-native. Solid surfaces and a lot of space. Light sits on iOS grouped
+   grey, dark on true black, like the app. The one gradient on the page is
+   the mascot itself.
+
+   Shape rule: buttons and chips are pills, cards are 20px (small cards
+   16px), phone frames scale their corners with their width.
+   ========================================================= */
+
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #f2f2f7;
+  --card: #ffffff;
+  --muted: #ededf0;
+  --muted-hover: #e2e2e7;
+  --line: #e5e5ea;
+
+  --ink: #0a0a0b;
+  --ink-2: #6b6b73;
+
+  --btn: #0a0a0b;
+  --btn-press: #2c2c2e;
+  --btn-ink: #ffffff;
+
+  --pos: #16a34a;
+  --pos-text: #166534;
+
+  --bezel: #0a0a0b;
+  --bezel-line: rgba(0, 0, 0, 0.08);
+  --glass: rgba(242, 242, 247, 0.78);
+  --glass-line: rgba(0, 0, 0, 0.06);
+  --shadow-phone: 0 30px 60px -22px rgba(10, 10, 30, 0.32), 0 10px 22px -12px rgba(10, 10, 30, 0.18);
+  --shadow-float: 0 12px 32px -14px rgba(10, 10, 30, 0.22);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #000000;
+  --card: #1c1c1e;
+  --muted: #2c2c2e;
+  --muted-hover: #3a3a3c;
+  --line: #2c2c2e;
+
+  --ink: #ffffff;
+  --ink-2: #98989f;
+
+  --btn: #ffffff;
+  --btn-press: #e5e5ea;
+  --btn-ink: #000000;
+
+  --pos: #22c55e;
+  --pos-text: #22c55e;
+
+  --bezel: #1c1c1e;
+  --bezel-line: rgba(255, 255, 255, 0.14);
+  --glass: rgba(28, 28, 30, 0.72);
+  --glass-line: rgba(255, 255, 255, 0.1);
+  --shadow-phone: 0 30px 70px -24px rgba(0, 0, 0, 0.9);
+  --shadow-float: 0 12px 32px -14px rgba(0, 0, 0, 0.8);
+}
+
+@theme inline {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-hover: var(--muted-hover);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-btn: var(--btn);
+  --color-btn-press: var(--btn-press);
+  --color-btn-ink: var(--btn-ink);
+  --color-pos: var(--pos);
+  --color-pos-text: var(--pos-text);
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+a,
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Screens come in a light and a dark capture of the same moment. Only the
+   one for the current theme is shown, and the hidden one is never fetched
+   (lazy images with display: none don't load). */
+:root:not([data-theme='dark']) .fb-dark-only,
+:root[data-theme='dark'] .fb-light-only {
+  display: none;
+}
+
+/* =========================================================
+   Materials
+   ========================================================= */
+
+@layer components {
+  /* Frosted bar, a web approximation of Apple's material (blur and a rim),
+     not Apple's own. Solid under Reduce Transparency. */
+  .fb-glass {
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-line);
+    box-shadow: var(--shadow-float);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .fb-glass {
+      background: var(--card);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+
+  /* A thin-bezel phone. The outer box is a size container, so the bezel and
+     the corners scale with the phone's width. */
+  .fb-phone {
+    container-type: inline-size;
+  }
+
+  .fb-phone__frame {
+    position: relative;
+    padding: 2.4cqw;
+    border-radius: 15cqw;
+    background: var(--bezel);
+    box-shadow:
+      inset 0 0 0 1px var(--bezel-line),
+      var(--shadow-phone);
+  }
+
+  .fb-phone__screen {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 390 / 844;
+    border-radius: 12.8cqw;
+    background: var(--muted);
+  }
+
+  .fb-phone__screen img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  /* The mascot's soft colour, behind the hero mascot only. */
+  .fb-halo {
+    background: radial-gradient(
+      closest-side,
+      rgba(20, 172, 253, 0.28),
+      rgba(53, 61, 253, 0.2) 45%,
+      rgba(254, 95, 231, 0.12) 70%,
+      transparent
+    );
+    filter: blur(8px);
+  }
+}
+
+/* =========================================================
+   The mascot (port of the app's SIOrb: float, blink, happy shake)
+   ========================================================= */
+
+.fb-mascot {
+  position: relative;
+  display: inline-block;
+  flex: none;
+}
+
+.fb-mascot__bob,
+.fb-mascot__wiggle {
+  position: absolute;
+  inset: 0;
+}
+
+.fb-mascot__body {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Face geometry from the 1144px source artwork, as fractions of the size. */
+.fb-mascot__eye {
+  position: absolute;
+  top: 34.53%;
+  width: 9.97%;
+  height: 18.97%;
+  border-radius: 999px;
+  background: #fff;
+  transform-origin: center;
+}
+
+.fb-mascot__eye--l {
+  left: 35.4%;
+}
+
+.fb-mascot__eye--r {
+  left: 54.72%;
+}
+
+.fb-mascot__smile {
+  position: absolute;
+  left: 32.43%;
+  top: 57.87%;
+  width: 35.23%;
+  height: 13.37%;
+  overflow: visible;
+  transform-origin: center;
+}
+
+@keyframes fb-bob {
+  0%,
+  100% {
+    transform: translateY(2.5%);
+  }
+  50% {
+    transform: translateY(-2.5%);
+  }
+}
+
+@keyframes fb-blink {
+  0%,
+  44%,
+  50%,
+  56%,
+  60%,
+  100% {
+    transform: scaleY(1);
+  }
+  47%,
+  58% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes fb-wiggle {
+  0%,
+  80%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  83% {
+    transform: rotate(-9deg) scale(1.03);
+  }
+  87% {
+    transform: rotate(7.5deg) scale(1.05);
+  }
+  91% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  95% {
+    transform: rotate(2.7deg) scale(1.02);
+  }
+}
+
+@keyframes fb-grin {
+  0%,
+  79%,
+  100% {
+    transform: scale(1, 1);
+  }
+  84%,
+  92% {
+    transform: scale(1.12, 1.3);
+  }
+}
+
+/* One happy shake on demand (tap or hover), the same move as the loop. */
+@keyframes fb-wiggle-once {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  15% {
+    transform: rotate(-9deg) scale(1.03);
+  }
+  35% {
+    transform: rotate(7.5deg) scale(1.06);
+  }
+  55% {
+    transform: rotate(-5deg) scale(1.06);
+  }
+  75% {
+    transform: rotate(2.7deg) scale(1.03);
+  }
+}
+
+@keyframes fb-grin-once {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  20%,
+  70% {
+    transform: scale(1.12, 1.3);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fb-mascot[data-animated] .fb-mascot__bob {
+    animation: fb-bob 2.8s ease-in-out infinite;
+  }
+  .fb-mascot[data-animated] .fb-mascot__wiggle {
+    transform-origin: 50% 54%;
+    animation: fb-wiggle 6s ease-in-out infinite;
+    animation-delay: var(--fb-delay, 0s);
+  }
+  .fb-mascot[data-animated] .fb-mascot__eye {
+    animation: fb-blink 4.6s infinite;
+    animation-delay: var(--fb-delay, 0s);
+  }
+  .fb-mascot[data-animated] .fb-mascot__smile {
+    animation: fb-grin 6s ease-in-out infinite;
+    animation-delay: var(--fb-delay, 0s);
+  }
+  .fb-mascot[data-happy] .fb-mascot__wiggle {
+    animation: fb-wiggle-once 0.7s ease-in-out;
+  }
+  .fb-mascot[data-happy] .fb-mascot__smile {
+    animation: fb-grin-once 0.9s ease-in-out;
+  }
+}
+
+/* Idle loops pause when their section is off screen. */
+section[data-idle] .fb-mascot * {
+  animation-play-state: paused !important;
+}
+
+/* =========================================================
+   Page transition from the portfolio (Chromium; ignored elsewhere)
+   ========================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-group(fb-mark) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
