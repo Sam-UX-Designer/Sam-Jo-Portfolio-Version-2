@@ -1,16 +1,14 @@
 /**
  * Finance Buddy project page: links, artwork and screens.
  *
- * Every screen is a real capture of the app (Sam-UX-Designer/Finance-buddy,
- * branch claude/laughing-hamilton-q3oseg) running locally on its sample
- * data: phone at 390 x 844 (2x), desktop at 1440 x 900 (2x, resized). Each
- * one exists in light and dark, taken at the same moment, so the numbers
+ * Every screen is a real capture of the app running on its sample data:
+ * phone at 390 x 844 (2x), desktop at 1440 x 900 (2x, resized). Each one
+ * exists in light and dark, taken at the same moment, so the numbers
  * match when the theme changes. Files live in public/assets/finance-buddy/.
  */
 
 export const LINKS = {
   demo: 'https://finance-buddy-theta.vercel.app',
-  code: 'https://github.com/Sam-UX-Designer/Finance-buddy',
   portfolio: '/#projects',
 };
 
@@ -75,5 +73,5 @@ export const desktopSrc = (id: DesktopId, theme: 'light' | 'dark') => `${A}/scre
 /** The net worth on the "aha" screen, from the sample data in the captures. */
 export const SAMPLE_NET_WORTH = 809443;
 
-/** Money in Indian format, as the app shows it: ₹8,09,443. */
+/** Money as the sample data shows it in the app: ₹8,09,443. */
 export const inr = (n: number) => `₹${Math.round(n).toLocaleString('en-IN')}`;

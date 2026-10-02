@@ -9,7 +9,6 @@ import Aha from './sections/Aha';
 import Features from './sections/Features';
 import Design from './sections/Design';
 import Privacy from './sections/Privacy';
-import Built from './sections/Built';
 import { FinalCta, Footer } from './sections/Closing';
 
 /**
@@ -17,8 +16,8 @@ import { FinalCta, Footer } from './sections/Closing';
  * Portfolio → What I Built → Finance Buddy → this page.
  *
  * Story, in the brief's order: the promise, the problem, how it works, the
- * moment it clicks, what it does, how it's designed, privacy, how it was
- * built, then the way in. Every screen is a real capture of the app.
+ * moment it clicks, what it does, how it's designed, privacy, then the
+ * way in. Every screen is a real capture of the app.
  */
 export default function FinanceBuddyPage() {
   const { theme, toggle } = useTheme();
@@ -53,7 +52,6 @@ export default function FinanceBuddyPage() {
           <Features />
           <Design />
           <Privacy />
-          <Built />
           <FinalCta />
         </main>
 

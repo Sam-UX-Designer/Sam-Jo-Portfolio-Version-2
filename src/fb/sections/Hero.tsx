@@ -1,7 +1,7 @@
 import { m, useReducedMotion } from 'motion/react';
 import Mascot from '../components/Mascot';
 import Phone from '../components/Phone';
-import { TryDemo, ViewCode } from '../components/Buttons';
+import { TryDemo } from '../components/Buttons';
 import { EASE } from '../components/Motion';
 
 /**
@@ -39,13 +39,12 @@ export default function Hero() {
           </m.h1>
 
           <m.p {...rise(0.12)} className="mt-6 max-w-[44ch] text-lg leading-relaxed text-ink-2 sm:text-xl">
-            A personal finance app for India. Connect your bank accounts safely, see everything at a glance, and ask Super
-            Intelligence anything about your money.
+            A personal finance app that brings it all together. Connect your bank accounts safely, see everything at a
+            glance, and ask Super Intelligence anything about your money.
           </m.p>
 
           <m.div {...rise(0.18)} className="mt-9 flex flex-wrap gap-3">
             <TryDemo />
-            <ViewCode />
           </m.div>
         </div>
 

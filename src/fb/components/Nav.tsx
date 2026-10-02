@@ -7,7 +7,6 @@ const IN_PAGE = [
   { label: 'How it works', href: '#how-it-works' },
   { label: 'Features', href: '#features' },
   { label: 'Privacy', href: '#privacy' },
-  { label: 'How it was built', href: '#built' },
 ];
 
 /**

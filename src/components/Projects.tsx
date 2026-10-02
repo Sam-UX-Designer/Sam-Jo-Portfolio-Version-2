@@ -67,7 +67,7 @@ const TABS: TabData[] = [
       },
       {
         id: 'g3', index: '03', name: 'Finance Buddy', tag: 'AI APP',
-        desc: 'A personal finance app for India with a Super Intelligence that explains your money.',
+        desc: 'A personal finance app with a Super Intelligence that explains your money.',
         tags: ['Personal Finance', 'Super Intelligence'],
         icon: PROJECT_ICON_3,
         tagColor: '#f0abfc',

@@ -1,6 +1,6 @@
 import Mascot from '../components/Mascot';
 import { Reveal } from '../components/Motion';
-import { TryDemo, ViewCode } from '../components/Buttons';
+import { TryDemo } from '../components/Buttons';
 import { LINKS } from '../config';
 
 export function FinalCta() {
@@ -19,7 +19,6 @@ export function FinalCta() {
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-3">
           <TryDemo />
-          <ViewCode />
         </div>
       </Reveal>
     </section>
@@ -36,7 +35,7 @@ export function Footer() {
           <a href={LINKS.portfolio} className="font-medium text-ink underline-offset-4 hover:underline">
             Sam Jo
           </a>
-          . Built with Claude Code.
+          .
         </p>
       </div>
     </footer>

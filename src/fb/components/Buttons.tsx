@@ -1,4 +1,4 @@
-import { ArrowUpRight, CodeXml } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { LINKS } from '../config';
 
 const BASE =
@@ -22,12 +22,3 @@ export function TryDemo({ size = 'md', label = 'Try the live demo' }: { size?: '
   );
 }
 
-export function ViewCode() {
-  return (
-    <a href={LINKS.code} {...external} className={`${BASE} ${SIZE.md} bg-muted text-ink hover:bg-muted-hover`}>
-      <CodeXml size={17} aria-hidden="true" />
-      View the code
-      <span className="sr-only">(opens in a new tab)</span>
-    </a>
-  );
-}

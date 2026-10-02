@@ -6,7 +6,7 @@ const POINTS = [
   {
     icon: ShieldCheck,
     title: 'Consent first',
-    body: 'Access comes through India’s RBI-regulated Account Aggregator network, only for the accounts you approve.',
+    body: 'Accounts connect through a regulated, consent-based connection, only the ones you approve.',
   },
   { icon: KeyRound, title: 'No bank passwords', body: 'Finance Buddy never asks for them.' },
   {

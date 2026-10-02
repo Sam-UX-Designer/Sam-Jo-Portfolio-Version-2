@@ -6,7 +6,7 @@ import type { ScreenId } from '../config';
 const STEPS: { title: string; body: string; screen: ScreenId }[] = [
   {
     title: 'Connect safely',
-    body: 'Sign in with your mobile number and approve access through India’s RBI-regulated Account Aggregator network. No bank passwords, ever.',
+    body: 'Sign in with your mobile number and approve access through a regulated, consent-based connection. No bank passwords, ever.',
     screen: 'signin',
   },
   {

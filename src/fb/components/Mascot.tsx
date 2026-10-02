@@ -14,9 +14,9 @@ interface MascotProps {
 }
 
 /**
- * The Finance Buddy mascot, rebuilt from the app's own component
- * (apps/mobile/src/ui/SIOrb.tsx): the body artwork with its eyes and smile
- * drawn on top, so it can float, blink and smile. Under Reduce Motion the CSS
+ * The Finance Buddy mascot, rebuilt from the app's own mascot: the body
+ * artwork with its eyes and smile drawn on top, so it can float, blink and
+ * smile. Under Reduce Motion the CSS
  * keeps it still.
  */
 export default function Mascot({ size, animated = true, interactive = false, delay = 0, className = '', label }: MascotProps) {

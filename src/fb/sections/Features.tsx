@@ -42,7 +42,7 @@ const FEATURES: Feature[] = [
   },
   {
     title: 'Your net worth',
-    body: 'Mutual funds, fixed deposits, EPF, savings and money you’ve lent, with how it has grown since January.',
+    body: 'Investments, deposits, retirement savings, cash and money you’ve lent, with how it has grown since January.',
     screens: ['wealth'],
     span: 'lg:col-span-6',
   },

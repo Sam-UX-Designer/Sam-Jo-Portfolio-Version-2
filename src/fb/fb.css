@@ -3,7 +3,7 @@
 /* =========================================================
    Finance Buddy project page: design tokens
 
-   The app's own palette (apps/mobile/src/theme/tokens.ts): plain, minimal,
+   The app's own palette: plain, minimal,
    Apple-native. Solid surfaces and a lot of space. Light sits on iOS grouped
    grey, dark on true black, like the app. The one gradient on the page is
    the mascot itself.
