@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { LazyMotion, MotionConfig, domAnimation } from 'motion/react';
 import { useTheme } from './lib/theme';
 import Nav from './components/Nav';
+import Intro, { shouldPlayIntro } from './components/Intro';
 import Hero from './sections/Hero';
 import Problem from './sections/Problem';
 import HowItWorks from './sections/HowItWorks';
@@ -24,6 +25,7 @@ import { FinalCta, Footer } from './sections/Closing';
  */
 export default function FinanceBuddyPage() {
   const { theme, toggle } = useTheme();
+  const [stage, setStage] = useState<'intro' | 'reveal' | 'done'>(() => (shouldPlayIntro() ? 'intro' : 'done'));
 
   // The mascots' idle loops only run where someone can see them.
   useEffect(() => {
@@ -45,10 +47,12 @@ export default function FinanceBuddyPage() {
           Skip to content
         </a>
 
+        {stage !== 'done' && <Intro onReveal={() => setStage('reveal')} onDone={() => setStage('done')} />}
+
         <Nav theme={theme} onToggleTheme={toggle} />
 
         <main id="main">
-          <Hero />
+          <Hero stage={stage} />
           <Problem />
           <HowItWorks />
           <Aha />

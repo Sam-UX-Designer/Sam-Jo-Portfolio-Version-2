@@ -10,7 +10,7 @@ import { useScene, useScrub } from '../lib/scene';
  * visitor scrolls, the words step back and the two phones (light and dark)
  * rise into the middle of the screen.
  */
-export default function Hero() {
+export default function Hero({ stage = 'done' }: { stage?: 'intro' | 'reveal' | 'done' }) {
   const { ref, progress } = useScene<HTMLElement>();
   const reduce = useReducedMotion();
 
@@ -25,7 +25,13 @@ export default function Hero() {
   const rightRotate = useScrub(progress, [0, 0.75], [5, 0], 0);
 
   const enter = (delay: number) =>
-    reduce ? {} : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay, ease: EASE } };
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 24 },
+          animate: stage === 'intro' ? { opacity: 0, y: 24 } : { opacity: 1, y: 0 },
+          transition: { duration: 0.9, delay, ease: EASE },
+        };
 
   return (
     <section ref={ref} id="top" aria-labelledby="hero-title" className="relative h-[210vh]">
@@ -34,15 +40,16 @@ export default function Hero() {
           style={{ opacity: textOpacity, y: textY, scale: textScale }}
           className="absolute inset-x-0 top-[max(6.5rem,13vh)] flex flex-col items-center px-5 text-center"
         >
-          <m.div {...enter(0)} className="flex items-center gap-3">
-            <span className="relative grid place-items-center">
+          {/* The intro's mascot and name land exactly here, then hand over. */}
+          <div className={`flex items-center gap-3 ${stage === 'done' ? '' : 'opacity-0'}`}>
+            <span data-fb-mark="mascot" className="relative grid place-items-center">
               <span aria-hidden="true" className="fb-halo absolute -inset-6 rounded-full" />
               <Mascot size={56} label="Finance Buddy mascot" className="relative" />
             </span>
-            <span translate="no" className="text-xl font-semibold tracking-tight">
+            <span data-fb-mark="name" translate="no" className="text-xl font-semibold tracking-tight">
               Finance Buddy
             </span>
-          </m.div>
+          </div>
 
           <m.h1
             {...enter(0.08)}
